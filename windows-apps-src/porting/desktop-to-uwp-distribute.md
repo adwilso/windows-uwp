@@ -10,6 +10,7 @@ ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
 ms.assetid: edff3787-cecb-4054-9a2d-1fbefa79efc4
+ms.localizationpriority: medium
 ---
 
 # Distribute a packaged desktop app (Desktop Bridge)
@@ -19,30 +20,34 @@ Publish your packaged desktop app to a Windows store or sideload it onto one or 
 > [!NOTE]
 > Do you have a plan for how you might transition users to your packaged app? Before you distribute your app, see the [Transition users to your desktop bridge app](#transition-users) section of this guide to get some ideas.
 
-## Distribute your app by publishing it to the Windows Store
+## Distribute your app by publishing it to the Microsoft Store
 
-The [Windows Store](https://www.microsoft.com/store/apps) is a convenient way for customers to get your app.
+The [Microsoft Store](https://www.microsoft.com/store/apps) is a convenient way for customers to get your app.
 
 <div style="float: left; padding: 10px">
     ![Store icon](images/desktop-to-uwp/store.png)
 </div>
- Publish your app to that store to reach the broadest audience. Also, Also, organizational customers can acquire your app to distribute internally to their organizations through the [Windows Store for Business](https://www.microsoft.com/business-store).
+ Publish your app to that store to reach the broadest audience. Also, Also, organizational customers can acquire your app to distribute internally to their organizations through the [Microsoft Store for Business](https://www.microsoft.com/business-store).
 
-If you plan to publish to the Windows Store, and you haven't reached out to us yet, please fill out [this form](https://developer.microsoft.com/windows/projects/campaigns/desktop-bridge), and Microsoft will contact you to start the onboarding process.
+If you plan to publish to the Microsoft Store, and you haven't reached out to us yet, please fill out [this form](https://developer.microsoft.com/windows/projects/campaigns/desktop-bridge), and Microsoft will contact you to start the onboarding process.
 
 You don't have to sign your app before you submit it to the store.
 
-## Distribute your app without placing it onto the Windows Store
+>[!IMPORTANT]
+> If you plan to publish your app to the Microsoft Store, make sure that your app operates correctly on devices that run Windows 10 S. This is a store requirement. See [Test your Windows app for Windows 10  S](desktop-to-uwp-test-windows-s.md).
+
+<a id="side-load" />
+## Distribute your app without placing it onto the Microsoft Store
 
 If you'd rather distribute your app without using the store, you can manually distribute apps to one or more devices.
 
-This might make sense if you want greater control over the distribution experience or you don't want to get involved with the Windows Store certification process.
+This might make sense if you want greater control over the distribution experience or you don't want to get involved with the Microsoft Store certification process.
 
 To distribute your app to other devices without placing it onto the store, you have to obtain a certificate, sign your app by using that certificate, and then sideload your app onto those devices.
 
 You can [create a certificate](../packaging/create-certificate-package-signing.md) or obtain one from a popular vendor such as [Verisign](https://www.verisign.com/).
 
-If you plan to distribute your app onto devices that run Windows 10 S, your app has to be signed by the Windows Store so you'll have to go through the Store submission process before you can distribute your app onto those devices.
+If you plan to distribute your app onto devices that run Windows 10 S, your app has to be signed by the Microsoft Store so you'll have to go through the Store submission process before you can distribute your app onto those devices.
 
 If you create a certificate, you have to install it into the **Trusted Root** or **Trusted People** certificate store on each device that runs your app. If you get a certificate from a popular vendor, you won't have to install anything onto other systems besides your app.  
 
@@ -55,11 +60,11 @@ To sideload your app onto other devices, see [Sideload LOB apps in Windows 10](h
 
 **Videos**
 
-|Publish your app into the Windows Store |Distribute an enterprise app  |
+|Publish your app into the Microsoft Store |Distribute an enterprise app  |
 |---|---|
 |<iframe src="https://mva.microsoft.com/en-US/training-courses-embed/developers-guide-to-the-desktop-bridge-17373/Demo-Windows-Store-Publication-3cWyG5WhD_5506218965"      width="426" height="472" allowFullScreen frameBorder="0"></iframe>|<iframe src="https://mva.microsoft.com/en-US/training-courses-embed/developers-guide-to-the-desktop-bridge-17373/Video-Distribution-for-Enterprise-Apps-XJ5Hd5WhD_1106218965" width="426" height="472" allowFullScreen frameBorder="0"></iframe>|
 
-<span id="transition-users" />
+<a id="transition-users" />
 ## Transition users to your desktop bridge app
 
 Before you distribute your app, consider adding a few extensions to your package manifest to help users get into the habit of using your desktop bridge app. Here's a few things you can do.
@@ -124,6 +129,8 @@ It is better not to uninstall the users desktop app without first asking them fo
 
 Here's an example of how you could do this in a .NET-based desktop bridge app.
 
+To view the complete context of this snippet, see the **MainWindow.cs** file of this sample [WPF picture viewer with transition/migration/uninstallation](https://github.com/Microsoft/DesktopBridgeToUWP-Samples/tree/master/Samples/DesktopAppTransition).
+
 ```csharp
 private void RemoveDesktopApp()
 {              
@@ -169,10 +176,12 @@ private void RemoveDesktopApp()
 
 ## Next steps
 
-**Find answers to specific questions**
+**Find answers to your questions**
 
-Our team monitors these [StackOverflow tags](http://stackoverflow.com/questions/tagged/project-centennial+or+desktop-bridge).
+Have questions? Ask us on Stack Overflow. Our team monitors these [tags](http://stackoverflow.com/questions/tagged/project-centennial+or+desktop-bridge). You can also ask us [here](https://social.msdn.microsoft.com/Forums/en-US/home?filter=alltypes&sort=relevancedesc&searchTerm=%5BDesktop%20Converter%5D).
 
-**Give feedback about this article**
+If you encounter issues publishing your application to the Store, this [blog post](https://blogs.msdn.microsoft.com/appconsult/2017/09/25/preparing-a-desktop-bridge-application-for-the-store-submission/) contains some useful tips.
 
-Use the comments section below.
+**Give feedback or make feature suggestions**
+
+See [UserVoice](https://wpdev.uservoice.com/forums/110705-universal-windows-platform/category/161895-desktop-bridge-centennial).

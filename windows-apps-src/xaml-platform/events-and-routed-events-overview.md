@@ -9,11 +9,11 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Events and routed events overview
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 **Important APIs**
 -   [**UIElement**](https://msdn.microsoft.com/library/windows/apps/br208911)
@@ -61,7 +61,7 @@ Private Sub showUpdatesButton_Click(ByVal sender As Object, ByVal e As RoutedEve
 End Sub
 ```
 ```cpp
-void MyNamespace::BlankPage::showUpdatesButton_Click(Platform::Object^ sender, Windows::UI::Xaml::Input::RoutedEventArgs^ e) {
+void MyNamespace::BlankPage::showUpdatesButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e) {
     Button^ b = (Button^) sender;
     //more logic to do here...
 }
@@ -248,9 +248,9 @@ Certain objects participate in a relationship with the primary visual tree that 
 Determining whether and where in UI an element is visible to mouse, touch, and stylus input is called *hit testing*. For touch actions and also for interaction-specific or manipulation events that are consequences of a touch action, an element must be hit-test visible in order to be the event source and fire the event that is associated with the action. Otherwise, the action passes through the element to any underlying elements or parent elements in the visual tree that could interact with that input. There are several factors that affect hit testing, but you can determine whether a given element can fire input events by checking its [**IsHitTestVisible**](https://msdn.microsoft.com/library/windows/apps/br208933) property. This property returns **true** only if the element meets these criteria:
 
 -   The element's [**Visibility**](https://msdn.microsoft.com/library/windows/apps/br208992) property value is [**Visible**](https://msdn.microsoft.com/library/windows/apps/br209006).
--   The element's **Background** or **Fill** property value is not **null**. A **null** [**Brush**](https://msdn.microsoft.com/library/windows/apps/br228076) value results in transparency and hit test invisibility. (To make an element transparent but also hit testable, use a [**Transparent**](https://msdn.microsoft.com/library/windows/apps/hh748061) brush instead of **null**.)
+-   The element's **Background** or **Fill** property value is not **null**. A **null** [**Brush**](/uwp/api/Windows.UI.Xaml.Media.Brush) value results in transparency and hit test invisibility. (To make an element transparent but also hit testable, use a [**Transparent**](https://msdn.microsoft.com/library/windows/apps/hh748061) brush instead of **null**.)
 
-**Note**  **Background** and **Fill** aren't defined by [**UIElement**](https://msdn.microsoft.com/library/windows/apps/br208911), and are instead defined by different derived classes such as [**Control**](https://msdn.microsoft.com/library/windows/apps/br209390) and [**Shape**](https://msdn.microsoft.com/library/windows/apps/br243377). But the implications of brushes you use for foreground and background properties are the same for hit testing and input events, no matter which subclass implements the properties.
+**Note**  **Background** and **Fill** aren't defined by [**UIElement**](https://msdn.microsoft.com/library/windows/apps/br208911), and are instead defined by different derived classes such as [**Control**](https://msdn.microsoft.com/library/windows/apps/br209390) and [**Shape**](/uwp/api/Windows.UI.Xaml.Shapes.Shape). But the implications of brushes you use for foreground and background properties are the same for hit testing and input events, no matter which subclass implements the properties.
 
 -   If the element is a control, its [**IsEnabled**](https://msdn.microsoft.com/library/windows/apps/br209419) property value must be **true**.
 -   The element must have actual dimensions in layout. An element where either [**ActualHeight**](https://msdn.microsoft.com/library/windows/apps/br208707) and [**ActualWidth**](https://msdn.microsoft.com/library/windows/apps/br208709) are 0 won't fire input events.

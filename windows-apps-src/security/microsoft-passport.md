@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Windows Hello
 
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 
 This article describes the new Windows Hello technology that is shipping as part of the Windows 10 operating system and discusses how developers can implement this technology to protect their Universal Windows Platform (UWP) apps and backend services. It highlights specific capabilities of these technologies that help mitigate threats that arise from using conventional credentials and provides guidance about designing and deploying these technologies as part of a Windows 10 rollout.
@@ -181,10 +181,10 @@ static async void RegisterUser(string AccountId)
         var keyAttestationResult = await userKey.GetAttestationAsync();
         IBuffer keyAttestation = null;
         IBuffer certificateChain = null;
-        bool keyAttesttionIncluded = false;
-        bool keyAttestationCanBeRetrievedLAter = false;
+        bool keyAttestationIncluded = false;
+        bool keyAttestationCanBeRetrievedLater = false;
 
-        KeyCredentialAttestationResult keyAttestationResult = await userKey.GetAttestationAsync();
+        keyAttestationResult = await userKey.GetAttestationAsync();
         KeyCredentialAttestationStatus keyAttestationRetryType = 0;
 
         if (keyAttestationResult.Status == KeyCredentialAttestationStatus.Success)
@@ -201,7 +201,7 @@ static async void RegisterUser(string AccountId)
         else if (keyAttestationResult.Status == KeyCredentialAttestationStatus.NotSupported)
         {
             keyAttestationRetryType = KeyCredentialAttestationStatus.NotSupported;
-            keyAttestationCanBeRetrievedLAter = true;
+            keyAttestationCanBeRetrievedLater = true;
         }
     }
     else if (keyCreationResult.Status == KeyCredentialStatus.UserCanceled ||

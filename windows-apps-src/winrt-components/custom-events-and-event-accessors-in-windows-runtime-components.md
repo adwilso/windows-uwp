@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Custom events and event accessors in Windows Runtime Components
 
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 .NET Framework support for Windows Runtime Components makes it easy to declare events components by hiding the differences between the Universal Windows Platform (UWP) event pattern and the .NET Framework event pattern. However, when you declare custom event accessors in a Windows Runtime Component, you must follow the pattern used in the UWP.
 
@@ -123,6 +123,6 @@ Visual Basic users: In the .NET Framework, an event is just a multicast delegate
 
 * [Events (Visual Basic)](https://msdn.microsoft.com/library/ms172877.aspx)
 * [Events (C# Programming Guide)](https://msdn.microsoft.com/library/awbftdfh.aspx)
-* [.NET for Windows Store Apps Overview](https://msdn.microsoft.com/library/windows/apps/xaml/br230302.aspx)
+* [.NET for UWP apps Overview](https://msdn.microsoft.com/library/windows/apps/xaml/br230302.aspx)
 * [.NET for UWP apps](https://msdn.microsoft.com/library/windows/apps/xaml/mt185501.aspx)
 * [Walkthrough: Creating a Simple Windows Runtime Component and calling it from JavaScript](walkthrough-creating-a-simple-windows-runtime-component-and-calling-it-from-javascript.md)

@@ -2,18 +2,18 @@
 author: mcleblanc
 ms.assetid: A9D54DEC-CD1B-4043-ADE4-32CD4977D1BF
 title: Data binding overview
-description: This topic shows you how to bind a control (or other UI element) to a single item or bind an items control to a collection of items in a Universal Windows Platform (UWP) app.
+description: This topic shows you how to bind a control (or other UI element) to a single item or bind an item's control to a collection of items in a Universal Windows Platform (UWP) app.
 ms.author: markl
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 Data binding overview
 =====================
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 
 This topic shows you how to bind a control (or other UI element) to a single item or bind an items control to a collection of items in a Universal Windows Platform (UWP) app. In addition, we show how to control the rendering of items, implement a details view based on a selection, and convert data for display. For more detailed info, see [Data binding in depth](data-binding-in-depth.md).
@@ -104,7 +104,7 @@ namespace Quickstart
                     wstringstream << L", released: " << this->ReleaseDateTime->MonthAsNumericString()->Data();
                     wstringstream << L"/" << this->ReleaseDateTime->DayAsString()->Data();
                     wstringstream << L"/" << this->ReleaseDateTime->YearAsString()->Data();
-                    return ref new Platform::String(wstringstream.str().c-str());
+                    return ref new Platform::String(wstringstream.str().c_str());
                 }
             }
         };

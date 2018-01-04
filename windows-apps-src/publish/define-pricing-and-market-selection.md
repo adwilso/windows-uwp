@@ -1,25 +1,26 @@
 ﻿---
 author: jnHs
-Description: The Windows Store reaches customers in over 200 countries and regions around the world.
+Description: The Microsoft Store reaches customers in over 200 countries and regions around the world.
 title: Define market selection
 ms.assetid: FBE7507B-DBF3-4FCB-8377-DB01660E75F8
 ms.author: wdg-dev-content
-ms.date: 05/15/2017
+ms.date: 12/12/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
-keywords: windows 10, uwp
+keywords: windows 10, uwp, markets, countries, regions
+ms.localizationpriority: high
 ---
 
 # Define market selection
 
 
-The Windows Store reaches customers in over 200 countries and regions around the world. You can choose the markets in which you'd like to offer your app, with the option to customize many [pricing and availability](set-app-pricing-and-availability.md) features per market or per group of markets.
+The Microsoft Store reaches customers in over 200 countries and regions around the world. You can choose the markets in which you'd like to offer your app, with the option to customize many [pricing and availability](set-app-pricing-and-availability.md) features per market or per group of markets.
 
-Be sure to consider our [guidelines to help you globalize your app](../globalizing/guidelines-and-checklist-for-globalizing-your-app.md).
+For info to help make your app suitable for customers around the world, see [Guidelines for globalization](../design/globalizing/guidelines-and-checklist-for-globalizing-your-app.md) and [Make your app localizable](../design/globalizing/prepare-your-app-for-localization.md).
 
-> [!IMPORTANT]
-> This topic has been updated to reflect the latest functionality, which we are in the process of rolling out to all developer accounts. You may not see all of the options described here until we complete this rollout.
+> [!NOTE]
+> Although this topic refers to apps, market selection for add-on submissions uses the same process.
 
 ## Markets
 
@@ -42,10 +43,10 @@ Keep in mind that even if you select all markets, local laws and restrictions or
 You will also see a checkbox that lets you indicate whether to offer your app in any market that the Store may add in the future. If you leave this box checked, and we later add new markets, the base price and general availability date for your submission will be used for your app in those markets. If you don't want this to happen, you can uncheck this box, in which case we will not list your app in any future markets (though you can always add them later).
  
 
-## Windows Store consumer markets
+## Microsoft Store consumer markets
 
+You can choose to list your app (or add-on) in one or more of the following markets. The markets with an asterisk support the Microsoft Store on Xbox One; you'll see **Xbox** next to their names in the **Market selection** popup window.
 
-You can choose to list your app (or add-on) in one or more of the following markets. The markets with an asterisk support the Store on Xbox; you'll see **Xbox** next to their names in the **Market selection** popup window.
 
 <table>
   <tr>
@@ -425,10 +426,8 @@ The Commerce Expansion Adjustment will be applied to all transactions processed 
 
 &nbsp;
 
-| Country/region | Payment method         | Commerce Expansion Adjustment | Effective date |
-|----------------|-------------------------|-------------------------------|----------------|
-| South Africa   | Mobile operator billing | 13.9%                         | March 2014     |
-| Vietnam        | Mobile operator billing | 13.9%                         | October 2014   |
+| Country/region       | Payment method  | Commerce Expansion Adjustment | Effective date |
+|----------------------|-----------------|-------------------------------|----------------|
 | Argentina            | Gift card       | 2.24%                         | March 2016     |
 | Australia            | Gift card       | 2.24%                         | March 2016     |
 | Austria              | Gift card       | 2.24%                         | March 2016     |
@@ -475,11 +474,12 @@ The Commerce Expansion Adjustment will be applied to all transactions processed 
 
 ## "Rest of World" markets for Windows 8.x
 
-If your app includes packages targeting Windows 8.x, it's important to be aware that a number of markets are treated as a single "Rest of World" market for customers using the Store on Windows 8.x, even though they are shown as individual markets in the Windows Dev Center dashboard (as opposed to the earlier Windows Store dashboard, where there was one selectable "Rest of World" market option).
+If your app includes packages targeting Windows 8.x, it's important to be aware that a number of markets are treated as a single "Rest of World" market for customers using the Store on Windows 8.x, even though they are shown as individual markets in the Windows Dev Center dashboard (as opposed to the earlier Store dashboard, where there was one "Rest of World" market option to group all of these markets).
 
 If you leave the default selection when submitting your app, you don't have to worry about this, and your app will be available to all possible markets. However, if you want to exclude certain markets, keep in mind that excluding even one of these "Rest of World" markets means that your app won't be available in any of the "Rest of World" markets for customers on Windows 8 or Windows 8.1.
 
 The markets that are included in "Rest of World" for Windows 8.x are the following:
+
 
 <table>
   <tr>

@@ -1,19 +1,19 @@
 ---
-author: mcleblanc
+author: stevewhims
 description: You have two options when you begin the porting process.
 title: Porting a Windows Runtime 8.x project to a UWP project'
 ms.assetid: 2dee149f-d81e-45e0-99a4-209a178d415a
-ms.author: markl
+ms.author: stwhi
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Porting a Windows Runtime 8.x project to a UWP project
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 
 You have two options when you begin the porting process. One is to edit a copy of your existing project files, including the app package manifest (for that option, see the info about updating your project files in [Migrate apps to the Universal Windows Platform (UWP)](https://msdn.microsoft.com/library/mt148501.aspx)). The other option is to create a new Windows 10 project in Visual Studio and copy your files into it. The first section in this topic describes that second option, but the rest of the topic has additional info applicable to both options. You can also choose to keep your new Windows 10 project in the same solution as your existing projects and share source code files using a shared project. Or, you can keep the new project in a solution of its own and share source code files using the linked files feature in Visual Studio.
@@ -22,7 +22,7 @@ You have two options when you begin the porting process. One is to edit a copy o
 
 These steps focus on the option to create a new Windows 10 project in Visual Studio and copy your files into it. Some of the specifics around how many projects you create, and which files you copy over, will depend on the factors and decisions described in [If you have a Universal 8.1 app](w8x-to-uwp-root.md) and the sections that follow it. These steps assume the simplest case.
 
-1.  Launch Microsoft Visual Studio 2015 and create a new Blank Application (Windows Universal) project. For more info, see [Jumpstart your Windows Store app using templates (C#, C++, Visual Basic)](https://msdn.microsoft.com/library/windows/apps/hh768232). Your new project builds an app package (an appx file) that will run on all device families.
+1.  Launch Microsoft Visual Studio 2015 and create a new Blank Application (Windows Universal) project. For more info, see [Jumpstart your Windows Runtime 8.x app using templates (C#, C++, Visual Basic)](https://msdn.microsoft.com/library/windows/apps/hh768232). Your new project builds an app package (an appx file) that will run on all device families.
 2.  In your Universal 8.1 app project, identify all the source code files and visual asset files that you want to reuse. Using File Explorer, copy data models, view models, visual assets, Resource Dictionaries, folder structure, and anything else that you wish to re-use, to your new project. Copy or create sub-folders on disk as necessary.
 3.  Copy views (for example, MainPage.xaml and MainPage.xaml.cs) into the new project, too. Again, create new sub-folders as necessary, and remove the existing views from the project. But, before you over-write or remove a view that Visual Studio generated, keep a copy because it may be useful to refer to it later. The first phase of porting a Universal 8.1 app focuses on getting it to look good and work well on one device family. Later, you'll turn your attention to making sure the views adapt themselves well to all form factors, and optionally to adding any adaptive code to get the most from a particular device family.
 4.  In **Solution Explorer**, make sure **Show All Files** is toggled on. Select the files that you copied, right-click them, and click **Include In Project**. This will automatically include their containing folders. You can then toggle **Show All Files** off if you like. An alternative workflow, if you prefer, is to use the **Add Existing Item** command, having created any necessary sub-folders in the Visual Studio **Solution Explorer**. Double-check that your visual assets have **Build Action** set to **Content** and **Copy to Output Directory** set to **Do not copy**.
@@ -172,7 +172,7 @@ The next topic is [Troubleshooting](w8x-to-uwp-troubleshooting.md).
 ## Related topics
 
 * [Develop apps for the Universal Windows Platform](http://msdn.microsoft.com/library/dn975273.aspx)
-* [Jumpstart your Windows Store app using templates (C#, C++, Visual Basic)](https://msdn.microsoft.com/library/windows/apps/hh768232)
+* [Jumpstart your Windows Runtime 8.x app using templates (C#, C++, Visual Basic)](https://msdn.microsoft.com/library/windows/apps/hh768232)
 * [Creating Windows Runtime Components](https://msdn.microsoft.com/library/windows/apps/xaml/hh441572.aspx)
 * [Cross-Platform Development with the Portable Class Library](http://msdn.microsoft.com/library/gg597391.aspx)
 

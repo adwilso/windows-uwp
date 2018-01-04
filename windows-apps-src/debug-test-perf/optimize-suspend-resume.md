@@ -1,18 +1,18 @@
 ---
-author: mcleblanc
+author: jwmsft
 ms.assetid: E1943DCE-833F-48AE-8402-CD48765B24FC
 title: Optimize suspend/resume
 description: Create Universal Windows Platform (UWP) apps that streamline their use of the process lifetime system to resume efficiently after suspension or termination.
-ms.author: markl
+ms.author: jimwalk
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 # Optimize suspend/resume
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 Create Universal Windows Platform (UWP) apps that streamline their use of the process lifetime system to resume efficiently after suspension or termination.
 

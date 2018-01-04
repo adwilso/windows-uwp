@@ -9,11 +9,11 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Guidelines for background tasks
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 Ensure your app meets the requirements for running background tasks.
 
@@ -52,7 +52,7 @@ Background tasks that run in the same process as the foreground app do not need 
 
 > **Important**  Starting in Windows 10, apps are no longer required to be on the lock screen as a prerequisite to run background tasks.
 
-Universal Windows Platform (UWP) apps can run all supported task types without being pinned to the lock screen. However, apps must call [**RequestAccessAsync**](https://msdn.microsoft.com/library/windows/apps/hh700485) before registering any type of background task. This method will return [**BackgroundAccessStatus.Denied**](https://msdn.microsoft.com/library/windows/apps/hh700439) if the user has explicitly denied background task permissions for your app in the device's settings.
+Universal Windows Platform (UWP) apps can run all supported task types without being pinned to the lock screen. However, apps must call [**RequestAccessAsync**](https://msdn.microsoft.com/library/windows/apps/hh700485) before registering any type of background task. This method will return [**BackgroundAccessStatus.DeniedByUser**](https://msdn.microsoft.com/library/windows/apps/hh700439) if the user has explicitly denied background task permissions for your app in the device's settings. For more information on user choice around background activity and Battery Saver, see [Optimize Background Activity](https://docs.microsoft.com/windows/uwp/debug-test-perf/optimize-background-activity). 
 ## Background task checklist
 
 *Applies to both in-process and out-of-process background tasks*
@@ -79,9 +79,6 @@ Universal Windows Platform (UWP) apps can run all supported task types without b
 -   Write background tasks that are short-lived. Background tasks are limited to 30 seconds of wall-clock usage.
 -   Do not rely on user interaction in background tasks.
 
-**Note**  
-This article is for Windows 10 developers writing Universal Windows Platform (UWP) apps. If you’re developing for Windows 8.x or Windows Phone 8.x, see the [archived documentation](http://go.microsoft.com/fwlink/p/?linkid=619132).
-
 ## Related topics
 
 * [Create and register an in-process background task](create-and-register-an-inproc-background-task.md).
@@ -97,7 +94,7 @@ This article is for Windows 10 developers writing Universal Windows Platform (UW
 * [Use a maintenance trigger](use-a-maintenance-trigger.md)
 * [Run a background task on a timer](run-a-background-task-on-a-timer-.md)
 * [Debug a background task](debug-a-background-task.md)
-* [How to trigger suspend, resume, and background events in Windows Store apps (when debugging)](http://go.microsoft.com/fwlink/p/?linkid=254345)
+* [How to trigger suspend, resume, and background events in UWP apps (when debugging)](http://go.microsoft.com/fwlink/p/?linkid=254345)
 
  
 

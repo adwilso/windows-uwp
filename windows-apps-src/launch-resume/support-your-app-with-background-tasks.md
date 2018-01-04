@@ -4,16 +4,16 @@ title: Support your app with background tasks
 description: The topics in this section show you how to make lightweight code run in the background in response to triggers.
 ms.assetid: EFF7CBFB-D309-4ACB-A2A5-28E19D447E32
 ms.author: twhitney
-ms.date: 04/15/2017
+ms.date: 08/21/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Support your app with background tasks
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 The topics in this section show you how to make lightweight code run in the background in response to triggers. You can use background tasks to provide functionality when your app is suspended or not running. You can also use background tasks for real-time communication apps like VOIP, mail, and IM.
 
@@ -70,8 +70,11 @@ You can control when the background task runs, even after it is triggered, by ad
 | **UserNotPresent**       | The user must be away.            |
 | **UserPresent**          | The user must be present.         |
 
+Add the **InternetAvailable** condition to your background task [BackgroundTaskBuilder.AddCondition](https://docs.microsoft.com/uwp/api/Windows.ApplicationModel.Background.BackgroundTaskBuilder) to delay triggering the background task until the network stack is running. This condition saves power because the background task won't execute until the network is available. This condition does not provide real-time activation.
+
+If your background task requires network connectivity, set [IsNetworkRequested](https://docs.microsoft.com/uwp/api/Windows.ApplicationModel.Background.BackgroundTaskBuilder) to ensure that the network stays up while the background task runs. This tells the background task infrastructure to keep the network up while the task is executing, even if the device has entered Connected Standby mode. If your background task does not set **IsNetworkRequested**, then your background task will not be able to access the network when in Connected Standby mode (for example, when a phone's screen is turned off.)
  
-For more info see [Set conditions for running a background task](set-conditions-for-running-a-background-task.md).
+For more info about background task conditions, see [Set conditions for running a background task](set-conditions-for-running-a-background-task.md).
 
 ## Application manifest requirements
 
@@ -124,7 +127,8 @@ Background tasks are limited to 30 seconds of wall-clock usage.
 ### Memory constraints
 
 Due to the resource constraints for low-memory devices, background tasks may have a memory limit that determines the maximum amount of memory the background task can use. If your background task attempts an operation that would exceed this limit, the operation will fail and may generate an out-of-memory exception--which the task can handle. If the task does not handle the out-of-memory exception, or the nature of the attempted operation is such that an out-of-memory exception was not generated, then the task will be terminated immediately.  
- You can use the [**MemoryManager**](https://msdn.microsoft.com/library/windows/apps/dn633831) APIs to query your current memory usage and limit in order to discover your cap (if any), and to monitor your background task's ongoing memory usage.
+
+You can use the [**MemoryManager**](https://msdn.microsoft.com/library/windows/apps/dn633831) APIs to query your current memory usage and limit in order to discover your cap (if any), and to monitor your background task's ongoing memory usage.
 
 ### Per-device limit for apps with background tasks for low-memory devices
 
@@ -133,6 +137,8 @@ On memory-constrained devices, there is a limit to the number of apps that can b
 ### Battery Saver
 
 Unless you exempt your app so that it can still run background tasks and receive push notifications when Battery Saver is on, the Battery Saver feature, when enabled, will prevent background tasks from running when the device is not connected to external power and the battery goes below a specified amount of power remaining. This will not prevent you from registering background tasks.
+
+However, for enterprise apps, and apps that will not be published in the Microsoft Store, see [Run in the background indefinitely](run-in-the-background-indefinetly.md) to learn how to use a capabilities to run a background task or extended execution session in the background indefinitely.
 
 ## Background task resource guarantees for real-time communication
 
@@ -151,7 +157,7 @@ Your app can access sensors and peripheral devices from a background task with t
 > [!IMPORTANT]
 > The **DeviceUseTrigger** and **DeviceServicingTrigger** cannot be used with in-process background tasks.
 
-Some critical device operations, such as long running firmware updates, cannot be performed with the [**DeviceUseTrigger**](https://msdn.microsoft.com/library/windows/apps/dn297337). Such operations can be performed only on the PC, and only by a privileged app that uses the [**DeviceServicingTrigger**](https://msdn.microsoft.com/library/windows/apps/dn297315). A *privileged app* is an app that the device's manufacturer has authorized to perform those operations. Device metadata is used to specify which app, if any, has been designated as the privileged app for a device. For more info, see [Device sync and update for Windows Store device apps](http://go.microsoft.com/fwlink/p/?LinkId=306619)
+Some critical device operations, such as long running firmware updates, cannot be performed with the [**DeviceUseTrigger**](https://msdn.microsoft.com/library/windows/apps/dn297337). Such operations can be performed only on the PC, and only by a privileged app that uses the [**DeviceServicingTrigger**](https://msdn.microsoft.com/library/windows/apps/dn297315). A *privileged app* is an app that the device's manufacturer has authorized to perform those operations. Device metadata is used to specify which app, if any, has been designated as the privileged app for a device. For more info, see [Device sync and update for Microsoft Store device apps](http://go.microsoft.com/fwlink/p/?LinkId=306619)
 
 ## Managing background tasks
 
@@ -162,10 +168,7 @@ Background tasks can report progress, completion, and cancellation to your app u
 
 Check your background task registration during app launch. Ensure that your app's ungrouped background tasks are present in BackgroundTaskBuilder.AllTasks. Re-register the ones that are not present. Unregister any tasks that are no longer needed. This ensures that all background tasks registrations are up-to-date every time the app is launched.
 
-**Note**  
-This article is for Windows 10 developers writing Universal Windows Platform (UWP) apps. If you’re developing for Windows 8.x or Windows Phone 8.x, see the [archived documentation](http://go.microsoft.com/fwlink/p/?linkid=619132).
-
- ## Related topics
+## Related topics
 
 **Conceptual guidance for multitasking in Windows 10**
 
@@ -182,13 +185,14 @@ This article is for Windows 10 developers writing Universal Windows Platform (UW
 * [Declare background tasks in the application manifest](declare-background-tasks-in-the-application-manifest.md)
 * [Group background task registration](group-background-tasks.md)
 * [Handle a cancelled background task](handle-a-cancelled-background-task.md)
-* [How to trigger suspend, resume, and background events in Windows Store apps (when debugging)](https://docs.microsoft.com/visualstudio/debugger/how-to-trigger-suspend-resume-and-background-events-for-windows-store-apps-in-visual-studio)
+* [How to trigger suspend, resume, and background events in UWP apps (when debugging)](https://docs.microsoft.com/visualstudio/debugger/how-to-trigger-suspend-resume-and-background-events-for-windows-store-apps-in-visual-studio)
 * [Monitor background task progress and completion](monitor-background-task-progress-and-completion.md)
 * [Play media in the background](https://msdn.microsoft.com/windows/uwp/audio-video-camera/background-audio)
 * [Register a background task](register-a-background-task.md)
 * [Respond to system events with background tasks](respond-to-system-events-with-background-tasks.md)
 * [Run a background task on a timer](run-a-background-task-on-a-timer-.md)
 * [Run a background task when your UWP app is updated](run-a-background-task-during-updatetask.md)
+* [Run in the background indefinitely](run-in-the-background-indefinetly.md)
 * [Set conditions for running a background task](set-conditions-for-running-a-background-task.md)
 * [Trigger a background task from your app](trigger-background-task-from-app.md)
 * [Update a live tile from a background task](update-a-live-tile-from-a-background-task.md)

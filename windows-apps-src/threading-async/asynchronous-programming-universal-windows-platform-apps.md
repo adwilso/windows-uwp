@@ -1,18 +1,18 @@
 ---
-author: TylerMSFT
+author: normesta
 ms.assetid: 23FE28F1-89C5-4A17-A732-A722648F9C5E
 title: Asynchronous programming
 description: This topic describes asynchronous programming in the Universal Windows Platform (UWP) and its representation in C#, Microsoft Visual Basic .NET, Visual C\+\+ component extensions (C\+\+/CX), and JavaScript.
-ms.author: twhitney
+ms.author: normesta
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp, asynchronous
+ms.localizationpriority: medium
 ---
 # Asynchronous programming
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 
 This topic describes asynchronous programming in the Universal Windows Platform (UWP) and its representation in C#, Microsoft Visual Basic .NET, Visual C++ component extensions (C++/CX), and JavaScript.

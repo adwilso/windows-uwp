@@ -9,11 +9,11 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Run a background task on a timer
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 Learn how to use the [**TimeTrigger**](https://msdn.microsoft.com/library/windows/apps/br224843) to schedule a one-time background task, or run a periodic background task.
 
@@ -112,7 +112,6 @@ See [Support your app with background tasks](support-your-app-with-background-ta
 
 > A background task will only run using a **TimeTrigger** if you have called [**RequestAccessAsync**](https://msdn.microsoft.com/library/windows/apps/hh700485) first.
 
-> This article is for Windows 10 developers writing Universal Windows Platform (UWP) apps. If you’re developing for Windows 8.x or Windows Phone 8.x, see the [archived documentation](http://go.microsoft.com/fwlink/p/?linkid=619132).
 
 ## Related topics
 
@@ -124,11 +123,11 @@ See [Support your app with background tasks](support-your-app-with-background-ta
 * [Declare background tasks in the application manifest](declare-background-tasks-in-the-application-manifest.md)
 * [Free memory when your app moves to the background](reduce-memory-usage.md)
 * [Handle a cancelled background task](handle-a-cancelled-background-task.md)
-* [How to trigger suspend, resume, and background events in Windows Store apps (when debugging)](http://go.microsoft.com/fwlink/p/?linkid=254345)
+* [How to trigger suspend, resume, and background events in UWP apps (when debugging)](http://go.microsoft.com/fwlink/p/?linkid=254345)
 * [Monitor background task progress and completion](monitor-background-task-progress-and-completion.md)
+* [Postpone app suspension with extended execution](run-minimized-with-extended-execution.md)
 * [Register a background task](register-a-background-task.md)
 * [Respond to system events with background tasks](respond-to-system-events-with-background-tasks.md)
-* [Run while minimized with extended execution](run-minimized-with-extended-execution.md)
 * [Set conditions for running a background task](set-conditions-for-running-a-background-task.md)
 * [Update a live tile from a background task](update-a-live-tile-from-a-background-task.md)
 * [Use a maintenance trigger](use-a-maintenance-trigger.md)

@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp, games, suspend, directx
+ms.localizationpriority: medium
 ---
 
 # How to suspend an app (DirectX and C++)
 
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 This topic shows how to save important system state and app data when the system suspends your Universal Windows Platform (UWP) DirectX app.
 
@@ -96,7 +96,7 @@ void App::Run()
 ## Call Trim()
 
 
-Starting in Windows 8.1, all DirectX Windows Store apps must call [**IDXGIDevice3::Trim**](https://msdn.microsoft.com/library/windows/desktop/dn280346) when suspending. This call tells the graphics driver to release all temporary buffers allocated for the app, which reduces the chance that the app will be terminated to reclaim memory resources while in the suspend state. This is a certification requirement for Windows 8.1.
+Starting in Windows 8.1, all DirectX UWP apps must call [**IDXGIDevice3::Trim**](https://msdn.microsoft.com/library/windows/desktop/dn280346) when suspending. This call tells the graphics driver to release all temporary buffers allocated for the app, which reduces the chance that the app will be terminated to reclaim memory resources while in the suspend state. This is a certification requirement for Windows 8.1.
 
 ```cpp
 void App::OnSuspending(Platform::Object^ sender, SuspendingEventArgs^ args)

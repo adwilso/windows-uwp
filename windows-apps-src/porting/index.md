@@ -1,19 +1,19 @@
 ---
-author: mcleblanc
+author: stevewhims
 ms.assetid: ba2ac5f5-1e0d-4f1d-a6f8-6a65b4cff501
 description: This section describes how to port your existing app to the Universal Windows Platform (UWP) where you can create a single Windows 10 app package that your customers can install onto all types of devices. Your app will benefit from exciting new hardware, great monetization opportunities, a modern API set, adaptive UI controls, and a range of input modalities including mouse/keyboard, touch, and speech.
 title: Porting apps to Windows 10
-ms.author: markl
+ms.author: stwhi
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Porting apps to Windows 10
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 This section describes how to port your existing app to the Universal Windows Platform (UWP) where you can create a single Windows 10 app package that your customers can install onto all types of devices. Your app will benefit from exciting new hardware, great monetization opportunities, a modern API set, adaptive UI controls, and a range of input modalities including mouse/keyboard, touch, and speech.
 

@@ -9,11 +9,11 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # XAML namescopes
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 A *XAML namescope* stores relationships between the XAML-defined names of objects and their instance equivalents. This concept is similar to the wider meaning of the term *namescope* in other programming languages and technologies.
 
@@ -33,7 +33,7 @@ What happens technically is that the XAML itself undergoes a markup compiler pas
 
 ## Creating objects at run time with XamlReader.Load
 
-XAML can be also be used as the string input for the [**XamlReader.Load**](https://msdn.microsoft.com/library/windows/apps/br228048) method, which acts analogously to the initial XAML source parse operation. **XamlReader.Load** creates a new disconnected tree of objects at run time. The disconnected tree can then be attached to some point on the main object tree. You must explicitly connect your created object tree, either by adding it to a content property collection such as **Children**, or by setting some other property that takes an object value (for example, loading a new [**ImageBrush**](https://msdn.microsoft.com/library/windows/apps/br210101) for a [**Fill**](https://msdn.microsoft.com/library/windows/apps/br243378) property value).
+XAML can be also be used as the string input for the [**XamlReader.Load**](https://msdn.microsoft.com/library/windows/apps/br228048) method, which acts analogously to the initial XAML source parse operation. **XamlReader.Load** creates a new disconnected tree of objects at run time. The disconnected tree can then be attached to some point on the main object tree. You must explicitly connect your created object tree, either by adding it to a content property collection such as **Children**, or by setting some other property that takes an object value (for example, loading a new [**ImageBrush**](https://msdn.microsoft.com/library/windows/apps/br210101) for a [**Fill**](/uwp/api/Windows.UI.Xaml.Shapes.Shape#Windows_UI_Xaml_Shapes_Shape_Fill) property value).
 
 ### XAML namescope implications of XamlReader.Load
 

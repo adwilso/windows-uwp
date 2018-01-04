@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp, games, directx, port, direct3d 9, direct3d 11
+ms.localizationpriority: medium
 ---
 
 # Walkthrough: Port a simple Direct3D 9 app to DirectX 11 and Universal Windows Platform (UWP)
 
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 This porting exercise shows how to bring a simple rendering framework from Direct3D 9 to Direct3D 11 and Universal Windows Platform (UWP).
 ## 
@@ -78,7 +78,7 @@ Visit [Porting concepts and considerations](porting-considerations.md) to gain a
 * [Writing HLSL Shaders in Direct3D 9](https://msdn.microsoft.com/library/windows/desktop/bb944006)
 * [DirectX game project templates](user-interface.md)
 
-**Windows Store**
+**Microsoft Store**
 
 * [**Microsoft::WRL::ComPtr**](https://msdn.microsoft.com/library/windows/apps/br244983.aspx)
 * [**Handle to Object Operator (^)**](https://msdn.microsoft.com/library/windows/apps/yk97tc08.aspx)

@@ -1,18 +1,18 @@
 ---
 author: msatranjr
 title: Bluetooth GATT Server
-description: This article provides an overview of Bluetooth Generic Attribute Profile (GATT) Server for Universal Windows Platform (UWP) apps, along with sample code for common use cases. 
+description: This article provides an overview of Bluetooth Generic Attribute Profile (GATT) Server for Universal Windows Platform (UWP) apps, along with sample code for common use cases.
 ms.author: misatran
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Bluetooth GATT Server
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 **Important APIs**
 - [**Windows.Devices.Bluetooth**](https://msdn.microsoft.com/library/windows/apps/Dn263413)

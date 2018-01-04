@@ -8,11 +8,14 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: background task trigger
+ms.localizationpriority: medium
 ---
 
 # Trigger a background task from within your app
 
 Learn how to use the [ApplicationTrigger](https://docs.microsoft.com/uwp/api/Windows.ApplicationModel.Background.ApplicationTrigger) to activate a background task from within your app.
+
+For an example of how to create an Application trigger, see this [example](https://github.com/Microsoft/Windows-universal-samples/blob/v2.0.0/Samples/BackgroundTask/cs/BackgroundTask/Scenario5_ApplicationTriggerTask.xaml.cs).
 
 This topic assumes that you have a background task that you want to activate from your application. If you don't already have a background task, there is a sample background task at [BackgroundActivity.cs](https://github.com/Microsoft/Windows-universal-samples/blob/master/Samples/BackgroundActivation/cs/BackgroundActivity.cs). Or, follow the steps in [Create and register an out-of-process background task](create-and-register-a-background-task.md) to create one.
 
@@ -77,7 +80,7 @@ If you are considering using an Application Trigger to extend the lifetime of yo
 > ```
 > ```cpp
 > String ^ entryPoint = "Tasks.ExampleBackgroundTaskClass";
-> String ^ taskName   = "Example app background task";
+> String ^ taskName   = "Example application trigger";
 >
 > BackgroundTaskRegistration ^ task = RegisterBackgroundTask(entryPoint, taskName, appTrigger, userCondition);
 > ```
@@ -113,7 +116,6 @@ See [Support your app with background tasks](support-your-app-with-background-ta
 
 > A background task will only run using an **ApplicationTrigger** if you have called [**RequestAccessAsync**](https://msdn.microsoft.com/library/windows/apps/hh700485) first.
 
-> **Note**  This article is for Windows 10 developers writing Universal Windows Platform (UWP) apps. If you’re developing for Windows 8.x or Windows Phone 8.x, see the [archived documentation](http://go.microsoft.com/fwlink/p/?linkid=619132).
 
 ## Related topics
 
@@ -125,11 +127,11 @@ See [Support your app with background tasks](support-your-app-with-background-ta
 * [Declare background tasks in the application manifest](declare-background-tasks-in-the-application-manifest.md)
 * [Free memory when your app moves to the background](reduce-memory-usage.md)
 * [Handle a cancelled background task](handle-a-cancelled-background-task.md)
-* [How to trigger suspend, resume, and background events in Windows Store apps (when debugging)](http://go.microsoft.com/fwlink/p/?linkid=254345)
+* [How to trigger suspend, resume, and background events in UWP apps (when debugging)](http://go.microsoft.com/fwlink/p/?linkid=254345)
 * [Monitor background task progress and completion](monitor-background-task-progress-and-completion.md)
+* [Postpone app suspension with extended execution](run-minimized-with-extended-execution.md)
 * [Register a background task](register-a-background-task.md)
 * [Respond to system events with background tasks](respond-to-system-events-with-background-tasks.md)
-* [Run while minimized with extended execution](run-minimized-with-extended-execution.md)
 * [Set conditions for running a background task](set-conditions-for-running-a-background-task.md)
 * [Update a live tile from a background task](update-a-live-tile-from-a-background-task.md)
 * [Use a maintenance trigger](use-a-maintenance-trigger.md)

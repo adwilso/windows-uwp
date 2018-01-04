@@ -1,19 +1,19 @@
 ---
-author: mcleblanc
+author: stevewhims
 description: Windows apps share a common look-and-feel across PCs, mobile devices, and many other kinds of devices. The user interface, input, and interaction patterns are very similar, and a user moving between devices will welcome the familiar experience.
 title: Porting Windows Phone Silverlight to UWP for form factor and UX
 ms.assetid: 96244516-dd2c-494d-ab5a-14b7dcd2edbd
-ms.author: markl
+ms.author: stwhi
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 #  Porting Windows Phone Silverlight to UWP for form factor and UX
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 The previous topic was [Porting business and data layers](wpsl-to-uwp-business-and-data.md).
 

@@ -1,4 +1,4 @@
-﻿---
+---
 author: TylerMSFT
 title: Launch the People app
 description: This topic describes the ms-people URI scheme. Your app can use this URI scheme to launch the People app for specific actions.
@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Launch the People app
 
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 
 This topic describes the **ms-people:** URI scheme. Your app can use this URI scheme to launch the People app for specific actions.

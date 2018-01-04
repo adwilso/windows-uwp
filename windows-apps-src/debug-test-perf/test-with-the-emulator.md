@@ -1,22 +1,22 @@
 ---
-author: mcleblanc
+author: PatrickFarley
 ms.assetid: 7234DD5F-8E86-424E-99A0-93D01F1311F2
 title: Test with the Microsoft Emulator for Windows 10 Mobile
 description: Simulate real-world interaction with a device and test the features of your app by using the tools included with Microsoft Emulator for Windows 10 Mobile.
-ms.author: markl
+ms.author: pafarley
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 # Test with the Microsoft Emulator for Windows 10 Mobile
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 Simulate real-world interaction with a device and test the features of your app by using the tools included with Microsoft Emulator for Windows 10 Mobile. The emulator is a desktop application that emulates a mobile device running Windows 10. It provides a virtualized environment in which you can debug and test Windows apps without a physical device. It also provides an isolated environment for your application prototypes.
 
-The emulator is designed to provide comparable performance to an actual device. Before you publish your app to the Windows Store, however, we recommend that you test your app on a physical device.
+The emulator is designed to provide comparable performance to an actual device. Before you publish your app to the Microsoft Store, however, we recommend that you test your app on a physical device.
 
 You can test your universal app using a unique Windows 10 Mobile emulator image for various screen resolution and screen size configurations. You can simulate real-world interaction with a device and test various features of your app by using the tools included in the Microsoft Emulator.
 
@@ -42,7 +42,7 @@ Operating system
 
 To check the BIOS requirements, see [How to enable Hyper-V for the emulator for Windows Phone 8](https://msdn.microsoft.com/library/windows/apps/xaml/jj863509.aspx).
 
-To check requirements for RAM and operating system, in Control Panel, click **System and Security**, and then click **System**.
+To check requirements for RAM and operating system, in Control Panel, select **System and Security**, and then select **System**.
 
 Microsoft Emulator for Windows 10 Mobile requires Visual Studio 2015; it is not backward compatible with earlier versions of Visual Studio.
 
@@ -52,9 +52,9 @@ Microsoft Emulator for Windows 10 Mobile cannot load apps that target the Window
 
 -   **Installing**.
 
-    Microsoft Emulator for Windows 10 Mobile ships as part of the Windows 10 SDK. The Windows 10 SDK and emulator can be installed as part of the Visual Studio 2015 install. See the [Visual Studio download page](https://go.microsoft.com/fwlink/p/?LinkId=534785).
+    Microsoft Emulator for Windows 10 Mobile ships as part of the Windows 10 SDK. The Windows 10 SDK and emulator can be installed as part of the Visual Studio installation. See the [Visual Studio download page](https://go.microsoft.com/fwlink/p/?LinkId=534785).
 
-    You can also install the Microsoft Emulator for Windows 10 Mobile using the Microsoft Emulator setup. See the [Windows 10 Tools download page](https://go.microsoft.com/fwlink/p/?LinkID=534189).
+    You can also install the Microsoft Emulator for Windows 10 Mobile using the [Microsoft Emulator setup](https://go.microsoft.com/fwlink/p/?LinkID=615095).
 
 -   **Uninstalling**.
 
@@ -62,7 +62,7 @@ Microsoft Emulator for Windows 10 Mobile cannot load apps that target the Window
 
     When you uninstall the Microsoft Emulator for Windows 10 Mobile, the Hyper-V Virtual Ethernet Adapter that was created for the emulator to use is not automatically removed. You can manually remove this virtual adapter from **Network Connections** in **Control Panel**.
 
-## What’s new in Microsoft Emulator for Windows 10 Mobile
+## What's new in Microsoft Emulator for Windows 10 Mobile
 
 In addition to providing support for Universal Windows Platform (UWP), the emulator has added the following functionality:
 

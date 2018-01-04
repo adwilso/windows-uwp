@@ -1,18 +1,18 @@
 ---
-author: mcleblanc
+author: jwmsft
 ms.assetid: 79CF3927-25DE-43DD-B41A-87E6768D5C35
 title: Optimize your XAML layout
 description: Layout can be an expensive part of a XAML app&\#8212;both in CPU usage and memory overhead. Here are some simple steps you can take to improve the layout performance of your XAML app.
-ms.author: markl
+ms.author: jimwalk
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 # Optimize your XAML layout
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 **Important APIs**
 
@@ -22,7 +22,7 @@ Layout is the process of defining the visual structure for your UI. The primary 
 
 ## Reduce layout structure
 
-The biggest gain in layout performance comes from simplifying the hierarchical structure of the tree of UI elements. Panels exist in the visual tree, but they are structural elements, not *pixel producing elements* like a [**Button**](https://msdn.microsoft.com/library/windows/apps/BR209265) or a [**Rectangle**](https://msdn.microsoft.com/library/windows/apps/BR243371). Simplifying the tree by reducing the number of non-pixel-producing elements typically provides a significant performance increase.
+The biggest gain in layout performance comes from simplifying the hierarchical structure of the tree of UI elements. Panels exist in the visual tree, but they are structural elements, not *pixel producing elements* like a [**Button**](https://msdn.microsoft.com/library/windows/apps/BR209265) or a [**Rectangle**](/uwp/api/Windows.UI.Xaml.Shapes.Rectangle). Simplifying the tree by reducing the number of non-pixel-producing elements typically provides a significant performance increase.
 
 Many UIs are implemented by nesting panels which results in deep, complex trees of panels and elements. It is convenient to nest panels, but in many cases the same UI can be achieved with a more complex single panel. Using a single panel provides better performance.
 

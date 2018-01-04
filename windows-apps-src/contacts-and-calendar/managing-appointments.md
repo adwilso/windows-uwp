@@ -1,19 +1,19 @@
 ---
-author: Xansky
+author: normesta
 description: Through the Windows.ApplicationModel.Appointments namespace, you can create and manage appointments in a user's calendar app.
 title: Manage appointments
 ms.assetid: 292E9249-07C3-4791-B32C-6EC153C2B538
-ms.author: mhopkins
+ms.author: normesta
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp, appointments, calendar
+ms.localizationpriority: medium
 ---
 
 # Manage appointments
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 
 Through the [**Windows.ApplicationModel.Appointments**](https://msdn.microsoft.com/library/windows/apps/Dn263359) namespace, you can create and manage appointments in a user's calendar app. Here, we'll show you how to create an appointment, add it to a calendar app, replace it in the calendar app, and remove it from the calendar app. We'll also show how to display a time span for a calendar app and create an appointment-recurrence object.

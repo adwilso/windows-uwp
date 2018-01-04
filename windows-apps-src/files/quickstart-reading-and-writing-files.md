@@ -4,17 +4,17 @@ ms.assetid: 27914C0A-2A02-473F-BDD5-C931E3943AA0
 title: Create, write, and read a file
 description: Read and write a file using a StorageFile object.
 ms.author: lahugh
-ms.date: 04/18/2017
+ms.date: 07/05/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Create, write, and read a file
 
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 
 **Important APIs**
@@ -118,7 +118,7 @@ Await Windows.Storage.FileIO.WriteTextAsync(sampleFile, "Swift as a shadow")
     StorageFolder^ storageFolder = ApplicationData::Current->LocalFolder;
     create_task(storageFolder->GetFileAsync("sample.txt")).then([](StorageFile^ sampleFile)
     {
-        // Write bytes to a file using a buffer
+        // Create the buffer
         IBuffer^ buffer = CryptographicBuffer::ConvertStringToBinary
         ("What fools these mortals be", BinaryStringEncoding::Utf8);
     });
@@ -139,9 +139,11 @@ Await Windows.Storage.FileIO.WriteTextAsync(sampleFile, "Swift as a shadow")
     StorageFolder^ storageFolder = ApplicationData::Current->LocalFolder;
     create_task(storageFolder->GetFileAsync("sample.txt")).then([](StorageFile^ sampleFile)
     {
-        // Write bytes to a file using a buffer
+        // Create the buffer
         IBuffer^ buffer = CryptographicBuffer::ConvertStringToBinary
-        ("What fools these mortals be", BinaryStringEncoding::Utf8);
+        ("What fools these mortals be", BinaryStringEncoding::Utf8);      
+        // Write bytes to a file using a buffer
+        create_task(FileIO::WriteBufferAsync(sampleFile, buffer));
     });
     ```
     ```vb  

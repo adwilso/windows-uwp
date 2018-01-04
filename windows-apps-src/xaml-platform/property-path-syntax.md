@@ -9,11 +9,11 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Property-path syntax
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 You can use the [**PropertyPath**](https://msdn.microsoft.com/library/windows/apps/br244259) class and the string syntax to instantiate a **PropertyPath** value either in XAML or in code. **PropertyPath** values are used by data binding. A similar syntax is used for targeting storyboarded animations. For both scenarios, a property path describes a traversal of one or more object-property relationships that eventually resolve to a single property.
 
@@ -75,7 +75,7 @@ For more info on the how to define animations in XAML, see [Storyboarded animati
 
 ## Simple targeting
 
-If you are animating a property that exists on the targeted object itself, and that property's type can have an animation applied directly to it (rather than to a sub-property of a property's value) then you can simply name the property being animated without any further qualification. For example, if you are targeting a [**Shape**](https://msdn.microsoft.com/library/windows/apps/br243377) subclass such as [**Rectangle**](https://msdn.microsoft.com/library/windows/apps/br243371), and you are applying an animated [**Color**](https://msdn.microsoft.com/library/windows/apps/hh673723) to the [**Fill**](https://msdn.microsoft.com/library/windows/apps/br243378) property, your property path can be "Fill".
+If you are animating a property that exists on the targeted object itself, and that property's type can have an animation applied directly to it (rather than to a sub-property of a property's value) then you can simply name the property being animated without any further qualification. For example, if you are targeting a [**Shape**](/uwp/api/Windows.UI.Xaml.Shapes.Shape) subclass such as [**Rectangle**](/uwp/api/Windows.UI.Xaml.Shapes.Rectangle), and you are applying an animated [**Color**](https://msdn.microsoft.com/library/windows/apps/hh673723) to the [**Fill**](/uwp/api/Windows.UI.Xaml.Shapes.Shape#Windows_UI_Xaml_Shapes_Shape_Fill) property, your property path can be "Fill".
 
 ## Indirect property targeting
 

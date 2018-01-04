@@ -1,19 +1,19 @@
 ---
-author: mcleblanc
+author: stevewhims
 description: Behind your UI are your business and data layers.
 title: Porting Windows Phone Silverlight business and data layers to UWP
 ms.assetid: 27c66759-2b35-41f5-9f7a-ceb97f4a0e3f
-ms.author: markl
+ms.author: stwhi
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 #  Porting Windows Phone Silverlight business and data layers to UWP
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 The previous topic was [Porting for I/O, device, and app model](wpsl-to-uwp-input-and-sensors.md).
 

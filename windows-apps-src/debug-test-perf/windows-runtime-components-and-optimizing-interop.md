@@ -1,18 +1,18 @@
 ---
-author: mcleblanc
+author: jwmsft
 ms.assetid: 9899F6A0-7EDD-4988-A76E-79D7C0C58126
 title: Universal Windows Platform Components and optimizing interop
 description: Create Universal Windows Platform (UWP) apps that use UWP Components and interop between native and managed types while avoiding interop performance issues.
-ms.author: markl
+ms.author: jimwalk
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 # UWP Components and optimizing interop
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 Create Universal Windows Platform (UWP) apps that use UWP Components and interop between native and managed types while avoiding interop performance issues.
 

@@ -4,26 +4,23 @@ Description: The Pricing and availability page of the app submission process let
 title: Set app pricing and availability
 ms.assetid: 37BE7C25-AA74-43CD-8969-CBA3BD481575
 ms.author: wdg-dev-content
-ms.date: 05/15/2017
+ms.date: 11/22/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: high
 ---
 
 # Set app pricing and availability
 
-> [!IMPORTANT]
-> This topic has been updated to reflect the latest functionality, which we are in the process of rolling out to all developer accounts. You may not see all of the options described here until we complete this rollout.
-> 
-> Please be aware that when your account switches over to use the latest functionality, any in-progress submissions will still show the older options. You can delete that submission and then create a new one if you want to use the new options for that app. Otherwise, the new options will become available with the next update after you publish your in-progress submission.
 
 The **Pricing and availability** page of the [app submission process](app-submissions.md) lets you determine how much your app will cost, whether you'll offer a free trial, and how, when, and where it will be available to customers. Here, we'll walk through the options on this page and what you should consider when entering this information.
 
 
 ## Markets
 
-The Windows Store reaches customers in over 200 countries and regions around the world. By default, we’ll offer your app in all possible markets. If you prefer, you can choose the specific markets in which you'd like to offer your app. 
+The Microsoft Store reaches customers in over 200 countries and regions around the world. By default, we’ll offer your app in all possible markets. If you prefer, you can choose the specific markets in which you'd like to offer your app. 
 
 For more info, see [Define market selection](define-pricing-and-market-selection.md).
 
@@ -44,23 +41,27 @@ If you want to hide your app in the Store but still make it available to certain
 - **Individuals on Windows Phone 8.x only: Only people you specify below can download this product on a Windows Phone 8.x device. Anyone with a direct link and a promotional code may download the product on a Windows 10 device.** This option may not appear for all submissions. It only applies if you have packages that can run on Windows Phone 8.x. Only the customers whose email addresses (associated with their Microsoft accounts) you enter in the box (separated by semicolons) can download your app on Windows Phone 8.x by using the direct link to its listing. You can also generate promotional codes to distribute to specific people on Windows 10 as described above. 
 
 > [!TIP]
-> To completely stop offering an app to new customers, click **Make app unavailable** from the App overview page. After you confirm that you want to make the app unavailable, within a few hours it will no longer be visible in the Store, and no new customers will be able to get it via any method. This action will override any of the options you have chosen here: it won't be available to new customers at all. To make it available to new customers again, you can click **Make app available** from the App overview page at any time. For more info, see [Removing an app from the Store](guidance-for-app-package-management.md#removing-an-app-from-the-store).
+> If you want to stop offering an app to any new customers, you can select **Make app unavailable** from its overview page. After you confirm that you want to make the app unavailable, within a few hours it will no longer be visible in the Store, and no new customers will be able to get it (unless they have a [promotional code](generate-promotional-codes.md) and are on a Windows 10 device). This action will override the **Visibility** selections in your submission. To make the app available to new customers again (per your **Visibility** selections), you can click **Make app available** from the overview page at any time. For more info, see [Removing an app from the Store](guidance-for-app-package-management.md#removing-an-app-from-the-store).
+
 
 ## Schedule
 
-By default (unless you have selected one of the **Make this app available but not discoverable in the Store** options in the [Visibility](set-app-pricing-and-availability.md#visibility) section), your app will be available to customers as soon as it passes certification and complete the publishing process. To choose other dates, select **Show options** to expand this section. 
+By default (unless you have selected one of the **Make this app available but not discoverable in the Store** options in the **Visibility** section), your app will be available to customers as soon as it passes certification and complete the publishing process. To choose other dates, select **Show options** to expand this section. 
 
 For more info, see [Configure precise release scheduling](configure-precise-release-scheduling.md).
+
 
 ## Display release date
 
 By default, the release date for your app will be the date when it appears in the Store. If you'd like to override this and provide a custom release date, you can check the box in this section, and then enter the release date. Note that the release date is not always displayed in Store listings.
+
 
 ## Pricing
 
 You are required to select a base price for your app (unless you have selected one of the **Make this app available but not discoverable in the Store** options in the [Visibility](#visibility) section), choosing either **Free** or one of the available price tiers. You can also schedule price changes to indicate the date and time at which your app’s price should change. Additionally, you have the option to customize these changes for specific markets. 
 
 For more info, see [Set and schedule app pricing](set-and-schedule-app-pricing.md).
+
 
 ## Free trial
 
@@ -83,9 +84,9 @@ Choose **Unlimited** to let customers access your app for free indefinitely. You
 By default, your trial will be available as soon as your app is published, and it will never stop being offered. If you’d like, you can specify the date and time that your trial should start to be offered and when it should stop being offered. 
 
 >[!NOTE]
-> These dates only apply for customers on Windows 10. If your trial applies to customers on earlier OS versions, the trial will be offered for as long as your product is available. 
+> These dates only apply for customers on Windows 10 (including Xbox). If your app is available to customers on earlier OS versions, the trial will be offered to those customers for as long as your product is available. 
 
-To set dates for when your trial should be offered, change the **Starts on** and/or **Ends on** dropdown to **at**, then choose the date and time. If you do so, you can either choose **UTC** so that the time you select will be Universal Coordinated Time (UTC) time, or choose **Local** so that these times will be used in each time zone associated with a market. (Note that for markets that include more than one time zone, only one time zone in that market will be used. For the United States, the Eastern time zone is used.) 
+To set dates for when your trial should be offered to customers on Windows 10, change the **Starts on** and/or **Ends on** dropdown to **at**, then choose the date and time. If you do so, you can either choose **UTC** so that the time you select will be Universal Coordinated Time (UTC) time, or choose **Local** so that these times will be used in each time zone associated with a market. (Note that for markets that include more than one time zone, only one time zone in that market will be used. For the United States, the Eastern time zone is used.) 
 
 >[!NOTE]
 > Unlike the [Schedule](configure-precise-release-scheduling.md) section, the dates you select for your **Free trial** cannot be customized for specific markets. 
@@ -105,6 +106,7 @@ By default, your app may be offered to organizations to purchase in volume. You 
 
 For more info, see [Organizational licensing options](organizational-licensing.md).
 
+
 ## Publish date
 
 By default, your submission will begin the publishing process as soon as it passes certification, unless you have configured dates in the [**Schedule** section](#schedule) described above. 
@@ -116,7 +118,7 @@ If you don’t want to set a release date yet, and you prefer your submission to
 Choose **No sooner than \[date\]** to ensure that the submission is not published until a certain date. With this option, your submission will be released as soon as possible on or after the date you specify. The date must be at least 24 hours in the future. Along with the date, you can also specify the time at which the submission should begin to be published.
  
 > [!NOTE]
-> Delays during certification or publishing could cause the actual release date to be later than the date you request. The Windows Store cannot guarantee that your app (or update) will be available on a specific date.  
+> Delays during certification or publishing could cause the actual release date to be later than the date you request. The Microsoft Store cannot guarantee that your app (or update) will be available on a specific date.  
 
 You can also change the release date after submitting your app, as long as it hasn’t entered the Publish step yet. 
 

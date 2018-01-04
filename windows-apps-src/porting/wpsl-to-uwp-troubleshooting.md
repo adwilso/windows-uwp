@@ -1,19 +1,19 @@
 ---
-author: mcleblanc
+author: stevewhims
 description: We highly recommend reading to the end of this porting guide, but we also understand that you're eager to forge ahead and get to the stage where your project builds and runs.
 title: Troubleshooting porting Windows Phone Silverlight to UWP
 ms.assetid: d9a9a2a7-9401-4990-a992-4b13887f2661
-ms.author: markl
+ms.author: stwhi
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 #  Troubleshooting porting Windows Phone Silverlight to UWP
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 The previous topic was [Porting the project](wpsl-to-uwp-porting-to-a-uwp-project.md).
 
@@ -50,7 +50,7 @@ The remedy information in the table is intended to give you enough info to unblo
 | The XAML parser or compiler gives the error "_The attachable property [...] was not found [...]._" or "_Unknown attachable member [...]._". | This is likely to be caused by the type rather than the attached property; in which case, you will already have an error for the type and this error will go away once you fix that. Examples you might encounter right away are `phone:PhoneApplicationPage.Resources` and `phone:PhoneApplicationPage.DataContext`. | 
 |The XAML parser or compiler, or a runtime exception, gives the error "_The resource "&lt;resourcekey&gt;" could not be resolved._". | The resource key doesn't apply to Universal Windows Platform (UWP) apps. Find the correct equivalent resource and update your markup. Examples you might encounter right away are system **TextBlock** Style keys such as `PhoneTextNormalStyle`. |
 | The C# compiler gives the error "_The type or namespace name '&lt;name&gt;' could not be found [...]_" or "_The type or namespace name '&lt;name&gt;' does not exist in the namespace [...]_" or "_The type or namespace name '&lt;name&gt;' does not exist in the current context_". | This is likely to mean that the compiler doesn't yet know the correct UWP namespace for a type. Use Visual Studio's **Resolve** command to fix that. <br/>If the API is not in the set of APIs known as the universal device family (in other words, the API is implemented in an extension SDK), then use the [Extension SDKs](wpsl-to-uwp-porting-to-a-uwp-project.md).<br/>There may be other cases where port is less straightforward. Examples you might encounter right away are `DesignerProperties` and `BitmapImage`. | 
-|When run on the device, the app terminates, or when launched from Visual Studio, you see the error “Unable to activate Windows Store app […]. The activation request failed with error ‘Windows was unable to communicate with the target application. This usually indicates that the target application’s process aborted. […]”. | The problem could be the imperative code running in your own Pages or in bound properties (or other types) during initialization. Or, it could be happening while parsing the XAML file about to be displayed when the app terminated (if launching from Visual Studio, that will be the startup page). Look for invalid resource keys, and/or try some of the guidance in the [Tracking down issues](#tracking-down-issues) section in this topic.|
+|When run on the device, the app terminates, or when launched from Visual Studio, you see the error “Unable to activate Windows Runtime 8.x app […]. The activation request failed with error ‘Windows was unable to communicate with the target application. This usually indicates that the target application’s process aborted. […]”. | The problem could be the imperative code running in your own Pages or in bound properties (or other types) during initialization. Or, it could be happening while parsing the XAML file about to be displayed when the app terminated (if launching from Visual Studio, that will be the startup page). Look for invalid resource keys, and/or try some of the guidance in the [Tracking down issues](#tracking-down-issues) section in this topic.|
 | _XamlCompiler error WMC0055: Cannot assign text value '&lt;your stream geometry&gt;' into property 'Clip' of type 'RectangleGeometry'_ | In the UWP, the type of the [Microsoft DirectX](https://msdn.microsoft.com/library/windows/desktop/ee663274) and XAML C++ UWP app. |
 | _XamlCompiler error WMC0001: Unknown type 'RadialGradientBrush' in XML namespace [...]_ | The UWP doesn't have the **RadialGradientBrush** type. Remove the **RadialGradientBrush** from markup and use some other type of [Microsoft DirectX](https://msdn.microsoft.com/library/windows/desktop/ee663274) and XAML C++ UWP app. |
 | _XamlCompiler error WMC0011: Unknown member 'OpacityMask' on element '&lt;UIElement type&gt;'_ | The UWP [Microsoft DirectX](https://msdn.microsoft.com/library/windows/desktop/ee663274) and XAML C++ UWP app. |

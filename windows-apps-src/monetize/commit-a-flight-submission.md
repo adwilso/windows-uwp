@@ -1,14 +1,15 @@
 ---
 author: mcleanbyron
 ms.assetid: F94AF8F6-0742-4A3F-938E-177472F96C00
-description: Use this method in the Windows Store submission API to commit a new or updated package flight submission to Windows Dev Center.
+description: Use this method in the Microsoft Store submission API to commit a new or updated package flight submission to Windows Dev Center.
 title: Commit a package flight submission
 ms.author: mcleans
-ms.date: 02/08/2017
+ms.date: 08/03/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
-keywords: windows 10, uwp, Windows Store submission API, commit flight submission
+keywords: windows 10, uwp, Microsoft Store submission API, commit flight submission
+ms.localizationpriority: medium
 ---
 
 # Commit a package flight submission
@@ -16,15 +17,15 @@ keywords: windows 10, uwp, Windows Store submission API, commit flight submissio
 
 
 
-Use this method in the Windows Store submission API to commit a new or updated package flight submission to Windows Dev Center. The commit action alerts Dev Center that the submission data has been uploaded (including any related packages). In response, Dev Center commits the changes to the submission data for ingestion and publishing. After the commit operation succeeds, the changes to the submission are shown in the Dev Center dashboard.
+Use this method in the Microsoft Store submission API to commit a new or updated package flight submission to Windows Dev Center. The commit action alerts Dev Center that the submission data has been uploaded (including any related packages). In response, Dev Center commits the changes to the submission data for ingestion and publishing. After the commit operation succeeds, the changes to the submission are shown in the Dev Center dashboard.
 
-For more information about how the commit operation fits into the process of creating a package flight submission by using the Windows Store submission API, see [Manage package flight submissions](manage-flight-submissions.md).
+For more information about how the commit operation fits into the process of creating a package flight submission by using the Microsoft Store submission API, see [Manage package flight submissions](manage-flight-submissions.md).
 
 ## Prerequisites
 
 To use this method, you need to first do the following:
 
-* If you have not done so already, complete all the [prerequisites](create-and-manage-submissions-using-windows-store-services.md#prerequisites) for the Windows Store submission API.
+* If you have not done so already, complete all the [prerequisites](create-and-manage-submissions-using-windows-store-services.md#prerequisites) for the Microsoft Store submission API.
 * [Obtain an Azure AD access token](create-and-manage-submissions-using-windows-store-services.md#obtain-an-azure-ad-access-token) to use in the request header for this method. After you obtain an access token, you have 60 minutes to use it before it expires. After the token expires, you can obtain a new one.
 * [Create a package flight submission](create-a-flight-submission.md) and then [update the submission](update-a-flight-submission.md) with any necessary changes to the submission data.
 
@@ -52,7 +53,7 @@ This method has the following syntax. See the following sections for usage examp
 | Name        | Type   | Description                                                                 |
 |---------------|--------|-----------------------------------------------------------------------------|
 | applicationId | string | Required. The Store ID of the app that contains the package flight submission you want to commit. The Store ID for the app is available on the Dev Center dashboard.  |
-| flightId | string | Required. The ID of the package flight that contains the submission to commit. This ID is available in the Dev Center dashboard, and it is included in the response data for requests to [create a package flight](create-a-flight.md) and [get package flights for an app](get-flights-for-an-app.md).  |
+| flightId | string | Required. The ID of the package flight that contains the submission to commit. This ID is available in the response data for requests to [create a package flight](create-a-flight.md) and [get package flights for an app](get-flights-for-an-app.md).  |
 | submissionId | string | Required. The ID of the submission to commit. This ID is available in the Dev Center dashboard, and it is included in the response data for requests to [create a package flight submission](create-a-flight-submission.md).  |
 
 <span/>
@@ -96,14 +97,14 @@ If the request cannot be successfully completed, the response will contain one o
 |--------|------------------|
 | 400  | The request parameters are invalid. |
 | 404  | The specified submission could not be found. |
-| 409  | The specified submission was found but it could not be committed in its current state, or the app uses a Dev Center dashboard feature that is [currently not supported by the Windows Store submission API](create-and-manage-submissions-using-windows-store-services.md#not_supported). |
+| 409  | The specified submission was found but it could not be committed in its current state, or the app uses a Dev Center dashboard feature that is [currently not supported by the Microsoft Store submission API](create-and-manage-submissions-using-windows-store-services.md#not_supported). |
 
 <span/>
 
 
 ## Related topics
 
-* [Create and manage submissions using Windows Store services](create-and-manage-submissions-using-windows-store-services.md)
+* [Create and manage submissions using Microsoft Store services](create-and-manage-submissions-using-windows-store-services.md)
 * [Manage package flight submissions](manage-flight-submissions.md)
 * [Get a package flight submission](get-a-flight-submission.md)
 * [Create a package flight submission](create-a-flight-submission.md)

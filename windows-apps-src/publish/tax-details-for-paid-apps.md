@@ -4,11 +4,12 @@ Description: To understand your tax considerations for price selection, payout i
 title: Tax details for paid apps
 ms.assetid: 97F77EBA-EBA1-4308-8F64-F40988BCBB2C
 ms.author: wdg-dev-content
-ms.date: 05/15/2017
+ms.date: 1/1/2018
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
-keywords: windows 10, uwp
+keywords: windows 10, uwp, taxes, app taxes, tax requirements, commerce expansion, tax rate
+ms.localizationpriority: high
 ---
 
 # Tax details for paid apps
@@ -16,9 +17,13 @@ keywords: windows 10, uwp
 
 To understand your tax considerations for price selection, payout implications, and tax responsibility, see your countries/regions of distribution in the tables below.
 
-> **Note**  The Commerce Expansion Adjustment may have payout implications in a limited set of countries/regions. For further details about the Commerce Expansion Adjustment and the markets where it applies, see the [App Developer Agreement](https://msdn.microsoft.com/library/windows/apps/hh694058) and the list of [affected countries/regions](define-pricing-and-market-selection.md#price-considerations-for-specific-markets).
+> [!NOTE]
+> The Commerce Expansion Adjustment may have payout implications in a limited set of countries/regions. For further details about the Commerce Expansion Adjustment and the markets where it applies, see the [App Developer Agreement](https://docs.microsoft.com/legal/windows/agreements/app-developer-agreement) and the list of [affected countries/regions](define-pricing-and-market-selection.md#price-considerations-for-specific-markets).
 
-> **Note**  Tax rates are subject to change at any time. Microsoft cannot guarantee that the rates in the tables below will always be accurate.
+> [!IMPORTANT]
+> Tax rates are subject to change at any time. Microsoft cannot guarantee that the rates in the tables below will always be accurate.
+> 
+> Tax responsibility for Reseller countries/regions and circumstances (as described [below](#reseller-countriesregions)) is covered by Exhibit C of the [App Developer Agreement](https://docs.microsoft.com/legal/windows/agreements/app-developer-agreement), notwithstanding the information in the table below
 
  
 
@@ -31,15 +36,15 @@ To understand your tax considerations for price selection, payout implications, 
 | Angola                           | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
 | Antigua and Barbuda              | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
 | Argentina                        | Price being selected is the final sale price and includes any applicable taxes.  | 70% of selected price  | Developer          |
-| Armenia                          | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
-| Australia                        | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
+| Armenia                          | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of (selected price minus 20% tax)                 | Microsoft          |
+| Australia                        | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of (selected price minus 10% tax)                 | Microsoft          |
 | Austria                          | Price being selected is the final sale price and includes any applicable taxes. Taxes are subtracted from the price prior to payout.       | 70% of (selected price minus 20% tax)     | Microsoft          |
 | Azerbaijan                       | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
 | The Bahamas                      | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
 | Bahrain                          | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
 | Bangladesh                       | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
 | Barbados                         | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
-| Belarus                          | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
+| Belarus                          | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of (selected price minus 20% tax)                | Microsoft          |
 | Belgium                          | Price being selected is the final sale price and includes any applicable taxes. Taxes are subtracted from the price prior to payout.              | 70% of (selected price minus 21% tax) | Microsoft          |
 | Belize                           | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
 | Benin                            | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
@@ -100,7 +105,7 @@ To understand your tax considerations for price selection, payout implications, 
 | Honduras                         | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
 | Hong Kong SAR                    | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
 | Hungary                          | Price being selected is the final sale price and includes any applicable taxes. Taxes are subtracted from the price prior to payout.              | 70% of (selected price minus 27% tax) | Microsoft          |
-| Iceland                          | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
+| Iceland                          | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of (selected price minus 24% tax)               | Microsoft         |
 | India                            | Taxes are added to the price being selected.                                                                                                      | 70% of selected price                 | Microsoft          |
 | Indonesia                        | Price being selected is the final sale price and includes any applicable taxes.  | 70% of selected price                 | Developer          |
 | Iraq                             | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
@@ -173,7 +178,7 @@ To understand your tax considerations for price selection, payout implications, 
 | Samoa                            | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
 | San Marino                       | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
 | São Tomé and Príncipe            | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
-| Saudi Arabia                     | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
+| Saudi Arabia                     | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of (selected price minus 5% tax)                 | Microsoft          |
 | Senegal                          | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
 | Serbia                           | Price being selected is the final sale price and includes any applicable taxes. Taxes are subtracted from the price prior to payout.              | 70% of (selected price minus 20% tax) | Microsoft          |
 | Seychelles                       | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
@@ -204,7 +209,7 @@ To understand your tax considerations for price selection, payout implications, 
 | Tuvalu                           | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
 | Uganda                           | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
 | Ukraine                          | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
-| United Arab Emirates             | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
+| United Arab Emirates             | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of (selected price minus 5% tax)                 | Microsoft          |
 | United Kingdom                   | Price being selected is the final sale price and includes any applicable taxes. Taxes are subtracted from the price prior to payout.              | 70% of (selected price minus 20% tax) | Microsoft          |
 | United States (includes Puerto Rico)  | Taxes are added to the price being selected.                                                                                                      | 70% of selected price                 | Microsoft          |
 | Uruguay                          | Price being selected is the final sale price and includes any applicable taxes.                                                                   | 70% of selected price                 | Developer          |
@@ -233,31 +238,16 @@ Certain Microsoft billing partners may collect and remit sales, use, goods and s
 ## Reseller countries/regions
 
 
-In certain countries/regions, Microsoft acts as a reseller, rather than your agent, in making your app(s) and in-app product(s) available in the Store. For further details about terms and conditions for reseller countries/regions, see the [App Developer Agreement](https://msdn.microsoft.com/library/windows/apps/hh694058).
+In certain countries/regions, Microsoft acts as a reseller, rather than your agent, in making your app(s) and in-app product(s) available in the Store. For further details about terms and conditions for reseller countries/regions, see the [App Developer Agreement](https://docs.microsoft.com/legal/windows/agreements/app-developer-agreement).
 
 |                    Reseller countries/regions                                                                          |
 |------------------------------------------------------------------------------------------------------------------------|
 | China (except on mobile communication devices running Windows Phone 7.x and on personal computers running Windows 8.x) |
-| Brazil (only for purchases made via devices running Windows 10 and purchases made through mobile operator billing)     |
+| Brazil (only for purchases made via devices running Windows 10)     |
 
  
 
-## Tax reporting for India developers
 
-
-To obtain information relevant to remitting taxes for your Store transactions in India, generate a transaction report. You are responsible for reviewing the reporting and determining and complying with any obligations you have to register, collect, and remit taxes in connection with transactions involving your Application(s) or In-App Product(s).
- 
-**To generate a report:**
-
-1.  Go to [https://commerce.microsoft.com/PaymentHub/TaxReport](http://go.microsoft.com/fwlink/p/?LinkID=264239).
-2.  Log on using the Microsoft account you use to access your Dev Center developer account.
-3.  Select the appropriate date(s).
-4.  In **Sold to Country/Region**, select **India.**
-5.  Click **Search.**
-
-Each row of the report contains the date and time of the transaction and, if available, the India state where the transaction occurred.
-
- 
 
  
 

@@ -1,19 +1,19 @@
 ---
-author: mcleblanc
+author: stevewhims
 ms.assetid: 333f67f5-f012-4981-917f-c6fd271267c6
 description: This case study builds on the info given in Bookstore1 that begins with a Universal 8.1 app that displays grouped data in a SemanticZoom control.
 title: Windows Runtime 8.x to UWP case study Bookstore2
-ms.author: markl
+ms.author: stwhi
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Windows Runtime 8.x to UWP case study: Bookstore2
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 This case study—which builds on the info given in [Bookstore1](w8x-to-uwp-case-study-bookstore1.md)—begins with a Universal 8.1 app that displays grouped data in a [**SemanticZoom**](https://msdn.microsoft.com/library/windows/apps/hh702601) control. In the view model, each instance of the class **Author** represents the group of the books written by that author, and in the **SemanticZoom**, we can either view the list of books grouped by author or we can zoom out to see a jump list of authors. The jump list affords much quicker navigation than scrolling through the list of books. We walk through the steps of porting the app to a Windows 10 Universal Windows Platform (UWP) app.
 
@@ -100,7 +100,7 @@ A minimum window width of 548 epx is appropriate for this use case because that'
 
 So, what properties do we need to set—and change—to achieve these two different layouts? There are two alternatives and each entails a different approach.
 
-1.  We can put two [**SemanticZoom**](https://msdn.microsoft.com/library/windows/apps/hh702601) controls in our markup. One would be a copy of the markup that we were using in the Windows Store app (using [**GridView**](https://msdn.microsoft.com/library/windows/apps/br242705) controls inside it), and collapsed by default. The other would be a copy of the markup that we were using in the Windows Phone Store app (using [**ListView**](https://msdn.microsoft.com/library/windows/apps/br242878) controls inside it), and visible by default. The visual state would switch the visibility properties of the two **SemanticZoom** controls. This would require very little effort to achieve but this not, in general, a high-performance technique. So, if you use it, you should profile your app and make sure it is still meeting your performance goals.
+1.  We can put two [**SemanticZoom**](https://msdn.microsoft.com/library/windows/apps/hh702601) controls in our markup. One would be a copy of the markup that we were using in the Windows Runtime 8.x app (using [**GridView**](https://msdn.microsoft.com/library/windows/apps/br242705) controls inside it), and collapsed by default. The other would be a copy of the markup that we were using in the Windows Phone Store app (using [**ListView**](https://msdn.microsoft.com/library/windows/apps/br242878) controls inside it), and visible by default. The visual state would switch the visibility properties of the two **SemanticZoom** controls. This would require very little effort to achieve but this not, in general, a high-performance technique. So, if you use it, you should profile your app and make sure it is still meeting your performance goals.
 2.  We can use a single [**SemanticZoom**](https://msdn.microsoft.com/library/windows/apps/hh702601) containing [**ListView**](https://msdn.microsoft.com/library/windows/apps/br242878) controls. To achieve our two layouts, in the wide visual state, we would change the properties of the **ListView** controls, including the templates that are applied to them, to cause them to lay out in the same way as a [**GridView**](https://msdn.microsoft.com/library/windows/apps/br242705) does. This might perform better, but there are so many small differences between the various styles and templates of **GridView** and **ListView** and between their various item types that this is the more difficult solution to achieve. This solution is also tightly coupled to the way the default styles and templates are designed at this moment in time, giving us a solution that's fragile and sensitive to any future changes to the defaults.
 
 In this case study, we're going to go with the first alternative. But, if you like, you can try the second one and see if that works better for you. Here are the steps to take to implement that first alternative.

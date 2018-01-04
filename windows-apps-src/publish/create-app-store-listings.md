@@ -1,38 +1,35 @@
 ﻿---
 author: jnHs
-Description: The Store listings section of the app submission process is where you provide the text and images that customers will see in your app's Store listing.
+Description: The Store listings section of the app submission process is where you provide the text and images that customers will see when viewing your app's listing in the Microsoft Store.
 title: Create app Store listings
 ms.assetid: 50D67219-B6C6-4EF0-B76A-926A5F24997D
 ms.author: wdg-dev-content
-ms.date: 05/23/2017
+ms.date: 12/22/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: high
 ---
 
 # Create app Store listings
 
 
-The **Store listings** section of the [app submission process](app-submissions.md) is where you provide the text and [images](app-screenshots-and-images.md) that customers will see in your app's Store listing.
+The **Store listings** section of the [app submission process](app-submissions.md) is where you provide the text and [images](app-screenshots-and-images.md) that customers will see when viewing your app's listing in the Microsoft Store.
 
-> [!IMPORTANT]
-> This topic has been updated to reflect the latest functionality, which we are in the process of rolling out to all developer accounts. You may not see all of the options described here until we complete this rollout.
-> 
-> Please be aware that when your account switches over to use the latest functionality, any in-progress submissions will still show the older options. You can delete that submission and then create a new one if you want to use the new options for that app. Otherwise, the new options will become available with the next update after you publish your in-progress submission.
-
-Many of the fields in a **Store listing** are optional, but we suggest providing multiple images and as much info as possible to make your listing stand out. The minimum required for the **Store listings** step to be considered complete is a text description and at least one [screenshot](app-screenshots-and-images.md#screenshots).
+Many of the fields in a **Store listing** are optional, but we suggest providing multiple images and as much info as possible to make your listing stand out. The minimum required for the **Store listings** step to be considered complete is a text description and at least one [screenshot](app-screenshots-and-images.md#screenshots). For some submissions, the [Privacy policy](#privacy-policy) and [Support contact info](#support-contact-info) fields are also required. 
 
 > [!TIP]
-> You can also [import and export Store listings](import-and-export-store-listings.md) if you'd like to enter your listing info offline in a .csv file, rather than providing this info directly in the dashboard. This may be especially convenient if you have listings in many languages.
+> You can optionally [import and export Store listings](import-and-export-store-listings.md) if you'd prefer to enter your listing info offline in a .csv file, rather than providing info and uploading files directly in the dashboard. Using the import and export option can be especially convenient if you have listings in many languages, since it lets you make multiple updates at once. 
 
-By default, we'll use the same Store listing (per language) for all of your targeted operating systems. If you'd like to use a customized Store listing for a specific operating system, you can [create platform-specific Store listings](create-platform-specific-store-listings.md). Your default listing will always be shown to customers on Windows 10.
+By default, we'll use the same Store listing (per language) for all of your targeted operating systems. If you'd like to use a customized Store listing for a specific operating system that your submission supports, you can [create platform-specific Store listings](create-platform-specific-store-listings.md). Your default listing will always be shown to customers on Windows 10.
 
 ## Store listing languages
 
 You must complete the **Store listing** page for at least one language. We recommend providing a Store listing in each language that your packages support, but you have flexibility to remove languages for which you don’t wish to provide a Store listing. You can also create Store listings in additional languages which aren’t supported by your packages.
 
-> **Note**  If your submission includes packages already, we’ll show the [languages](supported-languages.md) supported in your packages on the submission overview page (unless you remove any of them).
+> [!NOTE]
+> If your submission includes packages already, we’ll show the [languages](supported-languages.md) supported in your packages on the submission overview page (unless you remove any of them).
 
 To add or remove languages for your Store listings, click **Add/remove languages** from the submission overview page. If you‘ve already uploaded packages, you’ll see their languages listed in the **Languages supported by your packages** section. To remove one or more of these languages, click **Remove**. If you later decide to include a language that you previously removed from this section, you can click **Add**.
 
@@ -40,10 +37,10 @@ In the **Additional Store listing languages** section, you can click **Manage ad
 
 When you have finished making your selections, click **Save** to return to the submission overview page.
 
-> **Note** When creating a Store listing in a language that isn't supported by your packages, you'll need to indicate which of your reserved app names should be displayed in that Store listing, since there isn't an associated package in that language from which to pull the name. The name you choose here only applies to the Store listing for this language and does not impact the name displayed when a customer installs the app.
+> [!NOTE]
+> When creating a Store listing in a language that isn't supported by your packages, you'll need to indicate which of your reserved app names should be displayed in that Store listing, since there isn't an associated package in that language from which to pull the name. The name you choose here only applies to the Store listing for this language and does not impact the name displayed when a customer installs the app.
 
 To edit a Store listing, click the language name from the submission overview page.
-
 
 At the top of the **Store listing** page are the fields associated with your default Store listing for the selected language. These fields will be shown to all of your customers, unless you have packages targeting earlier OS versions (Windows 8.x or earlier; Windows Phone 8.x or earlier) and create platform-specific Store listings to include different screenshots or info to display to customers on specified OS versions. For more info, see [Create platform-specific Store listings](create-platform-specific-store-listings.md).
 
@@ -55,13 +52,14 @@ For some tips on making your description stand out, see [Write a great app descr
 
 ## Release notes
 
-If this is the first time you're submitting your app, you'll probably want to leave this field blank. For an update to an existing app, this is where you can let customer know what's changed in the latest release. This field has a 1500 character limit.
+If this is the first time you're submitting your app, leave this field blank. For an update to an existing app, this is where you can let customer know what's changed in the latest release. This field has a 1500 character limit.
 
 ## Screenshots
 
 One screenshot is required in order to submit your app. We recommend providing at least one screenshot for each device type that your app supports.
 
 For more info, see [App screenshots and images](app-screenshots-and-images.md#screenshots).
+
 
 ## Store logos 
 
@@ -72,33 +70,61 @@ Store logos are optional images that you can upload to enhance the way your app 
 
 For more info, see [Store logos](app-screenshots-and-images.md#store-logos).
 
+
 ## Additional art assets
 
 You can submit additional assets for your product, including trailers and promotional images. These are all optional, but we recommend that you consider uploading as many of them as possible. These images can help give customers a better idea of what your product is and make a more enticing listing.
 
 For more info, see [Additional art assets](app-screenshots-and-images.md#additional-art-assets).
 
+
 ## Additional information
 
-The fields in this section are all optional, but can be used to help customers understand more about what your app does and what is required for the best experience. We suggest reviewing the options described below and providing any information that customers might need to know about your app, or that could help entice them to download it.
+The fields in this section are all optional. App features and system requirements can help customers understand more about what your app does and what is required for the best experience. Other options help provide an optimal experience for your product in different scenarios. Review the info below to determine if providing this info makes sense for your submission.
+
+### Short title
+
+A shorter version of your product’s name. If provided, this shorter name may appear in various places on Xbox One (during installation, in Achievements, etc.) in place of the full title of your product.
+
+
+### Sort title
+
+If your product could be alphabetized in different ways, you can enter another version here. This may help customers find the product more quickly when searching. 
+
+
+### Voice title
+
+An alternate name for your product that, if provided, may be used in the audio experience on Xbox One when using Kinect or a headset. 
+
+
+### Short description
+
+Only used for games. This description appears in the Information section of the Game Hub on Xbox One, and helps customers understand more about your game.
+
 
 ### App features
 
-These are short summaries of your app's key features. They are displayed to the customer as a bulleted list in your app's Store listing, in addition to the Description. Keep these brief, with just a few words (and no more than 200 characters) per feature. You may include up to 20 features.
+These are short summaries of your app's key features. They are displayed to the customer as a bulleted list in your app's Store listing, in addition to the **Description**. Keep these brief, with just a few words (and no more than 200 characters) per feature. You may include up to 20 features.
 
 > [!NOTE]
 > Your app features will appear bulleted in your Store listing, so don't add your own bullets.
 
+
 ### Additional system requirements
 
-If needed, you can describe the hardware configurations that your app requires to work properly (beyond the info you provided in the **System requirements** section in [App properties](enter-app-properties.md#system-requirements). This is especially important if your app requires hardware that might not be available on every computer.
+If needed, you can describe the hardware configurations that your app requires to work properly (beyond the info you provided in the **System requirements** section in [App properties](enter-app-properties.md#system-requirements). This is especially important if your app requires hardware that might not be available on every computer. For instance, if your app will only work properly with external USB hardware such as a 3D printer or microcontroller, we suggest entering those here. The info you enter will be shown to customers viewing your app's Store listing on Windows 10, version 1607 or later, along with the requirements you indicated on the product's properties page. 
 
-You can enter up to 11 items for both **Minimum hardware** and **Recommended hardware**.  They are displayed to the customer as a bulleted list in your app's listing. Keep these brief, with just a few words (and no more than 200 characters) per item.
-
-The info you enter here will be shown to customers viewing your app's Store listing on Windows 10, version 1607 or later, along with the requirements you indicated on the product's properties page.
+You can enter up to 11 items for both **Minimum hardware** and **Recommended hardware**. These are displayed to the customer as a bulleted list in your Store listing. Keep these brief, with just a few words (and no more than 200 characters) per item.
 
 > [!NOTE]
 > Your additional system requirements will appear bulleted in your Store listing, so don't add your own bullets.
+
+
+### Developed by
+
+Enter text here if you want to include a **Developed by** field in your app's Store listing. (The **Published by** field will list the publisher display name associated with your account, whether or not you provide a value for the **Developed by** field.)
+
+This field has a 255 character limit.
 
 
 ## Shared fields
@@ -107,21 +133,14 @@ The items described below help customers discover and understand your product. T
 
 ### Search terms
 
-Search terms (formerly called keywords) are single words or short phrases that are not displayed to customers, but can help your app appear in search results related to the term. You can include up to 7 search terms with a maximum of 30 characters each, and can use no more than 21 separate words across all search temrs.
+Search terms (formerly called keywords) are single words or short phrases that are not displayed to customers, but can help your app appear in search results related to the term. You can include up to 7 search terms with a maximum of 30 characters each, and can use no more than 21 separate words across all search terms.
 
 When adding search terms, think about the words that customers might use when searching for apps like yours, especially if they're not part of your app's name. Be sure not to use any search terms that are not actually relevant to your app.
-
-
-### Privacy policy
-
-If you have a privacy policy for your app, enter its URL here. You are responsible for ensuring your app complies with privacy laws and regulations, and for providing a privacy policy, if required.
-
-> [!IMPORTANT]
-> Microsoft doesn't provide a default privacy policy for your app. Likewise, your app is not covered by any Microsoft privacy policy. To determine if your app requires a privacy policy, review the [App Developer Agreement](https://msdn.microsoft.com/library/windows/apps/hh694058) and the [Windows Store Policies](https://msdn.microsoft.com/library/windows/apps/dn764944.aspx#pol_10_5_1).
 
 ### Copyright and trademark info
 
 If you'd like to provide additional copyright and/or trademark info, enter it here. This field has a 200 character limit.
+
 
 ### Additional license terms
 
@@ -133,13 +152,25 @@ If you enter a single URL into this field, it will be displayed to customers as 
 
 You can also enter up to 10,000 characters of text in this field. If you do that, customers will see these additional license terms displayed as plain text.
 
+
 ### Website
 
 Enter the URL of the web page for your app. This URL must point to a page on your own website, not your app's web listing in the Store.
 
+
 ### Support contact info
 
-Enter the URL of the web page where your customers can go for support on your app, or an email address that customers can contact for support.
+Enter the URL of the web page where your customers can go for support on your app, or an email address that customers can contact for support. We recommend including this info for all submissions, so that your customers know how to get support if they need it. Note that Microsoft does not provide your customers with support for your app.
 
-**Important**  Microsoft doesn't provide your customers with support for your app.
+> [!IMPORTANT]
+> The **Support contact info** field is required if your app or game is available on Xbox. 
+
+## Privacy policy
+
+You are responsible for ensuring your app complies with privacy laws and regulations, and for providing a valid privacy policy URL here if required. If we determine that your app requires a privacy policy, and you have not provided one, your app will fail certification. For example, if your app accesses, collects, or transmits any personal information, or if it allows web browsing, a privacy policy is required. 
+
+To determine if your app requires a privacy policy, review the [App Developer Agreement](https://docs.microsoft.com/legal/windows/agreements/app-developer-agreement) and the [Microsoft Store Policies](https://docs.microsoft.com/legal/windows/agreements/store-policies#105-personal-information).
+
+> [!NOTE]
+> Microsoft doesn't provide a default privacy policy for your app. Likewise, your app is not covered by any Microsoft privacy policy. 
 

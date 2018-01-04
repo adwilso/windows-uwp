@@ -1,20 +1,18 @@
 ---
-author: Xansky
+author: normesta
 description: Shows how to launch the compose email dialog to allow the user to send an email message. You can pre-populate the fields of the email with data before showing the dialog. The message will not be sent until the user taps the send button.
 title: Send email
 ms.assetid: 74511E90-9438-430E-B2DE-24E196A111E5
 keywords: contacts, email, send
-ms.author: mhopkins
-ms.date: 02/08/2017
+ms.author: normesta
+ms.date: 10/11/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
+ms.localizationpriority: medium
 ---
 
 # Send email
-
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
-
 
 Shows how to launch the compose email dialog to allow the user to send an email message. You can pre-populate the fields of the email with data before showing the dialog. The message will not be sent until the user taps the send button.
 
@@ -29,35 +27,26 @@ Shows how to launch the compose email dialog to allow the user to send an email 
 Create a new [**EmailMessage**](https://msdn.microsoft.com/library/windows/apps/Dn631270) object and set the data that you want to be pre-populated in the compose email dialog. Call [**ShowComposeNewEmailAsync**](https://msdn.microsoft.com/library/windows/apps/Dn631269) to show the dialog.
 
 ``` cs
-private async Task ComposeEmail(Windows.ApplicationModel.Contacts.Contact recipient, 
-    string messageBody, 
-    StorageFile attachmentFile)
+private async Task ComposeEmail(Windows.ApplicationModel.Contacts.Contact recipient,
+    string subject, string messageBody)
 {
     var emailMessage = new Windows.ApplicationModel.Email.EmailMessage();
     emailMessage.Body = messageBody;
-
-    if (attachmentFile != null)
-    {
-        var stream = Windows.Storage.Streams.RandomAccessStreamReference.CreateFromFile(attachmentFile);
-
-        var attachment = new Windows.ApplicationModel.Email.EmailAttachment(
-            attachmentFile.Name,
-            stream);
-
-        emailMessage.Attachments.Add(attachment);
-    }
 
     var email = recipient.Emails.FirstOrDefault<Windows.ApplicationModel.Contacts.ContactEmail>();
     if (email != null)
     {
         var emailRecipient = new Windows.ApplicationModel.Email.EmailRecipient(email.Address);
         emailMessage.To.Add(emailRecipient);
+        emailMessage.Subject = subject;
     }
 
     await Windows.ApplicationModel.Email.EmailManager.ShowComposeNewEmailAsync(emailMessage);
-        
 }
 ```
+
+>[!NOTE]
+> Attachments that you add to an email by using the [EmailAttachment](https://docs.microsoft.com/uwp/api/windows.applicationmodel.email.emailattachment) class will appear only in the Mail app. If users have any other mail program configured as their default mail program, the compose window will appear without the attachment. This is a known issue.
 
 ## Summary and next steps
 
@@ -70,7 +59,3 @@ This topic has shown you how to launch the compose email dialog. For information
  
 
  
-
-
-
-

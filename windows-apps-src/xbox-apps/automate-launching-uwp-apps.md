@@ -2,6 +2,7 @@
 title: Automate launching Windows 10 Universal Windows Platform (UWP) apps
 description: Developers can use protocol activation and launch activation to automate launching their UWP apps or games for automated testing.
 author: listurm
+ms.localizationpriority: medium
 ---
 
 # Automate launching Windows 10 UWP apps
@@ -186,7 +187,7 @@ void OnActivated(IActivatedEventArgs^ args)
 		if (args->Kind == ActivationKind::Launch)
 		{
 			auto launchArgs = static_cast<LaunchActivatedEventArgs^>(args);	
-Platform::String^ argval = launchArgs->Arguments;
+			Platform::String^ argval = launchArgs->Arguments;
 			// Manipulate arguments …
 		}
 
@@ -197,7 +198,7 @@ Platform::String^ argval = launchArgs->Arguments;
 			Platform::String^ argval = protocolArgs->Uri->ToString();
 			// Manipulate arguments …
 		}
-    }
+}
 ```
 
 ## Summary

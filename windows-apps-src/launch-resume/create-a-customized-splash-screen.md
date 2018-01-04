@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Display a splash screen for more time
 
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 
 **Important APIs**
@@ -187,14 +187,14 @@ Use these steps to define methods to correctly display your extended splash scre
     After app setup is complete, navigate away from your extended splash screen. The following code defines a method called `DismissExtendedSplash` that navigates to the `MainPage` defined in your app's MainPage.xaml file.
 
     ```cs
-    void DismissExtendedSplash()
-    {
-        // Navigate to mainpage
-        rootFrame.Navigate(typeof(MainPage));
-        // Place the frame in the current Window
-        Window.Current.Content = rootFrame;
-    }
-    ```
+    async void DismissExtendedSplash()
+      {
+         await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,() =>            {
+              rootFrame = new Frame();
+              rootFrame.Content = new MainPage(); Window.Current.Content = rootFrame;
+            });
+      }
+      ```
 
 7.  **Inside the class, define a handler for Window.SizeChanged events**
 

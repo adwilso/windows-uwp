@@ -2,13 +2,14 @@
 author: Mtoepke
 title: Known issues with UWP on Xbox Developer Program
 description: Lists the known issues for the UWP on Xbox developer program.
-ms.author: mtoepke
+ms.author: mstahl
 ms.date: 03/29/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
 ms.assetid: a7b82570-1f99-4bc3-ac78-412f6360e936
+ms.localizationpriority: medium
 ---
 
 # Known issues with UWP on Xbox Developer Program
@@ -83,11 +84,11 @@ The following game engines have been confirmed to work:
 There are likely others that are working too. We would love to get your feedback on what you find. 
 Please use the forum to report any issues you see.-->
 
-## DirectX 12 support
+<!--## DirectX 12 support
 
 UWP on Xbox One supports DirectX 11 Feature Level 10. DirectX 12 is not supported at this time. 
 
-Xbox One, like all traditional games consoles, is a specialized piece of hardware that requires a specific SDK to access its full potential. If you are working on a game that requires access to the maximum potential of the Xbox One hardware, you can register with the [ID@XBOX](http://www.xbox.com/Developers/id) program to get access to that SDK, which includes DirectX 12 support.
+Xbox One, like all traditional games consoles, is a specialized piece of hardware that requires a specific SDK to access its full potential. If you are working on a game that requires access to the maximum potential of the Xbox One hardware, you can register with the [ID@XBOX](http://www.xbox.com/Developers/id) program to get access to that SDK, which includes DirectX 12 support.-->
 
 <!-- ### Xbox One Developer Preview disables game streaming to Windows 10
 

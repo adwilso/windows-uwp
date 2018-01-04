@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp, games, directx, templates
+ms.localizationpriority: medium
 ---
 
 # DirectX game project templates
 
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 The DirectX and Universal Windows Platform (UWP) templates allow you to quickly create a project as a starting point for your game.
 
@@ -65,7 +65,7 @@ The DirectX Universal Windows templates contain the following files:
 ## Next steps
 
 
-Now that you have a starting point, add to it to build your game development knowledge and Windows Store game development skills.
+Now that you have a starting point, add to it to build your game development knowledge and Microsoft Store game development skills.
 
 If you are porting an existing game, see the following topics.
 
@@ -76,16 +76,3 @@ If you are creating a new DirectX game, see the following topics.
 
 -   [Create a simple UWP game with DirectX](tutorial--create-your-first-metro-style-directx-game.md)
 -   [Developing Marble Maze, a Universal Windows Platform game in C++ and DirectX](developing-marble-maze-a-windows-store-game-in-cpp-and-directx.md)
-
-> **Note**  
-This article is for Windows 10 developers writing Universal Windows Platform (UWP) apps. If you’re developing for Windows 8.x or Windows Phone 8.x, see the [archived documentation](http://go.microsoft.com/fwlink/p/?linkid=619132).
-
- 
-
- 
-
- 
-
-
-
-

@@ -9,11 +9,11 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Create and register an out-of-process background task
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 **Important APIs**
 
@@ -33,12 +33,7 @@ You can run code in the background by writing classes that implement the [**IBac
 The following steps show you how to write a new class that implements the [**IBackgroundTask**](https://msdn.microsoft.com/library/windows/apps/br224794) interface. Before getting started, create a new project in your solution for background tasks. Add a new empty class for your background task and import the [Windows.ApplicationModel.Background](https://msdn.microsoft.com/library/windows/apps/br224847) namespace.
 
 1.  Create a new project for background tasks and add it to your solution. To do this, right-click on your solution node in the **Solution Explorer** and select Add-&gt;New Project. Then select the **Windows Runtime Component (Universal Windows)** project type, name the project, and click OK.
-2.  Reference the background tasks project from your Universal Windows Platform (UWP) app project.
-
-    For a C++ app, right-click on your app project and select **Properties**. Then go to **Common Properties** and click **Add New Reference**, check the box next to your background tasks project, and click **OK** on both dialogs.
-
-    For a C# app, in your app project, right click on **References** and select **Add New Reference**. Under **Solution**, select **Projects** and then select the name of your background task project and click **Ok**.
-
+2.  Reference the background tasks project from your Universal Windows Platform (UWP) app project. For a C# or C++ app, in your app project, right click on **References** and select **Add New Reference**. Under **Solution**, select **Projects** and then select the name of your background task project and click **Ok**.
 3.  Create a new class that implements the [**IBackgroundTask**](https://msdn.microsoft.com/library/windows/apps/br224794) interface. The [**Run**](https://msdn.microsoft.com/library/windows/apps/br224811) method is a required entry point that will be called when the specified event is triggered; this method is required in every background task.
 
     > [!NOTE]
@@ -324,9 +319,6 @@ You should now understand the basics of how to write a background task class, ho
 
 See the following related topics for API reference, background task conceptual guidance, and more detailed instructions for writing apps that use background tasks.
 
-> [!NOTE]
-> This article is for Windows 10 developers writing Universal Windows Platform (UWP) apps. If you’re developing for Windows 8.x or Windows Phone 8.x, see the [archived documentation](http://go.microsoft.com/fwlink/p/?linkid=619132).
-
 ## Related topics
 
 **Detailed background task instructional topics**
@@ -345,7 +337,7 @@ See the following related topics for API reference, background task conceptual g
 
 * [Guidelines for background tasks](guidelines-for-background-tasks.md)
 * [Debug a background task](debug-a-background-task.md)
-* [How to trigger suspend, resume, and background events in Windows Store apps (when debugging)](http://go.microsoft.com/fwlink/p/?linkid=254345)
+* [How to trigger suspend, resume, and background events in UWP apps (when debugging)](http://go.microsoft.com/fwlink/p/?linkid=254345)
 
 **Background Task API Reference**
 

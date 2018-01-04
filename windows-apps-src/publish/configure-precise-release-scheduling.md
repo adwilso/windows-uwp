@@ -3,19 +3,20 @@ author: jnHs
 Description: You can set the precise date and time that your app should become available in the Store, giving you greater flexibility and the ability to customize dates for different markets.
 title: Configure precise release scheduling
 ms.author: wdg-dev-content
-ms.date: 05/15/2017
+ms.date: 08/03/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: high
 ---
 
 # Configure precise release scheduling
 
-> [!IMPORTANT]
-> This topic has been updated to reflect the latest functionality on the **Pricing and availability** page, which we are in the process of rolling out to all developer accounts. Until we complete this rollout, your account may not be able to use the options described here.
-
 The **Schedule** section on the [Pricing and availability](set-app-pricing-and-availability.md) page lets you set the precise date and time that your app should become available in the Store, giving you greater flexibility and the ability to customize dates for different markets.
+
+> [!NOTE]
+> Although this topic refers to apps, release scheduling for add-on submissions uses the same process.
 
 You can additionally opt to set a date when the product should no longer be available in the Store. Note that this means that the product can no longer be found in the Store via searching or browsing, but any customer with a direct link can see the product's Store listing. They can only download it if they already own the product or if they have a [promotional code](generate-promotional-codes.md) and are using a Windows 10 device.
 
@@ -35,7 +36,7 @@ Selections you make for the Base schedule will apply to all markets in which you
 
 You’ll see two options here: **Release** and **Stop acquisition**. 
 
-### Release
+## Release
 
 In the **Release** drop-down, you can set when you want your app to be available in the Store. This means that the app is discoverable in the Store via searching or browsing, and that customers can view its Store listing and acquire the app.
 
@@ -52,7 +53,7 @@ Here are the options you can configure for a product’s **Release** schedule:
 > [!TIP]
 > You can also optionally [enter a different release date](set-app-pricing-and-availability.md#display-release-date) to appear on your app's Store listing. 
 
-### Stop acquisition
+## Stop acquisition
 
 In the **Stop acquisition** dropdown, you can set a date and time when you want to stop allowing new customers to acquire it from the Store or discover its listing. This can be useful if you want to precisely control when an app will no longer be offered to new customers, such as when you are coordinating availability between more than one of your apps.
 
@@ -63,7 +64,7 @@ It's important to understand that this option has the same impact as selecting *
 > [!TIP]
 > If you select a date to **Stop acquisition**, and later decide you'd like to make the app available again, you can create a new submission and change **Stop acquisition** back to **Never**. The app will become available again after your updated submission is published.
 
-### Customize the schedule for specific markets 
+## Customize the schedule for specific markets 
 
 By default, the options you select above will apply to all markets in which your app is offered. To customize the price for specific markets, click **Customize for specific markets**. The **Market selection** pop-up window will appear, listing all of the markets in which you’ve chosen to make your app available. If you excluded any markets in the [Markets]((define-pricing-and-market-selection.md) section, those markets will not be shown. 
 

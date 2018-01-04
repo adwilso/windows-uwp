@@ -6,9 +6,10 @@ ms.prod: windows
 ms.topic: article
 ms.assetid: 43ffd28c-c4df-405c-bf5c-29c94e0d142b
 ms.technology: uwp
-author: TylerMSFT
-ms.author: twhitney
+author: normesta
+ms.author: normesta
 keywords: windows 10, uwp, timer, threads
+ms.localizationpriority: medium
 ---
 # Using Windows Runtime objects in a multithreaded environment
 This article discusses the way the .NET Framework handles calls from C# and Visual Basic code to objects that are provided by the Windows Runtime or by Windows Runtime Components.
@@ -40,8 +41,8 @@ Most classes in the Windows Runtime are agile, and the CLR treats them as agile.
 private async void Button_Click_2(object sender, RoutedEventArgs e)
 {
     Button b = (Button) sender;
-    await Task.Run(() => { 
-        b.Content += "."; 
+    await Task.Run(() => {
+        b.Content += ".";
     });
 }
 ```
@@ -62,9 +63,9 @@ private async void Button_Click_2(object sender, RoutedEventArgs e)
 {
     Button b = (Button) sender;
     await b.Dispatcher.RunAsync(
-        Windows.UI.Core.CoreDispatcherPriority.Normal, 
-        () => { 
-            b.Content += "."; 
+        Windows.UI.Core.CoreDispatcherPriority.Normal,
+        () => {
+            b.Content += ".";
     });
 }
 
@@ -74,7 +75,7 @@ private async void Button_Click_2(object sender, RoutedEventArgs e)
 Private Async Sub Button_Click_2(sender As Object, e As RoutedEventArgs)
     Dim b As Button = CType(sender, Button)
     Await b.Dispatcher.RunAsync(
-        Windows.UI.Core.CoreDispatcherPriority.Normal, 
+        Windows.UI.Core.CoreDispatcherPriority.Normal,
         Sub()
             b.Content &= "."
         End Sub)
@@ -100,8 +101,8 @@ private async void Button_Click_1(object sender, RoutedEventArgs e)
 {
     ccui = new Windows.Media.Capture.CameraCaptureUI();
 
-    await Task.Run(() => { 
-        ccui.PhotoSettings.AllowCropping = true; 
+    await Task.Run(() => {
+        ccui.PhotoSettings.AllowCropping = true;
     });
 }
 

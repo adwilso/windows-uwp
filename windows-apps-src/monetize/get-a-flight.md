@@ -1,14 +1,15 @@
 ---
 author: mcleanbyron
 ms.assetid: 87708690-079A-443D-807E-D2BF9F614DDF
-description: Use this method in the Windows Store submission API to get data for a package flight for an app that is registered to your Windows Dev Center account.
+description: Use this method in the Microsoft Store submission API to get data for a package flight for an app that is registered to your Windows Dev Center account.
 title: Get a package flight
 ms.author: mcleans
-ms.date: 02/08/2017
+ms.date: 08/03/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
-keywords: windows 10, uwp, Windows Store submission API, flight, package flight
+keywords: windows 10, uwp, Microsoft Store submission API, flight, package flight
+ms.localizationpriority: medium
 ---
 
 # Get a package flight
@@ -16,13 +17,13 @@ keywords: windows 10, uwp, Windows Store submission API, flight, package flight
 
 
 
-Use this method in the Windows Store submission API to get data for a package flight for an app that is registered to your Windows Dev Center account.
+Use this method in the Microsoft Store submission API to get data for a package flight for an app that is registered to your Windows Dev Center account.
 
 ## Prerequisites
 
 To use this method, you need to first do the following:
 
-* If you have not done so already, complete all the [prerequisites](create-and-manage-submissions-using-windows-store-services.md#prerequisites) for the Windows Store submission API.
+* If you have not done so already, complete all the [prerequisites](create-and-manage-submissions-using-windows-store-services.md#prerequisites) for the Microsoft Store submission API.
 * [Obtain an Azure AD access token](create-and-manage-submissions-using-windows-store-services.md#obtain-an-azure-ad-access-token) to use in the request header for this method. After you obtain an access token, you have 60 minutes to use it before it expires. After the token expires, you can obtain a new one.
 
 ## Request
@@ -50,7 +51,7 @@ This method has the following syntax. See the following sections for usage examp
 | Name        | Type   | Description                                                                 |
 |---------------|--------|-----------------------------------------------------------------------------|
 | applicationId | string | Required. The Store ID of the app that contains the package flight you want to get. The Store ID for the app is available on the Dev Center dashboard.  |
-| flightId | string | Required. The ID of the package flight to get. This ID is available in the Dev Center dashboard, and it is included in the response data for requests to [create a package flight](create-a-flight.md) and [get package flights for an app](get-flights-for-an-app.md).  |
+| flightId | string | Required. The ID of the package flight to get. This ID is available in the response data for requests to [create a package flight](create-a-flight.md) and [get package flights for an app](get-flights-for-an-app.md).  |
 
 <span/>
 
@@ -123,12 +124,12 @@ If the request cannot be successfully completed, the response will contain one o
 |--------|---------------------  |
 | 400  | The request is invalid. |
 | 404  | The specified package flight could not be found.   |   
-| 409  | The app uses a Dev Center dashboard feature that is [currently not supported by the Windows Store submission API](create-and-manage-submissions-using-windows-store-services.md#not_supported). |                                                                                                 
+| 409  | The app uses a Dev Center dashboard feature that is [currently not supported by the Microsoft Store submission API](create-and-manage-submissions-using-windows-store-services.md#not_supported). |                                                                                                 
 
 <span/>
 
 ## Related topics
 
-* [Create and manage submissions using Windows Store services](create-and-manage-submissions-using-windows-store-services.md)
+* [Create and manage submissions using Microsoft Store services](create-and-manage-submissions-using-windows-store-services.md)
 * [Create a package flight](create-a-flight.md)
 * [Delete a package flight](delete-a-flight.md)

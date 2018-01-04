@@ -9,13 +9,13 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 
 # Creating Windows Runtime Components in C++
 
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 This article shows how to use C++ to create a Windows Runtime component, which is a DLL that's callable from a Universal Windows app that's built by using JavaScript—or C#, Visual Basic, or C++.
 
@@ -563,7 +563,7 @@ Both C# and Visual Basic have language support for enums. These languages see a 
 
 To consume asynchronous methods that are exposed by other Windows Runtime objects, use the [task Class (Concurrency Runtime)](https://msdn.microsoft.com/library/hh750113.aspx). For more information, see and [Task Parallelism (Concurrency Runtime)](https://msdn.microsoft.com/library/dd492427.aspx).
 
-To implement asynchronous methods in C++, use the [create\_async](https://msdn.microsoft.com/library/hh750102.aspx) function that's defined in ppltasks.h. For more information, see [Creating Asynchronous Operations in C++ for Windows Store Apps](https://msdn.microsoft.com/library/vstudio/hh750082.aspx). For an example, see [Walkthrough: Creating a basic Windows Runtime component in C++ and calling it from JavaScript or C#](walkthrough-creating-a-basic-windows-runtime-component-in-cpp-and-calling-it-from-javascript-or-csharp.md). The .NET languages consume C++ asynchronous methods just as they would any asynchronous method that's defined in the .NET Framework.
+To implement asynchronous methods in C++, use the [create\_async](https://msdn.microsoft.com/library/hh750102.aspx) function that's defined in ppltasks.h. For more information, see [Creating Asynchronous Operations in C++ for UWP apps](https://msdn.microsoft.com/library/vstudio/hh750082.aspx). For an example, see [Walkthrough: Creating a basic Windows Runtime component in C++ and calling it from JavaScript or C#](walkthrough-creating-a-basic-windows-runtime-component-in-cpp-and-calling-it-from-javascript-or-csharp.md). The .NET languages consume C++ asynchronous methods just as they would any asynchronous method that's defined in the .NET Framework.
 
 ## Exceptions
 

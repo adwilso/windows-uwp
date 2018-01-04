@@ -1,5 +1,5 @@
 ---
-author: mukin
+author: muhsinking
 ms.assetid: bfabd3d5-dd56-4917-9572-f3ba0de4f8c0
 title: Device Portal core API reference
 description: Learn about the Windows Device Portal core REST APIs that you can use to access the data and control your device programmatically.
@@ -9,6 +9,7 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Device Portal core API reference
@@ -60,6 +61,159 @@ HTTP status code      | Description
 **Available device families**
 
 * Windows Mobile
+* Windows Desktop
+* Xbox
+* HoloLens
+* IoT
+
+---
+### Install a related set
+
+**Request**
+
+You can install a [related set](https://blogs.msdn.microsoft.com/appinstaller/2017/05/12/tooling-to-create-a-related-set/) by using the following request format.
+
+Method      | Request URI
+:------     | :-----
+POST | /api/app/packagemanager/package
+<br />
+**URI parameters**
+
+You can specify the following additional parameters on the request URI:
+
+URI parameter | Description
+:---          | :---
+package   | (**required**) The file names of the packages to be installed. 
+<br />
+**Request headers**
+
+- None
+
+**Request body** 
+- Add ".opt" to the optional package file names when specifying them as a parameter, like so: "foo.appx.opt" or "bar.appxbundle.opt". 
+- The .appx or .appxbundle file, as well as any dependencies the app requires. 
+- The certificate used to sign the app, if the device is IoT or Windows Desktop. Other platforms do not require the certificate. 
+
+**Response**
+
+**Status code**
+
+This API has the following expected status codes.
+
+HTTP status code      | Description
+:------     | :-----
+200 | Deploy request accepted and being processed
+4XX | Error codes
+5XX | Error codes
+<br />
+**Available device families**
+
+* Windows Mobile
+* Windows Desktop
+* Xbox
+* HoloLens
+* IoT
+
+---
+### Register an app in a loose folder
+
+**Request**
+
+You can register an app in a loose folder by using the following request format.
+
+Method      | Request URI
+:------     | :-----
+POST | /api/app/packagemanager/networkapp
+<br />
+**URI parameters**
+
+- None
+<br />
+**Request headers**
+
+- None
+
+**Request body** 
+
+    {
+        "mainpackage" :
+        {
+            "networkshare" : "\\some\share\path",
+            "username" : "optional_username",
+            "password" : "optional_password"
+        }
+    }
+**Response**
+
+**Status code**
+
+This API has the following expected status codes.
+
+HTTP status code      | Description
+:------     | :-----
+200 | Deploy request accepted and being processed
+4XX | Error codes
+5XX | Error codes
+<br />
+**Available device families**
+
+* Windows Desktop
+* Xbox
+* HoloLens
+* IoT
+
+---
+### Register a related set in loose file folders
+
+**Request**
+
+You can register a [related set](https://blogs.msdn.microsoft.com/appinstaller/2017/05/12/tooling-to-create-a-related-set/) in loose folders by using the following request format.
+
+Method      | Request URI
+:------     | :-----
+POST | /api/app/packagemanager/networkapp
+<br />
+**URI parameters**
+
+- None
+<br />
+**Request headers**
+
+- None
+
+**Request body** 
+
+    {
+        "mainpackage" :
+        {
+            "networkshare" : "\\some\share\path",
+            "username" : "optional_username",
+            "password" : "optional_password"
+        },
+        "optionalpackages" :
+        [
+            {
+                "networkshare" : "\\some\share\path2",
+                "username" : "optional_username2",
+                "password" : "optional_password2"
+            },
+            ...
+        ]
+    } 
+**Response**
+
+**Status code**
+
+This API has the following expected status codes.
+
+HTTP status code      | Description
+:------     | :-----
+200 | Deploy request accepted and being processed
+4XX | Error codes
+5XX | Error codes
+<br />
+**Available device families**
+
 * Windows Desktop
 * Xbox
 * HoloLens
@@ -273,12 +427,96 @@ This API has the following expected status codes.
 HTTP status code      | Description
 :------     | :-----
 200 | OK
-4XX | Error codes
+4XX | Error codes`
 5XX | Error codes
 <br />
 **Available device families**
 
 * Windows Mobile
+* Windows Desktop
+* IoT
+
+---
+### Get data on connected USB Devices/Hubs
+
+**Request**
+
+You can get a list of USB descriptors for connected USB devices and Hubs by using the following request format.
+
+Method      | Request URI
+:------     | :-----
+GET | /ext/devices/usbdevices
+<br />
+
+**URI parameters**
+
+- None
+
+**Request headers**
+
+- None
+
+**Request body**
+
+- None
+
+**Response**
+
+The response is JSON that includes DeviceID for the USB Device along with the USB Descriptors and port information for hubs.
+``` 
+{
+    "DeviceList": [
+        {
+        "ID": string,
+        "ParentID": string, // Will equal an "ID" within the list, or be blank
+        "Description": string, // optional
+        "Manufacturer": string, // optional
+        "ProblemCode": int, // optional
+        "StatusCode": int // optional
+        },
+        ...
+    ]
+}
+```
+
+**Sample return data**
+```
+{
+    "DeviceList": [{
+        "ID": "System",
+        "ParentID": ""
+    }, {
+        "Class": "USB",
+        "Description": "Texas Instruments USB 3.0 xHCI Host Controller",
+        "ID": "PCI\\VEN_104C&DEV_8241&SUBSYS_1589103C&REV_02\\4&37085792&0&00E7",
+        "Manufacturer": "Texas Instruments",
+        "ParentID": "System",
+        "ProblemCode": 0,
+        "StatusCode": 25174026
+    }, {
+        "Class": "USB",
+        "Description": "USB Composite Device",
+        "DeviceDriverKey": "{36fc9e60-c465-11cf-8056-444553540000}\\0016",
+        "ID": "USB\\VID_045E&PID_00DB\\8&2994096B&0&1",
+        "Manufacturer": "(Standard USB Host Controller)",
+        "ParentID": "USB\\VID_0557&PID_8021\\7&2E9A8711&0&4",
+        "ProblemCode": 0,
+        "StatusCode": 25182218
+    }]
+}
+```
+
+**Status code**
+
+This API has the following expected status codes.
+
+HTTP status code      | Description
+:------     | :-----
+200 | OK
+5XX | Error codes
+<br />
+**Available device families**
+
 * Windows Desktop
 * IoT
 
@@ -1062,6 +1300,219 @@ GET | /api/etw/customproviders
 * IoT
 
 ---
+## Location
+---
+
+### Get location override mode
+
+**Request**
+
+You can get the device's location stack override status by using the following request format. Developer mode must be on for this call to succeed.
+ 
+Method      | Request URI
+:------     | :-----
+GET | /ext/location/override
+<br />
+
+**URI parameters**
+
+- None
+
+**Request headers**
+
+- None
+
+**Request body**
+
+- None
+
+**Response**
+
+The response includes the override state of the device in the following format. 
+
+```
+{"Override" : bool}
+```
+
+**Status code**
+
+This API has the following expected status codes.
+
+HTTP status code      | Description
+:------     | :-----
+200 | OK
+4XX | Error codes
+5XX | Error codes
+<br />
+**Available device families**
+
+* Windows Mobile
+* Windows Desktop
+* Xbox
+* HoloLens
+* IoT
+
+### Set location override mode
+
+**Request**
+
+You can set the device's location stack override status by using the following request format. When enabled, the location stack allows position injection. Developer mode must be on for this call to succeed.
+
+Method      | Request URI
+:------     | :-----
+PUT | /ext/location/override
+<br />
+
+**URI parameters**
+
+- None
+
+**Request headers**
+
+- None
+
+**Request body**
+
+```
+{"Override" : bool}
+```
+
+**Response**
+
+The response includes the override state that the device has been set to in the following format. 
+
+```
+{"Override" : bool}
+```
+
+**Status code**
+
+This API has the following expected status codes.
+
+HTTP status code      | Description
+:------     | :-----
+200 | OK
+4XX | Error codes
+5XX | Error codes
+<br />
+**Available device families**
+
+* Windows Mobile
+* Windows Desktop
+* Xbox
+* HoloLens
+* IoT
+
+### Get the injected position
+
+**Request**
+
+You can get the device's injected (spoofed) location by using the following request format. An injected location must be set, or an error will be thrown.
+ 
+Method      | Request URI
+:------     | :-----
+GET | /ext/location/position
+<br />
+
+**URI parameters**
+
+- None
+
+**Request headers**
+
+- None
+
+**Request body**
+
+- None
+
+**Response**
+
+The response includes the current injected latitude and longitude values in the following format. 
+
+```
+{
+    "Latitude" : double,
+    "Longitude : double
+}
+```
+
+**Status code**
+
+This API has the following expected status codes.
+
+HTTP status code      | Description
+:------     | :-----
+200 | OK
+4XX | Error codes
+5XX | Error codes
+<br />
+**Available device families**
+
+* Windows Mobile
+* Windows Desktop
+* Xbox
+* HoloLens
+* IoT
+
+### Set the injected position
+
+**Request**
+
+You can set the device's injected (spoofed) location by using the following request format. Location override mode must first be enabled on the device, and the set location must be a valid location or an error will be thrown.
+
+Method      | Request URI
+:------     | :-----
+PUT | /ext/location/override
+<br />
+
+**URI parameters**
+
+- None
+
+**Request headers**
+
+- None
+
+**Request body**
+
+```
+{
+    "Latitude" : double,
+    "Longitude : double
+}
+```
+
+**Response**
+
+The response includes the location that has been set in the following format. 
+
+```
+{
+    "Latitude" : double,
+    "Longitude : double
+}
+```
+
+**Status code**
+
+This API has the following expected status codes.
+
+HTTP status code      | Description
+:------     | :-----
+200 | OK
+4XX | Error codes
+5XX | Error codes
+<br />
+**Available device families**
+
+* Windows Mobile
+* Windows Desktop
+* Xbox
+* HoloLens
+* IoT
+
+---
 ## OS information
 ---
 ### Get the machine name
@@ -1270,6 +1721,69 @@ HTTP status code      | Description
 * IoT
 
 ---
+## User information
+---
+### Get the active user
+
+**Request**
+
+You can get the name of the active user on the device by using the following request format.
+ 
+Method      | Request URI
+:------     | :-----
+GET | /api/users/activeuser
+<br />
+
+**URI parameters**
+
+- None
+
+**Request headers**
+
+- None
+
+**Request body**
+
+- None
+
+**Response**
+
+The response includes user information in the following format. 
+
+On success: 
+```
+{
+    "UserDisplayName" : string, 
+    "UserSID" : string
+}
+```
+On failure:
+```
+{
+    "Code" : int, 
+    "CodeText" : string, 
+    "Reason" : string, 
+    "Success" : bool
+}
+```
+
+**Status code**
+
+This API has the following expected status codes.
+
+HTTP status code      | Description
+:------     | :-----
+200 | OK
+4XX | Error codes
+5XX | Error codes
+<br />
+**Available device families**
+
+* Windows Desktop
+* HoloLens
+* IoT
+
+---
 ## Performance data
 ---
 ### Get the list of running processes
@@ -1302,15 +1816,15 @@ The response includes a list of processes with details for each process. The inf
 ```
 {"Processes": [
     {
-        "CPUUsage": int,
+        "CPUUsage": float,
         "ImageName": string,
-        "PageFileUsage": int,
-        "PrivateWorkingSet": int,
+        "PageFileUsage": long,
+        "PrivateWorkingSet": long,
         "ProcessId": int,
         "SessionId": int,
         "UserName": string,
-        "VirtualSize": int,
-        "WorkingSetSize": int
+        "VirtualSize": long,
+        "WorkingSetSize": long
     },...
 ]}
 ```
@@ -2017,6 +2531,52 @@ HTTP status code      | Description
 * Windows Mobile
 * Windows Desktop
 * Xbox
+* HoloLens
+* IoT
+
+---
+### Kill process by PID
+
+**Request**
+
+You can kill a process by using the following request format.
+ 
+Method      | Request URI
+:------     | :-----
+DELETE | /api/taskmanager/process
+<br />
+
+**URI parameters**
+
+You can specify the following additional parameters on the request URI:
+
+URI parameter | Description
+:---          | :---
+pid   | (**required**) The unique process id for the process to stop.
+<br />
+**Request headers**
+
+- None
+
+**Request body**
+
+- None
+
+**Response**
+
+**Status code**
+
+This API has the following expected status codes.
+
+HTTP status code      | Description
+:------     | :-----
+200 | OK
+4XX | Error codes
+5XX | Error codes
+<br />
+**Available device families**
+
+* Windows Desktop
 * HoloLens
 * IoT
 

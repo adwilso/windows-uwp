@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Intro to secure Windows app development
 
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 
 This introductory article helps app architects and developers better understand the various Windows 10 platform capabilities that accelerate creating secure Universal Windows Platform (UWP) apps. It details how to use the Windows security features available at each of the following stages: authentication, data-in-flight, and data-at-rest. You can find more in-depth information on each topic by reviewing the additional resources included in each chapter.
@@ -98,8 +98,8 @@ If the communication is successful, process the response string returned by the 
 Sample C# code that for this process is below. For information and a detailed walkthrough, see [WebAuthenticationBroker](web-authentication-broker.md). For a complete code sample, check out the [WebAuthenticationBroker sample on GitHub](http://go.microsoft.com/fwlink/p/?LinkId=620622).
 
 ```cs
-string startURL = "https://<providerendpoint>?client_id=<clientid>;
-string endURL = "http://<appendpoint>";
+string startURL = "https://<providerendpoint>?client_id=<clientid>";
+string endURL = "http://<AppEndPoint>";
 
 var startURI = new System.Uri(startURL);
 var endURI = new System.Uri(endURL);

@@ -1,18 +1,18 @@
 ---
-author: mcleblanc
+author: jwmsft
 ms.assetid: A37ADD4A-2187-4767-9C7D-EDE8A90AA215
 title: Planning for performance
 description: Users expect their apps to remain responsive, to feel natural, and not to drain their battery.
-ms.author: markl
+ms.author: jimwalk
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 # Planning for performance
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 
 Users expect their apps to remain responsive, to feel natural, and not to drain their battery. Technically, performance is a non-functional requirement but treating performance as a feature will help you deliver on your users' expectations. Specifying goals, and measuring, are key factors. Determine what your performance-critical scenarios are; define what good performance mean. Then measure early and often enough throughout the lifecycle of your project to be confident you'll hit your goals.
@@ -169,7 +169,7 @@ Use these techniques and tools to test how your app stacks up against your origi
     -   Run the app multiple times to help eliminate random testing variables and help ensure consistent measurements.
 -   Test for reduced power availability. Your users' device might have significantly less power than your development machine. Windows was designed with low-power devices, such as mobile devices, in mind. Apps that run on the platform should ensure they perform well on these devices. As a heuristic, expect that a low power device runs at about a quarter the speed of a desktop computer, and set your goals accordingly.
 -   Use a combination of tools like Microsoft Visual Studio and Windows Performance Analyzer to measure app performance. Visual Studio is designed to provide app-focused analysis, such as source code linking. Windows Performance Analyzer is designed to provide system-focused analysis, such as providing system info, info about touch manipulation events, and info about disk input/output (I/O) and graphics processing unit (GPU) cost. Both tools provide trace capture and export, and can reopen shared and post-mortem traces.
--   Before you submit your app to the Store for certification, be sure to incorporate into your test plans the performance-related test cases as described in the "Performance tests" section of [Windows App Certification Kit tests](windows-app-certification-kit-tests.md) and in the "Performance and stability" section of [Windows Store app test cases](https://msdn.microsoft.com/library/windows/apps/Dn275879).
+-   Before you submit your app to the Store for certification, be sure to incorporate into your test plans the performance-related test cases as described in the "Performance tests" section of [Windows App Certification Kit tests](windows-app-certification-kit-tests.md) and in the "Performance and stability" section of [UWP app test cases](https://msdn.microsoft.com/library/windows/apps/Dn275879).
 
 For more info, see these resources and profiling tools.
 

@@ -10,6 +10,7 @@ ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
 ms.assetid: 0a8cedac-172a-4efd-8b6b-67fd3667df34
+ms.localizationpriority: medium
 ---
 
 # Integrate your app with Windows 10 (Desktop Bridge)
@@ -30,7 +31,7 @@ Help users transition to your packaged app.
 * [Add options to the context menus of files that have a certain file type](#add)
 * [Open certain types of files directly by using a URL](#open)
 
-<span id="point" />
+<a id="point" />
 ### Point existing Start tiles and taskbar buttons to your packaged app
 
 Your users might have pinned your desktop application to the taskbar or the Start menu. You can point those shortcuts to your new packaged app.
@@ -81,8 +82,11 @@ Find the complete schema reference [here](https://docs.microsoft.com/uwp/schemas
   </Applications>
 </Package>
 ```
+#### Related sample
 
-<span id="make" />
+[WPF picture viewer with transition/migration/uninstallation](https://github.com/Microsoft/DesktopBridgeToUWP-Samples/tree/master/Samples/DesktopAppTransition)
+
+<a id="make" />
 ### Make your packaged app open files instead of your desktop app
 
 You can make sure that users open your new packaged app by default for specific types of files instead of opening the desktop version of your app.
@@ -137,7 +141,11 @@ Find the complete schema reference [here](https://docs.microsoft.com/uwp/schemas
   </Applications>
 </Package>
 ```
-<span id="associate" />
+#### Related sample
+
+[WPF picture viewer with transition/migration/uninstallation](https://github.com/Microsoft/DesktopBridgeToUWP-Samples/tree/master/Samples/DesktopAppTransition)
+
+<a id="associate" />
 ### Associate your packaged app with a set of file types
 
 You can associated your packaged app with file type extensions. If a user right-clicks a file and then selects the **Open with** option, your app appears in the list of suggestions.
@@ -191,7 +199,11 @@ Find the complete schema reference [here](https://docs.microsoft.com/uwp/schemas
 </Package>
 ```
 
-<span id="add" />
+#### Related sample
+
+[WPF picture viewer with transition/migration/uninstallation](https://github.com/Microsoft/DesktopBridgeToUWP-Samples/tree/master/Samples/DesktopAppTransition)
+
+<a id="add" />
 ### Add options to the context menus of files that have a certain file type
 
 In most cases, users double-click files to open them. If users, right click a file, various options appear.
@@ -253,8 +265,11 @@ Find the complete schema reference [here](https://docs.microsoft.com/uwp/schemas
   </Applications>
 </Package>
 ```
+#### Related sample
 
-<span id="open" />
+[WPF picture viewer with transition/migration/uninstallation](https://github.com/Microsoft/DesktopBridgeToUWP-Samples/tree/master/Samples/DesktopAppTransition)
+
+<a id="open" />
 ### Open certain types of files directly by using a URL
 
 You can make sure that users open your new packaged app by default for specific types of files instead of opening the desktop version of your app.
@@ -268,7 +283,7 @@ You can make sure that users open your new packaged app by default for specific 
 
 ```XML
 <Extension Category="windows.fileTypeAssociation">
-    <FileTypeAssociation Name="[AppID]" UseUrl="True" Parameters="%1">
+    <FileTypeAssociation Name="[AppID]" UseUrl="true" Parameters="%1">
         <SupportedFileTypes>
             <FileType>"[FileExtension]"</FileType>
         </SupportedFileTypes> 
@@ -297,7 +312,7 @@ Find the complete schema reference [here](https://docs.microsoft.com/uwp/schemas
       <Application>
         <Extensions>
           <uap:Extension Category="windows.fileTypeAssociation">
-            <uap3:FileTypeAssociation Name="documenttypes" UseUrl="True" Parameters="%1">
+            <uap3:FileTypeAssociation Name="documenttypes" UseUrl="true" Parameters="%1">
               <uap:SupportedFileTypes>
                 <uap:FileType>.txt</uap:FileType>
                 <uap:FileType>.doc</uap:FileType>
@@ -313,9 +328,8 @@ Find the complete schema reference [here](https://docs.microsoft.com/uwp/schemas
 ## Perform setup tasks
 
 * [Create firewall exception for your app](#rules)
-* [Start an executable file when users log into Windows](#executable)
 
-<span id="rules" />
+<a id="rules" />
 ### Create firewall exception for your app
 
 If your app requires communication through a port, you can add your app to the list of firewall exceptions.
@@ -377,67 +391,6 @@ Find the complete schema reference [here](https://docs.microsoft.com/uwp/schemas
 </Package>
 ```
 
-<span id="executable" />
-### Start an executable file when users log into Windows
-
-Startup tasks allow your app to run an executable automatically whenever a user logs on.
-
-> [!NOTE]
-> The user has to start your app at least one time to register this startup task.
-
-Your app can declare multiple startup tasks. Each task starts independently. All startup tasks will appear in Task Manager under the **Startup** tab with the name that you specify in your app's manifest and your app's icon. Task Manager will automatically analyze the startup impact of your tasks.
-
-Users can manually disable your app's startup task by using Task Manager. If a user disables a task, you can't programmatically re-enable it.
-
-#### XML namespace
-
-http://schemas.microsoft.com/appx/manifest/desktop/windows10
-
-#### Elements and attributes of this extension
-
-```XML
-<Extension
-    Category="windows.startupTask"
-    Executable="[ExecutableName]"
-    EntryPoint="Windows.FullTrustApplication">
-	<StartupTask
-      TaskId="[TaskID]"
-      Enabled="true"
-      DisplayName="[DisplayName]" />
-</Extension>
-```
-
-|Name |Description |
-|-------|-------------|
-|Category |Always ``windows.startupTask``.|
-|Executable |The relative path to the executable file to start. |
-|TaskId |A unique identifier for your task. Using this identifier, your app can call the APIs in the [Windows.ApplicationModel.StartupTask](https://docs.microsoft.com/uwp/api/Windows.ApplicationModel.StartupTask) class to programmatically enable or disable a startup task. |
-|Enabled |Indicates whether the task first starts enabled or disabled. Enabled tasks will run the next time the user logs on (unless the user disables it). |
-|DisplayName |The name of the task that appears in Task Manager. You can localize this string by using ```ms-resource```. |
-
-#### Example
-
-```XML
-<Package
-  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
-  IgnorableNamespaces="desktop">
-  <Applications>
-    <Application>
-      <Extensions>
-        <desktop:Extension
-          Category="windows.startupTask"
-          Executable="bin\MyStartupTask.exe"
-          EntryPoint="Windows.FullTrustApplication">
-     	  <desktop:StartupTask
-          TaskId="MyStartupTask"
-          Enabled="true"
-          DisplayName="My App Service" />
-        </desktop:Extension>
-      </Extensions>
-    </Application>
-  </Applications>
- </Package>
-```
 ## Integrate with File Explorer
 
 Help users organize your files and interact with them in familiar ways.
@@ -446,9 +399,10 @@ Help users organize your files and interact with them in familiar ways.
 * [Show file contents in a thumbnail image within File Explorer](#show)
 * [Show file contents in a Preview pane of File Explorer](#preview)
 * [Enable users to group files by using the Kind column in File Explorer](#enable)
-* [Make file properties available to search, index, property dialogs, and the details pane](#make)
+* [Make file properties available to search, index, property dialogs, and the details pane](#make-file-properties)
+* [Make files from your cloud service appear in File Explorer](#cloud-files)
 
-<span id="define" />
+<a id="define" />
 ### Define how your app behaves when users select and open multiple files at the same time
 
 Specify how your app behaves when a user opens multiple files simultaneously.
@@ -520,7 +474,7 @@ packaged desktop apps have the same three options as regular desktop apps.
 
 If the user opens 15 or fewer files, the default choice for the **MultiSelectModel** attribute is *Player*. Otherwise, the default is *Document*. UWP apps are always started as *Player*.
 
-<span id="show" />
+<a id="show" />
 ### Show file contents in a thumbnail image within File Explorer
 
 Enable users to view a thumbnail image of the file's contents when the icon of the file appears in the medium, large, or extra large size.
@@ -541,9 +495,7 @@ Enable users to view a thumbnail image of the file's contents when the icon of t
             <FileType>"[FileExtension]"</FileType>
         </SupportedFileTypes>
         <ThumbnailHandler
-            Clsid  ="[Clsid  ]"
-            Cutoff="[Cutoff]"
-            Treatment="[Treatment]" />
+            Clsid  ="[Clsid  ]" />
     </FileTypeAssociation>
 </Extension>
 ```
@@ -556,8 +508,6 @@ Find the complete schema reference [here](https://docs.microsoft.com/uwp/schemas
 |Name |A unique Id for your app. |
 |FileType |The relevant file extensions. |
 |Clsid   |The class ID of your app. |
-|Cutoff |The size below which a thumbnail image is not used. See [Thumbnail Cache and Sizing](https://msdn.microsoft.com/library/windows/desktop/cc144118.aspx#cache) |
-|Treatment |The [thumbnail adornment](https://msdn.microsoft.com/library/windows/desktop/cc144118.aspx#adornments) that defines the look of the thumbnail icon. |
 
 #### Example
 
@@ -588,7 +538,7 @@ Find the complete schema reference [here](https://docs.microsoft.com/uwp/schemas
 </Package>
 ```
 
-<span id="preview" />
+<a id="preview" />
 ### Show file contents in the Preview pane of File Explorer
 
 Enable users to preview a file's contents in the Preview pane of File Explorer.
@@ -648,7 +598,7 @@ Find the complete schema reference [here](https://docs.microsoft.com/uwp/schemas
 </Package>
 ```
 
-<span id="enable" />
+<a id="enable" />
 ### Enable users to group files by using the Kind column in File Explorer
 
 You can associate one or more predefined values for your file types with the **Kind** field.
@@ -676,8 +626,6 @@ For more information about the **Kind** field and the values that you can use fo
     </FileTypeAssociation>
 </Extension>
 ```
-**Key element and attribute descriptions**
-
 Find the complete schema reference [here](https://docs.microsoft.com/uwp/schemas/appxpackage/uapmanifestschema/element-uap-filetypeassociation).
 
 |Name |Description |
@@ -715,7 +663,7 @@ Find the complete schema reference [here](https://docs.microsoft.com/uwp/schemas
   </Applications>
 </Package>
 ```
-<span id="make" />
+<a id="make-file-properties" />
 ### Make file properties available to search, index, property dialogs, and the details pane
 
 #### XML namespace
@@ -732,17 +680,10 @@ Find the complete schema reference [here](https://docs.microsoft.com/uwp/schemas
         <SupportedFileTypes>
             <FileType>.bar</FileType>
         </SupportedFileTypes>
-        <DesktopPropertyHandler Clsid ="[Clsid ]"/>
+        <DesktopPropertyHandler Clsid ="[Clsid]"/>
     </uap:FileTypeAssociation>
 </uap:Extension>
 ```
-**Key element and attribute descriptions**
-
-| Element or attribute | Description |
-|-------|-------------|
-| Name | A unique Id for your app. This Id is used internally to generate a hashed [programmatic identifier (ProgID)](https://msdn.microsoft.com/library/windows/desktop/cc144152.aspx) associated with your file type association. You can use this Id to manage changes in future versions of your app. |
-| MigrationProgId | The [programmatic identifier (ProgID)](https://msdn.microsoft.com/library/windows/desktop/cc144152.aspx) that describes the application, component, and version of the desktop app from which you want to inherit file associations.|
-
 Find the complete schema reference [here](https://docs.microsoft.com/uwp/schemas/appxpackage/uapmanifestschema/element-uap-filetypeassociation).
 
 |Name |Description |
@@ -777,13 +718,78 @@ Find the complete schema reference [here](https://docs.microsoft.com/uwp/schemas
 </Package>
 ```
 
-<span id="start" />
+<a id="cloud-files" />
+### Make files from your cloud service appear in File Explorer
+
+Register the handlers that you implement in your application. You can also add context menu options that appear when you users right-click your cloud-based files in File Explorer.
+
+#### XML namespace
+
+* http://schemas.microsoft.com/appx/manifest/desktop/windows10
+
+#### Elements and attributes of this extension
+
+```XML
+<Extension Category="windows.cloudfiles" >
+    <CloudFiles IconResource="[Icon]">
+        <CustomStateHandler Clsid ="[Clsid]"/>
+        <ThumbnailProviderHandler Clsid ="[Clsid]"/>
+        <ExtendedPropertyhandler Clsid ="[Clsid]"/>
+        <CloudFilesContextMenus>
+            <Verb Id ="Command3" Clsid= "[GUID]">[Verb Label]</Verb>
+        </CloudFilesContextMenus>
+    </CloudFiles>
+</Extension>
+
+```
+
+|Name |Description |
+|-------|-------------|
+|Category |Always ``windows.cloudfiles``.
+|iconResource |The icon that represents your cloud file provider service. This icon appears in the Navigation pane of File Explorer.  Users choose this icon to show files from your cloud service. |
+|CustomStateHandler Clsid |The class ID of the app that implements the CustomStateHandler. The system uses this Class ID to request custom states and columns for cloud files. |
+|ThumbnailProviderHandler Clsid |The class ID of the app that implements the ThumbnailProviderHandler. The system uses this Class ID to request thumbnail images for cloud files. |
+|ExtendedPropertyHandler Clsid |The class ID of the app that implements the ExtendedPropertyHandler.  The system uses this Class ID to request extended properties for a cloud file. |
+|Verb |The name that appears in the File Explorer context menu for files provided by your cloud service. |
+|Id |The unique ID of the verb. |
+
+#### Example
+
+```XML
+<Package
+    xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+    IgnorableNamespaces="desktop">
+  <Applications>
+    <Application>
+      <Extensions>
+        <Extension Category="windows.cloudfiles" >
+            <CloudFiles IconResource="images\Wide310x150Logo.png">
+                <CustomStateHandler Clsid ="20000000-0000-0000-0000-000000000001"/>
+                <ThumbnailProviderHandler Clsid ="20000000-0000-0000-0000-000000000001"/>
+                <ExtendedPropertyhandler Clsid ="20000000-0000-0000-0000-000000000001"/>
+                <desktop:CloudFilesContextMenus>
+                    <desktop:Verb Id ="keep" Clsid=     
+                       "20000000-0000-0000-0000-000000000001">
+                       Always keep on this device</desktop:Verb>
+                </desktop:CloudFilesContextMenus>
+            </CloudFiles>
+          </Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+</Package>
+```
+
+<a id="start" />
 ## Start your app in different ways
 
 * [Start your app by using a protocol](#protocol)
 * [Start your app by using an alias](#alias)
+* [Start an executable file when users log into Windows](#executable)
+* [Enable users to start your app when they connect a device to their PC](#autoplay)
+* [Restart automatically after receiving an update from the Microsoft Store](#updates)
 
-<span id="protocol" />
+<a id="protocol" />
 ### Start your app by using a protocol
 
 Protocol associations can enable other programs and system components to interoperate with your packaged app. When your packaged app is started by using a protocol, you can specify specific parameters to pass to its activation event arguments so it can behave accordingly. Parameters are supported only for packaged, full-trust apps. UWP apps can't use parameters.  
@@ -832,7 +838,7 @@ Find the complete schema reference [here](https://docs.microsoft.com/uwp/schemas
   </Applications>
 </Package>
 ```
-<span id="alias" />
+<a id="alias" />
 ### Start your app by using an alias
 
 Users and other processes can use an alias to start your app without having to specify the full path to your app. You can specify that alias name.
@@ -882,15 +888,145 @@ Users and other processes can use an alias to start your app without having to s
 ...
 </Package>
 ```
-**Key element and attribute descriptions**
 
 Find the complete schema reference [here](https://docs.microsoft.com/uwp/schemas/appxpackage/uapmanifestschema/element-uap-filetypeassociation).
 
+<a id="executable" />
+### Start an executable file when users log into Windows
+
+Startup tasks allow your app to run an executable automatically whenever a user logs on.
+
+> [!NOTE]
+> The user has to start your app at least one time to register this startup task.
+
+Your app can declare multiple startup tasks. Each task starts independently. All startup tasks will appear in Task Manager under the **Startup** tab with the name that you specify in your app's manifest and your app's icon. Task Manager will automatically analyze the startup impact of your tasks.
+
+Users can manually disable your app's startup task by using Task Manager. If a user disables a task, you can't programmatically re-enable it.
+
+#### XML namespace
+
+http://schemas.microsoft.com/appx/manifest/desktop/windows10
+
+#### Elements and attributes of this extension
+
+```XML
+<Extension
+    Category="windows.startupTask"
+    Executable="[ExecutableName]"
+    EntryPoint="Windows.FullTrustApplication">
+	<StartupTask
+      TaskId="[TaskID]"
+      Enabled="true"
+      DisplayName="[DisplayName]" />
+</Extension>
+```
+
 |Name |Description |
 |-------|-------------|
-|Category |Always ``windows.fileTypeAssociation``.
-|Name |A unique Id for your app. This Id is used internally to generate a hashed [programmatic identifier (ProgID)](https://msdn.microsoft.com/library/windows/desktop/cc144152.aspx) associated with your file type association. You can use this Id to manage changes in future versions of your app.   |
-|FileType |The file extension supported by your app. |
+|Category |Always ``windows.startupTask``.|
+|Executable |The relative path to the executable file to start. |
+|TaskId |A unique identifier for your task. Using this identifier, your app can call the APIs in the [Windows.ApplicationModel.StartupTask](https://docs.microsoft.com/uwp/api/Windows.ApplicationModel.StartupTask) class to programmatically enable or disable a startup task. |
+|Enabled |Indicates whether the task first starts enabled or disabled. Enabled tasks will run the next time the user logs on (unless the user disables it). |
+|DisplayName |The name of the task that appears in Task Manager. You can localize this string by using ```ms-resource```. |
+
+#### Example
+
+```XML
+<Package
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+  IgnorableNamespaces="desktop">
+  <Applications>
+    <Application>
+      <Extensions>
+        <desktop:Extension
+          Category="windows.startupTask"
+          Executable="bin\MyStartupTask.exe"
+          EntryPoint="Windows.FullTrustApplication">
+     	  <desktop:StartupTask
+          TaskId="MyStartupTask"
+          Enabled="true"
+          DisplayName="My App Service" />
+        </desktop:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+ </Package>
+```
+<a id="autoplay" />
+### Enable users to start your app when they connect a device to their PC
+
+AutoPlay can present your app as an option when a user connects a device to their PC.
+
+#### XML namespace
+
+http://schemas.microsoft.com/appx/manifest/desktop/windows10/3
+
+
+#### Elements and attributes of this extension
+
+```XML
+<Extension Category="windows.autoPlayHandler">
+  <AutoPlayHandler>
+    <InvokeAction ActionDisplayName="[action string]" ProviderDisplayName="[name of your app/service]">
+      <Content ContentEvent="[Content event]" Verb="[any string]" DropTargetHandler="[Clsid]" />
+      <Content ContentEvent="[Content event]" Verb="[any string]" Parameters="[Initialization parameter]"/>
+      <Device DeviceEvent="[Device event]" HWEventHandler="[Clsid]" InitCmdLine="[Initialization parameter]"/>
+    </InvokeAction>
+  </AutoPlayHandler>
+```
+
+|Name |Description |
+|-------|-------------|
+|Category |Always ``windows.autoPlayHandler``.
+|ActionDisplayName |A string that represents the action that users can take with a device that they connect to a PC (For example: "Import files", or "Play video"). |
+|ProviderDisplayName | A string that represents your app or service (For example: "Contoso video player"). |
+|ContentEvent |The name of a content event that causes users to be prompted with your ``ActionDisplayName`` and ``ProviderDisplayName``. A content event is raised when a volume device such as a camera memory card, thumb drive, or DVD is inserted into the PC. You can find the full list of those events [here](https://docs.microsoft.com/windows/uwp/launch-resume/auto-launching-with-autoplay#autoplay-event-reference).  |
+|Verb |The Verb setting identifies a value that is passed to your app for the selected option. You can specify multiple launch actions for an AutoPlay event and use the Verb setting to determine which option a user has selected for your app. You can tell which option the user selected by checking the verb property of the startup event arguments passed to your app. You can use any value for the Verb setting except, open, which is reserved. |
+|DropTargetHandler |The class ID of the app that implements the [IDropTarget](https://docs.microsoft.com/dotnet/api/microsoft.visualstudio.ole.interop.idroptarget?view=visualstudiosdk-2017) interface. Files from the removable media are passed to the [Drop](https://docs.microsoft.com/dotnet/api/microsoft.visualstudio.ole.interop.idroptarget.drop?view=visualstudiosdk-2017#Microsoft_VisualStudio_OLE_Interop_IDropTarget_Drop_Microsoft_VisualStudio_OLE_Interop_IDataObject_System_UInt32_Microsoft_VisualStudio_OLE_Interop_POINTL_System_UInt32__) method of your [IDropTarget](https://docs.microsoft.com/dotnet/api/microsoft.visualstudio.ole.interop.idroptarget?view=visualstudiosdk-2017) implementation.  |
+|Parameters |You don't have to implement the [IDropTarget](https://docs.microsoft.com/dotnet/api/microsoft.visualstudio.ole.interop.idroptarget?view=visualstudiosdk-2017) interface for all content events. For any of the content events, you could provide command line parameters instead of implementing the [IDropTarget](https://docs.microsoft.com/dotnet/api/microsoft.visualstudio.ole.interop.idroptarget?view=visualstudiosdk-2017) interface. For those events, AutoPlay will start your app by using those command line parameters. You can parse those parameters in your app's initialization code to determine if it was started by AutoPlay and then provide your custom implementation. |
+|DeviceEvent |The name of a device event that causes users to be prompted with your ``ActionDisplayName`` and ``ProviderDisplayName``. A device event is raised when a device is connected to the PC. Device events begin with the string ``WPD`` and you can find them listed [here](https://docs.microsoft.com/windows/uwp/launch-resume/auto-launching-with-autoplay#autoplay-event-reference). |
+|HWEventHandler |The Class ID of the app that implements the [IHWEventHandler](https://msdn.microsoft.com/library/windows/desktop/bb775492.aspx) interface. |
+|InitCmdLine |The string parameter that you want to pass into the [Initialize](https://msdn.microsoft.com/en-us/library/windows/desktop/bb775495.aspx) method of the [IHWEventHandler](https://msdn.microsoft.com/library/windows/desktop/bb775492.aspx) interface. |
+
+### Example
+
+```XML
+<Package
+  xmlns:desktop3="http://schemas.microsoft.com/appx/manifest/desktop/windows10/3"
+  IgnorableNamespaces="desktop3">
+  <Applications>
+    <Application>
+      <Extensions>
+        <desktop3:Extension Category="windows.autoPlayHandler">
+          <desktop3:AutoPlayHandler>
+            <desktop3:InvokeAction ActionDisplayName="Import my files" ProviderDisplayName="ms-resource:AutoPlayDisplayName">
+              <desktop3:Content ContentEvent="ShowPicturesOnArrival" Verb="show" DropTargetHandler="CD041BAE-0DEA-4472-9B7B-C98043D26EA8"/>
+              <desktop3:Content ContentEvent="PlayVideoFilesOnArrival" Verb="play" Parameters="%1" />
+              <desktop3:Device DeviceEvent="WPD\ImageSource" HWEventHandler="CD041BAE-0DEA-4472-9B7B-C98043D26EA8" InitCmdLine="/autoplay"/>
+            </desktop3:InvokeAction>
+          </desktop3:AutoPlayHandler>
+      </Extensions>
+    </Application>
+  </Applications>
+</Package>
+```
+<a id="updates" />
+### Restart automatically after receiving an update from the Microsoft Store
+
+If your app is open when users install an update to it, the app closes.
+
+If you want that app to restart after the update completes, call the  [RegisterApplicationRestart](https://msdn.microsoft.com/library/windows/desktop/aa373347.aspx) function in every process that you want to restart.
+
+Each active window in your app receives a [WM_QUERYENDSESSION](https://msdn.microsoft.com/library/windows/desktop/aa376890.aspx) message. At this point, your app can call the [RegisterApplicationRestart](https://msdn.microsoft.com/library/windows/desktop/aa373347.aspx) function again to update the command line if necessary.
+
+When each active window in your app receives the [WM_ENDSESSION](https://msdn.microsoft.com/library/windows/desktop/aa376889.aspx) message, your app should save data and shut down.
+
+>[!NOTE]
+Your active windows also receive the [WM_CLOSE](https://msdn.microsoft.com/library/windows/desktop/ms632617.aspx) message in case the app doesn't handle the [WM_ENDSESSION](https://msdn.microsoft.com/library/windows/desktop/aa376889.aspx) message.
+
+At this point, your app has 30 seconds to close it's own processes or the platform terminates them forcefully.
+
+After the update is complete, your app restarts.
 
 ## Work with other applications
 
@@ -900,7 +1036,7 @@ Integrate with other apps, start other processes or share information.
 * [Share fonts with other Windows applications](#fonts)
 * [Start a Win32 process from a Universal Windows Platform (UWP) app](#win32-process)
 
-<span id="printing" />
+<a id="printing" />
 ### Make your app appear as the print target in applications that support printing
 
 When users want to print data from another app such as Notepad, you can make your app appear as a print target in the app's list of available print targets.
@@ -950,7 +1086,7 @@ Find the complete schema reference [here](https://docs.microsoft.com/uwp/schemas
 ```
 Find a sample that uses this extension [Here](https://github.com/Microsoft/DesktopBridgeToUWP-Samples/tree/master/Samples/PrintToPDF)
 
-<span id="fonts" />
+<a id="fonts" />
 ### Share fonts with other Windows applications
 
 Share your custom fonts with other Windows applications.
@@ -997,7 +1133,7 @@ Find the complete schema reference [here](https://review.docs.microsoft.com/uwp/
   </Applications>
 </Package>
 ```
-<span id="win32-process" />
+<a id="win32-process" />
 ### Start a Win32 process from a Universal Windows Platform (UWP) app
 
 Start a Win32 process that runs in full-trust.
@@ -1009,7 +1145,7 @@ http://schemas.microsoft.com/appx/manifest/desktop/windows10
 #### Elements and attributes of this extension
 
 ```XML
-<xtension Category="windows.fullTrustProcess" Executable="[executable file]">
+<Extension Category="windows.fullTrustProcess" Executable="[executable file]">
   <FullTrustProcess>
     <ParameterGroup GroupId="[GroupID]" Parameters="[Parameters]"/>
   </FullTrustProcess>
@@ -1054,10 +1190,10 @@ Just create a desktop bridge package for your Win32 app. Then, add this extensio
 
 ## Next steps
 
-**Find answers to specific questions**
+**Find answers to your questions**
 
-Our team monitors these [StackOverflow tags](http://stackoverflow.com/questions/tagged/project-centennial+or+desktop-bridge).
+Have questions? Ask us on Stack Overflow. Our team monitors these [tags](http://stackoverflow.com/questions/tagged/project-centennial+or+desktop-bridge). You can also ask us [here](https://social.msdn.microsoft.com/Forums/en-US/home?filter=alltypes&sort=relevancedesc&searchTerm=%5BDesktop%20Converter%5D).
 
-**Give feedback about this article**
+**Give feedback or make feature suggestions**
 
-Use the comments section below.
+See [UserVoice](https://wpdev.uservoice.com/forums/110705-universal-windows-platform/category/161895-desktop-bridge-centennial).

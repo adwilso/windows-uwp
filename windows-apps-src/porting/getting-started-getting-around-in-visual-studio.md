@@ -1,19 +1,19 @@
 ---
-author: mcleblanc
+author: stevewhims
 description: Getting around in Visual Studio
 title: Getting around in Visual Studio
 ms.assetid: 7FBB50A2-6D22-4082-B333-5153DADDDE9A
-ms.author: markl
+ms.author: stwhi
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Getting started: Getting around in Visual Studio
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 ## Getting around in Microsoft Visual Studio
 

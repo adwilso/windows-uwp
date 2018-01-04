@@ -1,5 +1,5 @@
 ---
-author: mukin
+author: muhsinking
 ms.assetid: 90BB59FC-90FE-453E-A8DE-9315E29EB98C
 title: Get battery information
 description: Learn how to get detailed battery information using APIs in the Windows.Devices.Power namespace.
@@ -9,10 +9,10 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 # Get battery information
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 ** Important APIs **
 

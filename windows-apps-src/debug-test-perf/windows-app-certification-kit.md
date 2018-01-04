@@ -1,21 +1,21 @@
 ---
-author: mcleblanc
+author: PatrickFarley
 ms.assetid: 78D833B9-E528-4BCA-9C48-A757F17E6C22
 title: Windows App Certification Kit
-description: To give your app the best chance of being published on the Windows Store, or becoming Windows Certified, validate and test it locally before you submit it for certification. This topic shows you how to install and run the Windows App Certification Kit.
-ms.author: markl
+description: To give your app the best chance of being published on the Microsoft Store, or becoming Windows Certified, validate and test it locally before you submit it for certification. This topic shows you how to install and run the Windows App Certification Kit.
+ms.author: pafarley
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 # Windows App Certification Kit
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 
-To give your app the best chance of being [published on the Windows Store](https://msdn.microsoft.com/library/windows/apps/Hh694062), or becoming [Windows Certified](https://msdn.microsoft.com/windows/desktop/jj134964.aspx), validate and test it locally before you submit it for certification. This topic shows you how to install and run the [Windows App Certification Kit](http://go.microsoft.com/fwlink/p/?LinkID=309666).
+To get your app [Windows Certified](https://msdn.microsoft.com/windows/desktop/jj134964.aspx) or prepare it for [publication to the Microsoft Store](https://msdn.microsoft.com/library/windows/apps/Hh694062), you should validate and test it locally first. This topic shows you how to install and run the [Windows App Certification Kit](http://go.microsoft.com/fwlink/p/?LinkID=309666) to ensure your app is safe and efficient.
 
 ## Prerequisites
 
@@ -23,7 +23,7 @@ Prerequisites for testing a Universal Windows app:
 
 -   You must install and run Windows 10.
 -   You must install [Windows App Certification Kit version 10]( http://go.microsoft.com/fwlink/p/?LinkID=309666), which is included in the Windows Software Development Kit (SDK) for Windows 10.
--   You must have a valid developer license for your computer. See [Get a developer license](https://msdn.microsoft.com/library/windows/apps/Hh974578) to learn how.
+-   You must [enable your device for development](https://docs.microsoft.com/windows/uwp/get-started/enable-your-device-for-development).
 -   You must deploy the Windows app that you want to test to your computer.
 
 **A note about in-place upgrades**
@@ -40,7 +40,7 @@ The installation of a more recent [Windows App Certification Kit]( http://go.mic
 
 3.  After you have input or selected the app that you want to test, click **Next**.
 
-4.  From the next screen, you will see the test workflow that aligns to the app type you are testing. If a test is grayed out in the list, the test is not applicable to your environment. For example, if you are testing a Windows 10 app on Windows 7, only static tests will apply to the workflow. Note that the Windows Store may apply all tests from this workflow. Select the tests you want to run and click **Next**.
+4.  From the next screen, you will see the test workflow that aligns to the app type you are testing. If a test is grayed out in the list, the test is not applicable to your environment. For example, if you are testing a Windows 10 app on Windows 7, only static tests will apply to the workflow. Note that the Microsoft Store may apply all tests from this workflow. Select the tests you want to run and click **Next**.
 
     The Windows App Certification Kit begins validating the app.
 
@@ -84,14 +84,14 @@ The installation of a more recent [Windows App Certification Kit]( http://go.mic
 
 The performance test thresholds of the Windows App Certification Kit are based on the performance of a low-power computer.
 
-The characteristics of the computer on which the test is performed can influence the test results. To determine if your app’s performance meets the [Windows Store Policies](https://msdn.microsoft.com/library/windows/apps/Dn764944), we recommend that you test your app on a low-power computer, such as an Intel Atom processor-based computer with a screen resolution of 1366x768 (or higher) and a rotational hard drive (as opposed to a solid-state hard drive).
+The characteristics of the computer on which the test is performed can influence the test results. To determine if your app’s performance meets the [Microsoft Store Policies](https://msdn.microsoft.com/library/windows/apps/Dn764944), we recommend that you test your app on a low-power computer, such as an Intel Atom processor-based computer with a screen resolution of 1366x768 (or higher) and a rotational hard drive (as opposed to a solid-state hard drive).
 
-As low-power computers evolve, their performance characteristics might change over time. Refer to the most current [Windows Store Policies](https://msdn.microsoft.com/library/windows/apps/Dn764944) and test your app with the most current version of the Windows App Certification Kit to make sure that your app complies with the latest performance requirements.
+As low-power computers evolve, their performance characteristics might change over time. Refer to the most current [Microsoft Store Policies](https://msdn.microsoft.com/library/windows/apps/Dn764944) and test your app with the most current version of the Windows App Certification Kit to make sure that your app complies with the latest performance requirements.
 
 ## Related topics
 
 * [Windows App Certification Kit tests](windows-app-certification-kit-tests.md)
-* [Windows Store Policies](https://msdn.microsoft.com/library/windows/apps/Dn764944)
+* [Microsoft Store Policies](https://msdn.microsoft.com/library/windows/apps/Dn764944)
  
 
  

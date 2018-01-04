@@ -9,11 +9,11 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Custom dependency properties
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 Here we explain how to define and implement your own dependency properties for a Windows Runtime app using C++, C#, or Visual Basic. We list reasons why app developers and component authors might want to create custom dependency properties. We describe the implementation steps for a custom dependency property, as well as some best practices that can improve performance, usability, or versatility of the dependency property.
 
@@ -27,7 +27,7 @@ We assume that you have read the [Dependency properties overview](dependency-pro
 
 To support styling, data binding, animations, and default values for a property, then it should be implemented as a dependency property. Dependency property values are not stored as fields on the class, they are stored by the xaml framework, and are referenced using a key, which is retrieved when the property is registered with the Windows Runtime property system by calling the [**DependencyProperty.Register**](https://msdn.microsoft.com/library/windows/apps/hh701829) method.   Dependency properties can be used only by types deriving from [**DependencyObject**](https://msdn.microsoft.com/library/windows/apps/br242356). But **DependencyObject** is quite high in the class hierarchy, so the majority of classes that are intended for UI and presentation support can support dependency properties. For more information about dependency properties and some of the terminology and conventions used for describing them in this documentation, see [Dependency properties overview](dependency-properties-overview.md).
 
-Examples of dependency properties in the Windows Runtime are: [**Control.Background**](https://msdn.microsoft.com/library/windows/apps/br209395), [**FrameworkElement.Width**](https://msdn.microsoft.com/library/windows/apps/br208751), and [**TextBox.Text**](https://msdn.microsoft.com/library/windows/apps/br209702), among many others.
+Examples of dependency properties in the Windows Runtime are: [**Control.Background**](https://msdn.microsoft.com/library/windows/apps/br209395), [**FrameworkElement.Width**](/uwp/api/Windows.UI.Xaml.FrameworkElement#Windows_UI_Xaml_FrameworkElement_Width), and [**TextBox.Text**](https://msdn.microsoft.com/library/windows/apps/br209702), among many others.
 
 Convention is that each dependency property exposed by a class has a corresponding **public static readonly** property of type [**DependencyProperty**](https://msdn.microsoft.com/library/windows/apps/br242362) that is exposed on that same class the provides the identifier for the dependency property. The identifier's name follows this convention: the name of the dependency property, with the string "Property" added to the end of the name. For example, the corresponding **DependencyProperty** identifier for the **Control.Background** property is [**Control.BackgroundProperty**](https://msdn.microsoft.com/library/windows/apps/br209396). The identifier stores the information about the dependency property as it was registered, and can then be used for other operations involving the dependency property, such as calling [**SetValue**](https://msdn.microsoft.com/library/windows/apps/br242361).
 

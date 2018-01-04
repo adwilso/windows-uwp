@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp, games, audio, directx
+ms.localizationpriority: medium
 ---
 
 # Audio for games
 
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 Learn how to develop and incorporate music and sounds into your DirectX game, and how to process the audio signals to create dynamic and positional sounds.
 
@@ -256,7 +256,7 @@ Media Foundation (MF) is a media platform for streaming audio and video playback
 
 ### Windows Runtime XAML media types
 
-If you are using [DirectX-XAML interop](https://msdn.microsoft.com/library/windows/apps/hh825871), you can incorporate the Windows Runtime XAML media APIs into your Windows Store apps using DirectX with C++ for simpler game scenarios.
+If you are using [DirectX-XAML interop](https://msdn.microsoft.com/library/windows/apps/hh825871), you can incorporate the Windows Runtime XAML media APIs into your UWP apps using DirectX with C++ for simpler game scenarios.
 
 <table>
 <colgroup>
@@ -301,9 +301,6 @@ If you are using [DirectX-XAML interop](https://msdn.microsoft.com/library/windo
 -   [XAudio2 Introduction](https://msdn.microsoft.com/library/windows/desktop/ee415813)
 -   [XAudio2 Programming Guide](https://msdn.microsoft.com/library/windows/desktop/ee415737)
 -   [Microsoft Media Foundation overview](https://msdn.microsoft.com/library/windows/desktop/ms694197)
-
-> **Note**  
-This article is for Windows 10 developers writing Universal Windows Platform (UWP) apps. If you’re developing for Windows 8.x or Windows Phone 8.x, see the [archived documentation](http://go.microsoft.com/fwlink/p/?linkid=619132).
 
  
 

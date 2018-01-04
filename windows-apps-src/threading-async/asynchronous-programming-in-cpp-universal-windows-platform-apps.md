@@ -1,19 +1,19 @@
 ---
-author: TylerMSFT
+author: normesta
 ms.assetid: 34C00F9F-2196-46A3-A32F-0067AB48291B
 description: This article describes the recommended way to consume asynchronous methods in Visual C++ component extensions (C++/CX) by using the task class defined in the concurrency namespace in ppltasks.h.
 title: Asynchronous programming in C++
-ms.author: twhitney
+ms.author: normesta
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp, threads, asynchronous, C++
+ms.localizationpriority: medium
 ---
 
 # Asynchronous programming in C++
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 This article describes the recommended way to consume asynchronous methods in Visual C++ component extensions (C++/CX) by using the `task` class that's defined in the `concurrency` namespace in ppltasks.h.
 
@@ -31,8 +31,7 @@ Although you can consume the asynchronous UWP APIs directly in C++, the preferre
 
 -   ensure that individual tasks run in the appropriate thread context or apartment
 
-This article provides basic guidance about how to use the **task** class with the UWP asynchronous APIs. For more complete documentation about **task** and its related methods including [**create\_task**][createTask], see [Task Parallelism (Concurrency Runtime)][taskParallelism]. For more information about how to create asynchronous public methods for consumption by JavaScript or other UWP-compatible languages, see [Creating Asynchronous Operations in C++ for Windows Runtime apps][createAsyncCpp].
-
+This article provides basic guidance about how to use the **task** class with the UWP asynchronous APIs. For more complete documentation about **task** and its related methods including [**create\_task**][createTask], see [Task Parallelism (Concurrency Runtime)][taskParallelism]. 
 ## Consuming an async operation by using a task
 
 The following example shows how to use the task class to consume an **async** method that returns an [**IAsyncOperation**][IAsyncOperation] interface and whose operation produces a value. Here are the basic steps:
@@ -93,7 +92,7 @@ using namespace concurrency;
 void App::DeleteWithTasks(String^ fileName)
 {    
     using namespace Windows::Storage;
-    StorageFolder^ localFolder = ApplicationData::Current::LocalFolder;
+    StorageFolder^ localFolder = ApplicationData::Current->LocalFolder;
     auto getFileTask = create_task(localFolder->GetFileAsync(fileName));
 
     getFileTask.then([](StorageFile^ storageFileSample) ->IAsyncAction^ {       
@@ -296,25 +295,24 @@ Methods that support [**IAsyncOperationWithProgress**](https://msdn.microsoft.co
 
 ## Related topics
 
-* [Creating Asynchronous Operations in C++ for Windows Store apps][createAsyncCpp]
+* [Creating Asynchronous Operations in C++ for UWP apps][createAsyncCpp]
 * [Visual C++ Language Reference](http://msdn.microsoft.com/library/windows/apps/hh699871.aspx)
 * [Asynchronous Programming][AsyncProgramming]
 * [Task Parallelism (Concurrency Runtime)][taskParallelism]
 * [task class][task-class]
  
 <!-- LINKS -->
-[AsyncProgramming]: <https://msdn.microsoft.com/library/windows/apps/xaml/hh464924.aspx> "AsyncProgramming"
-[concurrencyNamespace]: <https://msdn.microsoft.com/library/windows/apps/xaml/dd492819.aspx> "Concurrency Namespace"
-[createTask]: <https://msdn.microsoft.com/library/windows/apps/xaml/hh913025.aspx> "CreateTask"
-[createAsyncCpp]: <https://msdn.microsoft.com/library/windows/apps/xaml/hh750082.aspx> "CreateAsync"
+[AsyncProgramming]: <https://docs.microsoft.com/windows/uwp/threading-async/asynchronous-programming-universal-windows-platform-apps> "AsyncProgramming"
+[concurrencyNamespace]: <https://docs.microsoft.com/cpp/parallel/concrt/reference/concurrency-namespace> "Concurrency Namespace"
+[createTask]: <https://docs.microsoft.com/cpp/parallel/concrt/reference/concurrency-namespace-functions#create_task> "CreateTask"
 [deleteAsync]: <https://msdn.microsoft.com/library/windows/apps/BR227199> "DeleteAsync"
 [IAsyncAction]: <https://msdn.microsoft.com/library/windows/apps/windows.foundation.iasyncaction.aspx> "IAsyncAction"
 [IAsyncOperation]: <https://msdn.microsoft.com/library/windows/apps/BR206598> "IAsyncOperation"
 [IAsyncInfo]: <https://msdn.microsoft.com/library/windows/apps/BR206587> "IAsyncInfo"
 [IAsyncInfoCancel]: <https://msdn.microsoft.com/library/windows/apps/windows.foundation.iasyncinfo.cancel> "IAsyncInfoCancel"
-[taskCanceled]: <https://msdn.microsoft.com/library/windows/apps/xaml/hh750106.aspx> "TaskCancelled"
-[task-class]: <https://msdn.microsoft.com/library/windows/apps/xaml/hh750113.aspx> "Task Class"
+[taskCanceled]: <https://docs.microsoft.com/cpp/parallel/concrt/reference/task-canceled-class> "TaskCancelled"
+[task-class]: <https://docs.microsoft.com/cpp/parallel/concrt/reference/task-class#get> "Task Class"
 [taskGet]: <https://msdn.microsoft.com/library/windows/apps/xaml/hh750017.aspx> "TaskGet"
-[taskParallelism]: <https://msdn.microsoft.com/library/windows/apps/xaml/dd492427.aspx> "Task Parallelism"
-[taskThen]: <https://msdn.microsoft.com/library/windows/apps/xaml/hh750044.aspx> "TaskThen"
+[taskParallelism]: <https://docs.microsoft.com/cpp/parallel/concrt/task-parallelism-concurrency-runtime> "Task Parallelism"
+[taskThen]: <https://docs.microsoft.com/cpp/parallel/concrt/reference/task-class#then> "TaskThen"
 [useArbitrary]: <https://msdn.microsoft.com/library/windows/apps/xaml/hh750036.aspx> "UseArbitrary"

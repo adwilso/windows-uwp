@@ -9,10 +9,10 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp, asynchronous, threads, threading
+ms.localizationpriority: medium
 ---
 # Threading and async programming
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 Threading and async programming enables your app to accomplish work asynchronously in parallel threads.
 

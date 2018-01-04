@@ -1,22 +1,23 @@
 ---
 author: mcleanbyron
 ms.assetid: C7428551-4B31-4259-93CD-EE229007C4B8
-description: Use these methods in the Windows Store submission API to manage submissions for apps that are registered to your Windows Dev Center account.
+description: Use these methods in the Microsoft Store submission API to manage submissions for apps that are registered to your Windows Dev Center account.
 title: Manage app submissions
 ms.author: mcleans
-ms.date: 02/08/2017
+ms.date: 12/04/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
-keywords: windows 10, uwp, Windows Store submission API, app submissions
+keywords: windows 10, uwp, Microsoft Store submission API, app submissions
+ms.localizationpriority: medium
 ---
 
 # Manage app submissions
 
-The Windows Store submission API provides methods you can use to manage submissions for your apps, including gradual package rollouts. For an introduction to the Windows Store submission API, including prerequisites for using the API, see [Create and manage submissions using Windows Store services](create-and-manage-submissions-using-windows-store-services.md).
+The Microsoft Store submission API provides methods you can use to manage submissions for your apps, including gradual package rollouts. For an introduction to the Microsoft Store submission API, including prerequisites for using the API, see [Create and manage submissions using Microsoft Store services](create-and-manage-submissions-using-windows-store-services.md).
 
 > [!IMPORTANT]
-> If you use the Windows Store submission API to create a submission for an app, be sure to make further changes to the submission only by using the API, rather than the Dev Center dashboard. If you use the dashboard to change a submission that you originally created by using the API, you will no longer be able to change or commit that submission by using the API. In some cases, the submission could be left in an error state where it cannot proceed in the submission process. If this occurs, you must delete the submission and create a new submission.
+> If you use the Microsoft Store submission API to create a submission for an app, be sure to make further changes to the submission only by using the API, rather than the Dev Center dashboard. If you use the dashboard to change a submission that you originally created by using the API, you will no longer be able to change or commit that submission by using the API. In some cases, the submission could be left in an error state where it cannot proceed in the submission process. If this occurs, you must delete the submission and create a new submission.
 
 <span id="methods-for-app-submissions" />
 ## Methods for managing app submissions
@@ -75,33 +76,35 @@ Use the following methods to get, create, update, commit, or delete an app submi
 
 To create a submission for an app, follow this process.
 
-1. If you have not done so already, complete all the [prerequisites](create-and-manage-submissions-using-windows-store-services.md#prerequisites) for the Windows Store submission API.
+1. If you have not done so already, complete all the [prerequisites](create-and-manage-submissions-using-windows-store-services.md#prerequisites) for the Microsoft Store submission API.
     > [!NOTE]
     > Make sure the app already has at least one completed submission with the [age ratings](https://msdn.microsoft.com/windows/uwp/publish/age-ratings) information completed.
 
-2. [Obtain an Azure AD access token](create-and-manage-submissions-using-windows-store-services.md#obtain-an-azure-ad-access-token). You must pass this access token to the methods in the Windows Store submission API. After you obtain an access token, you have 60 minutes to use it before it expires. After the token expires, you can obtain a new one.
+2. [Obtain an Azure AD access token](create-and-manage-submissions-using-windows-store-services.md#obtain-an-azure-ad-access-token). You must pass this access token to the methods in the Microsoft Store submission API. After you obtain an access token, you have 60 minutes to use it before it expires. After the token expires, you can obtain a new one.
 
-3. [Create an app submission](create-an-app-submission.md) by executing the following method in the Windows Store submission API. This method creates a new in-progress submission, which is a copy of your last published submission.
+3. [Create an app submission](create-an-app-submission.md) by executing the following method in the Microsoft Store submission API. This method creates a new in-progress submission, which is a copy of your last published submission.
 
     ```
     POST https://manage.devcenter.microsoft.com/v1.0/my/applications/{applicationId}/submissions
     ```
 
-    The response body contains three items: the ID of the new submission, the data for the new submission (including all the listings and pricing information), and the shared access signature (SAS) URI for uploading any app packages and listing images for the submission to Azure Blob storage.
+    The response body contains an [app submission](#app-submission-object) resource that includes the ID of the new submission, the shared access signature (SAS) URI for uploading any related files for the submission to Azure Blob storage (such as app packages, listing images, and trailer files), and all of the data for the new submission (such as the listings and pricing information).
         > [!NOTE]
         > A SAS URI provides access to a secure resource in Azure storage without requiring account keys. For background information about SAS URIs and their use with Azure Blob storage, see [Shared Access Signatures, Part 1: Understanding the SAS model](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-1) and [Shared Access Signatures, Part 2: Create and use a SAS with Blob storage](https://azure.microsoft.com/documentation/articles/storage-dotnet-shared-access-signature-part-2/).
 
-4. If you are adding new packages or images for the submission, [prepare the app packages](https://msdn.microsoft.com/windows/uwp/publish/app-package-requirements) and [prepare the app screenshots and images](https://msdn.microsoft.com/windows/uwp/publish/app-screenshots-and-images). Add all of these files to a ZIP archive.
+4. If you are adding new packages, listing images, or trailer files for the submission, [prepare the app packages](https://msdn.microsoft.com/windows/uwp/publish/app-package-requirements) and [prepare the app screenshots, images, and trailers](https://msdn.microsoft.com/windows/uwp/publish/app-screenshots-and-images). Add all of these files to a ZIP archive.
+    > [!NOTE]
+    > The ability to submit a trailer for your app submission using this API is currently not available to all developer accounts. If your account does not have access to this resource, the *trailers* array in the [app submission resource](#app-submission-object) is null when you get or create a submission.
 
-5. Revise the submission data with any required changes for the new submission, and execute the following method to [update the app submission](update-an-app-submission.md).
+5. Revise the [app submission](#app-submission-object) data with any required changes for the new submission, and execute the following method to [update the app submission](update-an-app-submission.md).
 
     ```
     PUT https://manage.devcenter.microsoft.com/v1.0/my/applications/{applicationId}/submissions/{submissionId}
     ```
       > [!NOTE]
-      > If you are adding new packages or images for the submission, make sure you update the submission data to refer to the name and relative path of these files in the ZIP archive.
+      > If you are adding new files for the submission, make sure you update the submission data to refer to the name and relative path of these files in the ZIP archive.
 
-4. If you are adding new packages or images for the submission, upload the ZIP archive to [Azure Blob storage](https://docs.microsoft.com/azure/storage/storage-introduction#blob-storage) using the SAS URI that was provided in the response body of the POST method you called earlier. There are different Azure libraries you can use to do this on a variety of platforms, including:
+4. If you are adding new packages, listing images, or trailer files for the submission, upload the ZIP archive to [Azure Blob storage](https://docs.microsoft.com/azure/storage/storage-introduction#blob-storage) using the SAS URI that was provided in the response body of the POST method you called earlier. There are different Azure libraries you can use to do this on a variety of platforms, including:
 
     * [Azure Storage Client Library for .NET](https://docs.microsoft.com/azure/storage/storage-dotnet-how-to-use-blobs)
     * [Azure Storage SDK for Java](https://docs.microsoft.com/azure/storage/storage-java-how-to-use-blob-storage)
@@ -132,24 +135,36 @@ To create a submission for an app, follow this process.
 
 7. After the commit has successfully completed, the submission is sent to the Store for ingestion. You can continue to monitor the submission progress by using the previous method, or by visiting the Dev Center dashboard.
 
+<span id="advanced-listings"/>
+### Game options and trailers
+
+There are two sets of advanced listing options that may not be available in some submissions: [game options](#gaming-options-object) and [trailers](#trailer-object).
+
+These listing options were added after the Microsoft Store submission API was first released to developers. If you created a submission for an app via the submission API before these listing options were introduced and this submission is still in progress, you will not be able to access these listing options until you successfully commit the submission or you delete it.
+
+To determine whether you can access these listing options for a given app when using the submission API, use the [get an app](get-an-app.md) method and check whether the *hasAdvancedListingPermission* field of the [Application resource](get-app-data.md#application_object) is true. If you cannot access these listing options for an app, the *gamingOptions* and *trailers* values in your [app submission resource](#app-submission-object) are null when you [create an app submission](create-an-app-submission.md).
+
 <span/>
 ### Code examples for managing app submissions
 
 The following articles provide detailed code examples that demonstrate how to create an app submission in several different programming languages:
 
-* [C# code examples](csharp-code-examples-for-the-windows-store-submission-api.md)
-* [Java code examples](java-code-examples-for-the-windows-store-submission-api.md)
-* [Python code examples](python-code-examples-for-the-windows-store-submission-api.md)
+* [C# sample: submissions for apps, add-ons, and flights](csharp-code-examples-for-the-windows-store-submission-api.md)
+* [C# sample: app submission with game options and trailers](csharp-code-examples-for-submissions-game-options-and-trailers.md)
+* [Java sample: submissions for apps, add-ons, and flights](java-code-examples-for-the-windows-store-submission-api.md)
+* [Java sample: app submission with game options and trailers](java-code-examples-for-submissions-game-options-and-trailers.md)
+* [Python sample: submissions for apps, add-ons, and flights](python-code-examples-for-the-windows-store-submission-api.md)
+* [Python sample: app submission with game options and trailers](python-code-examples-for-submissions-game-options-and-trailers.md)
 
 > [!NOTE]
-> In addition to the code examples listed above, we also provide an open-source PowerShell module which implements a command-line interface on top of the Windows Store submission API. This module is called [StoreBroker](https://aka.ms/storebroker). You can use this module to manage your app, flight, and add-on submissions from the command line instead of calling the Windows Store submission API directly, or you can simply browse the source to see more examples for how to call this API. The StoreBroker module is actively used within Microsoft as the primary way that many first-party applications are submitted to the Store. For more information, see our [StoreBroker page on GitHub](https://aka.ms/storebroker).
+> In addition to the code examples listed above, we also provide an open-source PowerShell module which implements a command-line interface on top of the Microsoft Store submission API. This module is called [StoreBroker](https://aka.ms/storebroker). You can use this module to manage your app, flight, and add-on submissions from the command line instead of calling the Microsoft Store submission API directly, or you can simply browse the source to see more examples for how to call this API. The StoreBroker module is actively used within Microsoft as the primary way that many first-party applications are submitted to the Store. For more information, see our [StoreBroker page on GitHub](https://aka.ms/storebroker).
 
 <span id="manage-gradual-package-rollout">
 ## Methods for managing a gradual package rollout
 
 You can gradually roll out the updated packages in an app submission to a percentage of your app’s customers on Windows 10. This allows you to monitor feedback and analytic data for the specific packages to make sure you’re confident about the update before rolling it out more broadly. You can change the rollout percentage (or halt the update) for a published submission without having to create a new submission. For more details, including instructions for how to enable and manage a gradual package rollout in the Dev Center dashboard, see [this article](../publish/gradual-package-rollout.md).
 
-To programmatically enable a gradual package rollout for an app submission, follow this process using methods in the Windows Store submission API:
+To programmatically enable a gradual package rollout for an app submission, follow this process using methods in the Microsoft Store submission API:
 
   1. [Create an app submission](create-an-app-submission.md) or [get an existing app submission](get-an-app-submission.md).
   2. In the response data, locate the [packageRollout](#package-rollout-object) resource, set the *isPackageRollout* field to **true**, and set the *packageRolloutPercentage* field to the percentage of your app's customers who should get the updated packages.
@@ -196,7 +211,7 @@ After a gradual package rollout is enabled for an app submission, you can use th
 
 <span/>
 ## Data resources
-The Windows Store submission API methods for managing app submissions use the following JSON data resources.
+The Microsoft Store submission API methods for managing app submissions use the following JSON data resources.
 
 <span id="app-submission-object" />
 ### App submission resource
@@ -258,6 +273,7 @@ This resource describes an app submission.
   "automaticBackupEnabled": false,
   "canInstallOnRemovableMedia": true,
   "isGameDvrEnabled": false,
+  "gamingOptions": [],
   "hasExternalInAppProducts": false,
   "meetAccessibilityGuidelines": true,
   "notesForCertification": "",
@@ -309,7 +325,8 @@ This resource describes an app submission.
     "Xbox": false,
     "Team": true
   },
-  "friendlyName": "Submission 2"
+  "friendlyName": "Submission 2",
+  "trailers": []
 }
 ```
 
@@ -328,18 +345,55 @@ This resource has the following values.
 | automaticBackupEnabled           |  boolean  |   Indicates whether Windows can include your app's data in automatic backups to OneDrive. For more information, see [App declarations](https://msdn.microsoft.com/windows/uwp/publish/app-declarations).   |   
 | canInstallOnRemovableMedia           |  boolean  |   Indicates whether customers can install your app to removable storage. For more information, see [App declarations](https://msdn.microsoft.com/windows/uwp/publish/app-declarations).     |   
 | isGameDvrEnabled           |  boolean |   Indicates whether game DVR is enabled for the app.    |   
-| hasExternalInAppProducts           |     boolean          |   Indicates whether your app allows users to make purchase outside the Windows Store commerce system. For more information, see [App declarations](https://msdn.microsoft.com/windows/uwp/publish/app-declarations).     |   
+| gamingOptions           |  array |   An array that contains one [gaming options resource](#gaming-options-object) that defines game-related settings for the app.<br/><br/>**Note:**&nbsp;&nbsp;The ability to configure game options using this API is currently not available to all developer accounts. If your account does not have access to this resource, the *gamingOptions* value is null. To determine whether you can configure the *gamingOptions* for an app submission, use the [get an app](get-an-app.md) method and check whether the *hasAdvancedListingPermission* field of the [Application resource](get-app-data.md#application_object) is true.      |   
+| hasExternalInAppProducts           |     boolean          |   Indicates whether your app allows users to make purchase outside the Microsoft Store commerce system. For more information, see [App declarations](https://msdn.microsoft.com/windows/uwp/publish/app-declarations).     |   
 | meetAccessibilityGuidelines           |    boolean           |  Indicates whether your app has been tested to meet accessibility guidelines. For more information, see [App declarations](https://msdn.microsoft.com/windows/uwp/publish/app-declarations).      |   
 | notesForCertification           |  string  |   Contains [notes for certification](https://msdn.microsoft.com/windows/uwp/publish/notes-for-certification) for your app.    |    
 | status           |   string  |  The status of the submission. This can be one of the following values: <ul><li>None</li><li>Canceled</li><li>PendingCommit</li><li>CommitStarted</li><li>CommitFailed</li><li>PendingPublication</li><li>Publishing</li><li>Published</li><li>PublishFailed</li><li>PreProcessing</li><li>PreProcessingFailed</li><li>Certification</li><li>CertificationFailed</li><li>Release</li><li>ReleaseFailed</li></ul>      |    
 | statusDetails           |   object  | A [status details resource](#status-details-object) that contains additional details about the status of the submission, including information about any errors.       |    
-| fileUploadUrl           |   string  | The shared access signature (SAS) URI for uploading any packages for the submission. If you are adding new packages or images for the submission, upload the ZIP archive that contains the packages and images to this URI. For more information, see [Create an app submission](#create-an-app-submission).       |    
+| fileUploadUrl           |   string  | The shared access signature (SAS) URI for uploading any packages for the submission. If you are adding new packages, listing images, or trailer files for the submission, upload the ZIP archive that contains the packages and images to this URI. For more information, see [Create an app submission](#create-an-app-submission).       |    
 | applicationPackages           |   array  | An array of [application package resources](#application-package-object) that provide details about each package in the submission. |    
 | packageDeliveryOptions    | object  | A [package delivery options resource](#package-delivery-options-object) that contains gradual package rollout and mandatory update settings for the submission.  |
 | enterpriseLicensing           |  string  |  One of the [enterprise licensing values](#enterprise-licensing) values that indicate the enterprise licensing behavior for the app.  |    
 | allowMicrosftDecideAppAvailabilityToFutureDeviceFamilies           |  boolean   |  Indicates whether Microsoft is allowed to [make the app available to future Windows 10 device families](https://msdn.microsoft.com/windows/uwp/publish/set-app-pricing-and-availability#windows-10-device-families).    |    
 | allowTargetFutureDeviceFamilies           | object   |  A dictionary of key and value pairs, where each key is a [Windows 10 device family](https://msdn.microsoft.com/windows/uwp/publish/set-app-pricing-and-availability#windows-10-device-families) and each value is a boolean that indicates whether your app is allowed to target the specified device family.     |    
 | friendlyName           |   string  |  The friendly name of the submission, as shown in the Dev Center dashboard. This value is generated for you when you create the submission.       |  
+| trailers           |  array |   An array that contains up to 15 [trailer resources](#trailer-object) that represent video trailers for the app listing.<br/><br/>**Note:**&nbsp;&nbsp;The ability to submit a trailer for your app submission using this API is currently not available to all developer accounts. If your account does not have access to this resource, the *trailers* value is null. To determine whether you can configure the *trailers* for an app submission, use the [get an app](get-an-app.md) method and check whether the *hasAdvancedListingPermission* field of the [Application resource](get-app-data.md#application_object) is true.   |  
+
+
+<span id="pricing-object" />
+### Pricing resource
+
+This resource contains pricing info for the app. This resource has the following values.
+
+| Value           | Type    | Description        |
+|-----------------|---------|------|
+|  trialPeriod               |    string     |  A string that specifies the trial period for the app. This can be one of the following values: <ul><li>NoFreeTrial</li><li>OneDay</li><li>TrialNeverExpires</li><li>SevenDays</li><li>FifteenDays</li><li>ThirtyDays</li></ul>    |
+|  marketSpecificPricings               |    object     |  A dictionary of key and value pairs, where each key is a two-letter ISO 3166-1 alpha-2 country code and each value is a [price tier](#price-tiers). These items represent the [custom prices for your app in specific markets](https://msdn.microsoft.com/windows/uwp/publish/define-pricing-and-market-selection#markets-and-custom-prices). Any items in this dictionary override the base price specified by the *priceId* value for the specified market.      |     
+|  sales               |   array      |  **Deprecated**. An array of [sale resources](#sale-object) that contain sales information for the app.   |     
+|  priceId               |   string      |  A [price tier](#price-tiers) that specifies the [base price](https://msdn.microsoft.com/windows/uwp/publish/define-pricing-and-market-selection#base-price) for the app.   |     
+|  isAdvancedPricingModel               |   boolean      |  If **true**, your developer account has access to the expanded set of price tiers from .99 USD to 1999.99 USD. If **false**, your developer account has access to the original set of price tiers from .99 USD to 999.99 USD. For more information about the different tiers, see [price tiers](#price-tiers).<br/><br/>**Note**&nbsp;&nbsp;This field is read-only.   |
+
+
+<span id="sale-object" />
+### Sale resource
+
+This resources contains sale info for an app.
+
+> [!IMPORTANT]
+> The **Sale** resource is no longer supported, and currently you cannot get or modify the sale data for an app submission using the Microsoft Store submission API. In the future, we will update the Microsoft Store submission API to introduce a new way to programmatically access sales information for app submissions.
+>    * After calling the [GET method to get an app submission](get-an-app-submission.md), the *sales* value will be empty. You can continue to use the Dev Center dashboard to get the sale data for your app submission.
+>    * When calling the [PUT method to update an app submission](update-an-app-submission.md), the information in the *sales* value is ignored. You can continue to use the Dev Center dashboard to change the sale data for your app submission.
+
+This resource has the following values.
+
+| Value           | Type    | Description    |
+|-----------------|---------|------|
+|  name               |    string     |   The name of the sale.    |     
+|  basePriceId               |   string      |  The [price tier](#price-tiers) to use for the base price of the sale.    |     
+|  startDate               |   string      |   The start date for the sale in ISO 8601 format.  |     
+|  endDate               |   string      |  The end date for the sale in ISO 8601 format.      |     
+|  marketSpecificPricings               |   object      |   A dictionary of key and value pairs, where each key is a two-letter ISO 3166-1 alpha-2 country code and each value is a [price tier](#price-tiers). These items represent the [custom prices for your app in specific markets](https://msdn.microsoft.com/windows/uwp/publish/define-pricing-and-market-selection#markets-and-custom-prices). Any items in this dictionary override the base price specified by the *basePriceId* value for the specified market.    |
 
 
 <span id="listing-object" />
@@ -369,56 +423,79 @@ This resource contains base listing info for an app. This resource has the follo
 |  features               |    array     |  An array of up to 20 strings that list the [features](https://msdn.microsoft.com/windows/uwp/publish/create-app-descriptions#app-features) for your app.     |
 |  releaseNotes               |  string       |  The [release notes](https://msdn.microsoft.com/windows/uwp/publish/create-app-descriptions#release-notes) for your app.    |
 |  images               |   array      |  An array of [image and icon](#image-object) resources for the app listing.  |
-|  recommendedHardware               |   array      |  An array of up to 11 strings that list the [recommended hardware configurations](https://msdn.microsoft.com/windows/uwp/publish/create-app-descriptions#recommended-hardware) for your app.     |
+|  recommendedHardware               |   array      |  An array of up to 11 strings that list the [recommended hardware configurations](../publish/create-app-store-listings.md#additional-information) for your app.     |
+|  minimumHardware               |     string    |  An array of up to 11 strings that list the [minimum hardware configurations](../publish/create-app-store-listings.md#additional-information) for your app.    |  
 |  title               |     string    |   The title for the app listing.   |  
+|  shortDescription               |     string    |  Only used for games. This description appears in the **Information** section of the Game Hub on Xbox One, and helps customers understand more about your game.   |  
+|  shortTitle               |     string    |  A shorter version of your product’s name. If provided, this shorter name may appear in various places on Xbox One (during installation, in Achievements, etc.) in place of the full title of your product.    |  
+|  sortTitle               |     string    |   If your product could be alphabetized in different ways, you can enter another version here. This may help customers find the product more quickly when searching.    |  
+|  voiceTitle               |     string    |   An alternate name for your product that, if provided, may be used in the audio experience on Xbox One when using Kinect or a headset.    |  
+|  devStudio               |     string    |   Specify this value if you want to include a **Developed by** field in the listing. (The **Published by** field will list the publisher display name associated with your account, whether or not you provide a *devStudio* value.)    |  
 
 <span id="image-object" />
 ### Image resource
 
-This resource contains image and icon data for an app listing. For more information about images and icons for listing, see [App screenshots and images](https://msdn.microsoft.com/windows/uwp/publish/app-screenshots-and-images). This resource has the following values.
+This resource contains image and icon data for an app listing. For more information about images and icons for listing, see [App screenshots and images](../publish/app-screenshots-and-images.md). This resource has the following values.
 
 | Value           | Type    | Description           |
 |-----------------|---------|------|
 |  fileName               |    string     |   The name of the image file in the ZIP archive that you uploaded for the submission.    |     
 |  fileStatus               |   string      |  The status of the image file. This can be one of the following values: <ul><li>None</li><li>PendingUpload</li><li>Uploaded</li><li>PendingDelete</li></ul>   |
-|  id  |  string  | The ID for the image, as specified by Dev Center.  |
+|  id  |  string  | The ID for the image. This value is supplied by Dev Center.  |
 |  description  |  string  | The description for the image.  |
-|  imageType  |  string  | One of the following strings that indicates the type of the image: <ul><li>Unknown</li><li>Screenshot</li><li>PromotionalArtwork414X180</li><li>PromotionalArtwork846X468</li><li>PromotionalArtwork558X756</li><li>PromotionalArtwork414X468</li><li>PromotionalArtwork558X558</li><li>PromotionalArtwork2400X1200</li><li>Icon</li><li>WideIcon358X173</li><li>BackgroundImage1000X800</li><li>SquareIcon358X358</li><li>MobileScreenshot</li><li>XboxScreenshot</li><li>SurfaceHubScreenshot</li><li>HoloLensScreenshot</li></ul>      |
+|  imageType  |  string  | Indicates the type of the image. The following strings are currently supported. <p/>[Screenshot images](../publish/app-screenshots-and-images.md#screenshots): <ul><li>Screenshot (use this value for the desktop screenshot)</li><li>MobileScreenshot</li><li>XboxScreenshot</li><li>SurfaceHubScreenshot</li><li>HoloLensScreenshot</li></ul><p/>[Store logos](../publish/app-screenshots-and-images.md#store-logos):<ul><li>StoreLogo9x16 </li><li>StoreLogoSquare</li><li>Icon (use this value for the 1:1 300 x 300 pixels logo)</li></ul><p/>[Promotional images](../publish/app-screenshots-and-images.md#promotional-images): <ul><li>PromotionalArt16x9</li><li>PromotionalArtwork2400X1200</li></ul><p/>[Xbox images](../publish/app-screenshots-and-images.md#xbox-images): <ul><li>XboxBrandedKeyArt</li><li>XboxTitledHeroArt</li><li>XboxFeaturedPromotionalArt</li></ul><p/>[Optional promotional images](../publish/app-screenshots-and-images.md#optional-promotional-images): <ul><li>SquareIcon358X358</li><li>BackgroundImage1000X800</li><li>PromotionalArtwork414X180</li></ul><p/> <!-- The following strings are also recognized for this field, but they correspond to image types that are no longer for listings in the Store.<ul><li>PromotionalArtwork846X468</li><li>PromotionalArtwork558X756</li><li>PromotionalArtwork414X468</li><li>PromotionalArtwork558X558</li><li>WideIcon358X173</li><li>Unknown</li></ul> -->   |
 
 
-<span id="pricing-object" />
-### Pricing resource
+<span id="gaming-options-object" />
+### Gaming options resource
 
-This resource contains pricing info for the app. This resource has the following values.
+This resource contains game-related settings for the app. The values in this resource correspond to the [game settings](../publish/enter-app-properties.md#game-settings) for submissions in the Dev Center dashboard.
 
-| Value           | Type    | Description        |
-|-----------------|---------|------|
-|  trialPeriod               |    string     |  A string that specifies the trial period for the app. This can be one of the following values: <ul><li>NoFreeTrial</li><li>OneDay</li><li>TrialNeverExpires</li><li>SevenDays</li><li>FifteenDays</li><li>ThirtyDays</li></ul>    |
-|  marketSpecificPricings               |    object     |  A dictionary of key and value pairs, where each key is a two-letter ISO 3166-1 alpha-2 country code and each value is a [price tier](#price-tiers). These items represent the [custom prices for your app in specific markets](https://msdn.microsoft.com/windows/uwp/publish/define-pricing-and-market-selection#markets-and-custom-prices). Any items in this dictionary override the base price specified by the *priceId* value for the specified market.      |     
-|  sales               |   array      |  **Deprecated**. An array of [sale resources](#sale-object) that contain sales information for the app.   |     
-|  priceId               |   string      |  A [price tier](#price-tiers) that specifies the [base price](https://msdn.microsoft.com/windows/uwp/publish/define-pricing-and-market-selection#base-price) for the app.   |     
-|  isAdvancedPricingModel               |   boolean      |  If **true**, your developer account has access to the expanded set of price tiers from .99 USD to 1999.99 USD. If **false**, your developer account has access to the original set of price tiers from .99 USD to 999.99 USD. For more information about the different tiers, see [price tiers](#price-tiers).<br/><br/>**Note**&nbsp;&nbsp;This field is read-only.   |
+> [!NOTE]
+> This resource [may not be available for all submissions](#advanced-listings).
 
+If you created a submission for an app via the submission API before these listing options were introduced and this submission is still in progress, you will not be able to access these listing options for any submissions for the app until you successfully commit the submission or you delete it. To determine whether you can access these listing options for a given app when using the submission API, use the [get an app](get-an-app.md) method and check whether the *hasAdvancedListingPermission* field of the [Application resource](get-app-data.md#application_object) is true.
 
-<span id="sale-object" />
-### Sale resource
-
-This resources contains sale info for an app.
-
-> [!IMPORTANT]
-> The **Sale** resource is no longer supported, and currently you cannot get or modify the sale data for an app submission using the Windows Store submission API. In the future, we will update the Windows Store submission API to introduce a new way to programmatically access sales information for app submissions.
->    * After calling the [GET method to get an app submission](get-an-app-submission.md), the *sales* value will be empty. You can continue to use the Dev Center dashboard to get the sale data for your app submission.
->    * When calling the [PUT method to update an app submission](update-an-app-submission.md), the information in the *sales* value is ignored. You can continue to use the Dev Center dashboard to change the sale data for your app submission.
+```json
+{
+  "gamingOptions": [
+    {
+      "genres": [
+        "Games_ActionAndAdventure",
+        "Games_Casino"
+      ],
+      "isLocalMultiplayer": true,
+      "isLocalCooperative": true,
+      "isOnlineMultiplayer": false,
+      "isOnlineCooperative": false,
+      "localMultiplayerMinPlayers": 2,
+      "localMultiplayerMaxPlayers": 12,
+      "localCooperativeMinPlayers": 2,
+      "localCooperativeMaxPlayers": 12,
+      "isBroadcastingPrivilegeGranted": true,
+      "isCrossPlayEnabled": false,
+      "kinectDataForExternal": "Enabled"
+    }
+  ],
+}
+```
 
 This resource has the following values.
 
-| Value           | Type    | Description    |
+| Value           | Type    | Description        |
 |-----------------|---------|------|
-|  name               |    string     |   The name of the sale.    |     
-|  basePriceId               |   string      |  The [price tier](#price-tiers) to use for the base price of the sale.    |     
-|  startDate               |   string      |   The start date for the sale in ISO 8601 format.  |     
-|  endDate               |   string      |  The end date for the sale in ISO 8601 format.      |     
-|  marketSpecificPricings               |   object      |   A dictionary of key and value pairs, where each key is a two-letter ISO 3166-1 alpha-2 country code and each value is a [price tier](#price-tiers). These items represent the [custom prices for your app in specific markets](https://msdn.microsoft.com/windows/uwp/publish/define-pricing-and-market-selection#markets-and-custom-prices). Any items in this dictionary override the base price specified by the *basePriceId* value for the specified market.    |
+|  genres               |    array     |  An array of one or more of the following strings that describe the genres of the game: <ul><li>Games_ActionAndAdventure</li><li>Games_CardAndBoard</li><li>Games_Casino</li><li>Games_Educational</li><li>Games_FamilyAndKids</li><li>Games_Fighting</li><li>Games_Music</li><li>Games_Platformer</li><li>Games_PuzzleAndTrivia</li><li>Games_RacingAndFlying</li><li>Games_RolePlaying</li><li>Games_Shooter</li><li>Games_Simulation</li><li>Games_Sports</li><li>Games_Strategy</li><li>Games_Word</li></ul>    |
+|  isLocalMultiplayer               |    boolean     |  Indicates whether the game supports local multiplayer.      |     
+|  isLocalCooperative               |   boolean      |  Indicates whether the game supports local co-op.    |     
+|  isOnlineMultiplayer               |   boolean      |  Indicates whether the game supports online multiplayer.    |     
+|  isOnlineCooperative               |   boolean      |  Indicates whether the game supports online co-op.    |     
+|  localMultiplayerMinPlayers               |   int      |   Specifies the minimum number of players the game supports for local multiplayer.   |     
+|  localMultiplayerMaxPlayers               |   int      |   Specifies the maximum number of players the game supports for local multiplayer.  |     
+|  localCooperativeMinPlayers               |   int      |   Specifies the minimum number of players the game supports for local co-op.  |     
+|  localCooperativeMaxPlayers               |   int      |   Specifies the maximum number of players the game supports for local co-op.  |     
+|  isBroadcastingPrivilegeGranted               |   boolean      |  Indicates whether the game supports broadcasting.   |     
+|  isCrossPlayEnabled               |   boolean      |   Indicates whether the game supports multiplayer sessions between players on Windows 10 PCs and Xbox.  |     
+|  kinectDataForExternal               |   string      |  One of the following string values that indicates whether the game can collect Kinect data and send it to external services: <ul><li>NotSet</li><li>Unknown</li><li>Enabled</li><li>Disabled</li></ul>   |
 
 
 <span id="status-details-object" />
@@ -485,10 +562,10 @@ This resource has the following values.
 |-----------------|---------|------|
 | fileName   |   string      |  The name of the package.    |  
 | fileStatus    | string    |  The status of the package. This can be one of the following values: <ul><li>None</li><li>PendingUpload</li><li>Uploaded</li><li>PendingDelete</li></ul>    |  
-| id    |  string   |  An ID that uniquely identifies the package. This value is used by Dev Center.   |     
+| id    |  string   |  An ID that uniquely identifies the package. This value is provided by Dev Center.   |     
 | version    |  string   |  The version of the app package. For more information, see [Package version numbering](https://msdn.microsoft.com/windows/uwp/publish/package-version-numbering).   |   
 | architecture    |  string   |  The architecture of the package (for example, ARM).   |     
-| languages    | array    |  An array of language codes for the languages the app supports. For more information, see For more information, see [Supported languages](https://msdn.microsoft.com/windows/uwp/publish/supported-languages).    |     
+| languages    | array    |  An array of language codes for the languages the app supports. For more information, see [Supported languages](https://msdn.microsoft.com/windows/uwp/publish/supported-languages).    |     
 | capabilities    |  array   |  An array of capabilities required by the package. For more information about capabilities, see [App capability declarations](https://msdn.microsoft.com/windows/uwp/packaging/app-capability-declarations).   |     
 | minimumDirectXVersion    |  string   |  The minimum DirectX version that is supported by the app package. This can be set only for apps that target Windows 8.x; it is ignored for apps that target other versions. This can be one of the following values: <ul><li>None</li><li>DirectX93</li><li>DirectX100</li></ul>   |     
 | minimumSystemRam    | string    |  The minimum RAM that is required by the app package. This can be set only for apps that target Windows 8.x; it is ignored for apps that target other versions. This can be one of the following values: <ul><li>None</li><li>Memory2GB</li></ul>   |       
@@ -550,6 +627,72 @@ This resource contains gradual [package rollout settings](#manage-gradual-packag
 > [!NOTE]
 > The *packageRolloutStatus* and *fallbackSubmissionId* values are assigned by Dev Center, and are not intended to be set by the developer. If you include these values in a request body, these values will be ignored.
 
+<span id="trailer-object" />
+### Trailer resource
+
+This resource represents a video trailer for the app listing. The values in this resource correspond to the [trailers](../publish/app-screenshots-and-images.md#trailers) options for submissions in the Dev Center dashboard.
+
+You can add up to 15 trailer resources to the *trailers* array in an [app submission resource](#app-submission-object). To upload trailer video files and thumbnail images for a submission, add these files to the same ZIP archive that contains the packages and listing images for the submission, and then upload this ZIP archive to the shared access signature (SAS) URI for the submission. For more information uploading the ZIP archive to the SAS URI, see [Create an app submission](#create-an-app-submission).
+
+> [!NOTE]
+> This resource [may not be available for all submissions](#advanced-listings).
+
+```json
+{
+  "trailers": [
+    {
+      "id": "1158943556954955699",
+      "videoFileName": "Trailers\\ContosoGameTrailer.mp4",
+      "videoFileId": "1159761554639123258",
+      "trailerAssets": {
+        "en-us": {
+          "title": "Contoso Game",
+          "imageList": [
+            {
+              "fileName": "Images\\ContosoGame-Thumbnail.png",
+              "id": "1155546904097346923",
+              "description": "This is a still image from the video."
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+```
+
+This resource has the following values.
+
+| Value           | Type    | Description        |
+|-----------------|---------|------|
+|  id               |    string     |   The ID for the trailer. This value is provided by Dev Center.   |
+|  videoFileName               |    string     |    The name of the trailer video file in the ZIP archive that contains files for the submission.    |     
+|  videoFileId               |   string      |  The ID for the trailer video file. This value is provided by Dev Center.   |     
+|  trailerAssets               |   object      |  A dictionary of key and value pairs, where each key is a language code and each value is a [trailer assets resource](#trailer-assets-object) that contains additional locale-specific assets for the trailer. For more information about the supported language codes, see [Supported languages](https://msdn.microsoft.com/windows/uwp/publish/supported-languages).    |     
+
+
+<span id="trailer-assets-object" />
+### Trailer assets resource
+
+This resource contains additional locale-specific assets for a trailer that is defined in a [trailer resource](#trailer-object). This resource has the following values.
+
+| Value           | Type    | Description        |
+|-----------------|---------|------|
+| title   |   string      |  The localized title of the trailer. The title is displayed when the user plays the trailer in full screen mode.     |  
+| imageList    | array    |   An array that contains one [image](#image-for-trailer-object) resource that provides the thumbnail image for the trailer. You can only include one [image](#image-for-trailer-object) resource in this array.  |   
+
+
+<span id="image-for-trailer-object" />
+### Image resource (for a trailer)
+
+This resource describes the thumbnail image for a trailer. This resource has the following values.
+
+| Value           | Type    | Description           |
+|-----------------|---------|------|
+|  fileName               |    string     |   The name of the thumbnail image file in the ZIP archive that you uploaded for the submission.    |     
+|  id  |  string  | The ID for the thumbnail image. This value is provided by Dev Center.  |
+|  description  |  string  | The description for the thumbnail image. This value is metadata only, and is not displayed to users.   |
+
 <span/>
 
 ## Enums
@@ -607,6 +750,6 @@ The following values represent the status code of a submission.
 
 ## Related topics
 
-* [Create and manage submissions using Windows Store services](create-and-manage-submissions-using-windows-store-services.md)
-* [Get app data using the Windows Store submission API](get-app-data.md)
+* [Create and manage submissions using Microsoft Store services](create-and-manage-submissions-using-windows-store-services.md)
+* [Get app data using the Microsoft Store submission API](get-app-data.md)
 * [App submissions in the Dev Center dashboard](https://msdn.microsoft.com/windows/uwp/publish/app-submissions)

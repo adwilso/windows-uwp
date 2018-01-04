@@ -1,19 +1,20 @@
 ---
 author: mcleanbyron
 ms.assetid: 8D4AE532-22EF-4743-9555-A828B24B8F16
-description: Use these methods in the Windows Store submission API to retrieve data for apps that are registered to your Windows Dev Center account.
+description: Use these methods in the Microsoft Store submission API to retrieve data for apps that are registered to your Windows Dev Center account.
 title: Get app data
 ms.author: mcleans
-ms.date: 02/08/2017
+ms.date: 08/03/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
-keywords: windows 10, uwp, Windows Store submission API, app data
+keywords: windows 10, uwp, Microsoft Store submission API, app data
+ms.localizationpriority: medium
 ---
 
 # Get app data
 
-Use the following methods in the Windows Store submission API to get data for existing apps in your Dev Center account. For an introduction to the Windows Store submission API, including prerequisites for using the API, see [Create and manage submissions using Windows Store services](create-and-manage-submissions-using-windows-store-services.md).
+Use the following methods in the Microsoft Store submission API to get data for existing apps in your Dev Center account. For an introduction to the Microsoft Store submission API, including prerequisites for using the API, see [Create and manage submissions using Microsoft Store services](create-and-manage-submissions-using-windows-store-services.md).
 
 Before you can use these methods, the app must already exist in your Dev Center account. To create or manage submissions for apps, see the methods in [Manage app submissions](manage-app-submissions.md).
 
@@ -58,11 +59,11 @@ Before you can use these methods, the app must already exist in your Dev Center 
 
 ## Prerequisites
 
-If you have not done so already, complete all the [prerequisites](create-and-manage-submissions-using-windows-store-services.md#prerequisites) for the Windows Store submission API before trying to use any of these methods.
+If you have not done so already, complete all the [prerequisites](create-and-manage-submissions-using-windows-store-services.md#prerequisites) for the Microsoft Store submission API before trying to use any of these methods.
 
 ## Data resources
 
-The Windows Store submission API methods for getting app data use the following JSON data resources.
+The Microsoft Store submission API methods for getting app data use the following JSON data resources.
 
 <span id="application_object" />
 ### Application resource
@@ -84,7 +85,8 @@ This resource represents an app that is registered to your account.
   "pendingApplicationSubmission": {
     "id": "1152921504621243487",
     "resourceLocation": "applications/9NBLGGH4R315/submissions/1152921504621243487"
-  }
+  },
+  "hasAdvancedListingPermission": false
 }
 ```
 
@@ -99,7 +101,8 @@ This resource has the following values.
 | publisherName       | string  | The Windows publisher ID that is associated with the app. This corresponds to the **Package/Identity/Publisher** value that appears on the [App identity](https://msdn.microsoft.com/windows/uwp/publish/view-app-identity-details) page for the app in the Windows Dev Center dashboard.       |
 | firstPublishedDate      | string  | The date the app was first published, in ISO 8601 format.   |
 | lastPublishedApplicationSubmission       | object | A [submission resource](#submission_object) that provides information about the last published submission for the app.    |
-| pendingApplicationSubmission        | object  |  A [submission resource](#submission_object) that provides information about the current pending submission for the app.   |   |
+| pendingApplicationSubmission        | object  |  A [submission resource](#submission_object) that provides information about the current pending submission for the app.   |   
+| hasAdvancedListingPermission        | object  |  Indicates whether you can configure the [gamingOptions](manage-app-submissions.md#gaming-options-object) or [trailers](manage-app-submissions.md#trailer-object) for submissions for the app. For more information, see [this section](manage-app-submissions.md#advanced-listings). |  |
 
 
 <span id="add-on-object" />
@@ -181,8 +184,8 @@ This resource has the following values.
 
 ## Related topics
 
-* [Create and manage submissions using Windows Store services](create-and-manage-submissions-using-windows-store-services.md)
-* [Manage app submissions using the Windows Store submission API](manage-app-submissions.md)
+* [Create and manage submissions using Microsoft Store services](create-and-manage-submissions-using-windows-store-services.md)
+* [Manage app submissions using the Microsoft Store submission API](manage-app-submissions.md)
 * [Get all apps](get-all-apps.md)
 * [Get an app](get-an-app.md)
 * [Get add-ons for an app](get-add-ons-for-an-app.md)

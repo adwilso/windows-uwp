@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp, games, basicloader
+ms.localizationpriority: medium
 ---
 
 # Complete code for BasicLoader
 
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 Complete code for a class and methods that convert and load common graphics resources, such as meshes, textures, and various shader objects.
 

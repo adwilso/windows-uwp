@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp, games, rendering, shadow map, depth buffer, direct3d
+ms.localizationpriority: medium
 ---
 
 # Render the shadow map to the depth buffer
 
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 
 Render from the point of view of the light to create a two-dimensional depth map representing the shadow volume. The depth map masks the space that will be rendered in shadow. Part 2 of [Walkthrough: Implement shadow volumes using depth buffers in Direct3D 11](implementing-depth-buffers-for-shadow-mapping.md).

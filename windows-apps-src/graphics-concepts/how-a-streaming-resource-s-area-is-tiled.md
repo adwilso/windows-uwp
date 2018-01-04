@@ -6,12 +6,13 @@ keywords:
 - How a streaming resource's area is tiled
 - resource area, tiled
 - size tables, resources, tiled
-author: PeterTurcan
-ms.author: pettur
+author: michaelfromredmond
+ms.author: mithom
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
+ms.localizationpriority: medium
 ---
 
 # How a streaming resource's area is tiled

@@ -2,329 +2,89 @@
 author: normesta
 Description: This guide explains how to configure your Visual Studio Solution to edit, debug, and package desktop app for the Desktop Bridge.
 Search.Product: eADQiWindows 10XVcnh
-title: Package a .NET app using Visual Studio (Desktop Bridge)
+title: Package an app by using Visual Studio (Desktop Bridge)
 ms.author: normesta
-ms.date: 05/25/2017
+ms.date: 08/30/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
 ms.assetid: 807a99a7-d285-46e7-af6a-7214da908907
+ms.localizationpriority: medium
 ---
 
-# Package a .NET app using Visual Studio (Desktop Bridge)
+# Package an app by using Visual Studio (Desktop Bridge)
 
-The Windows 10 Anniversary Update allows developers to use the Desktop Bridge to package existing Win32 apps using the new package model (.appx), which enables Store publishing or easy sideloading. This guide explains how to configure your Visual Studio Solution so you can edit, debug, and package your app.
+You can use Visual Studio to generate a package for your desktop app. Then, you can publish that package to the Windows store or sideload it onto one or more PCs.
 
-To get started, fill out the form at [Bring your existing apps and games to the Windows Store with the Desktop Bridge](https://developer.microsoft.com/windows/projects/campaigns/desktop-bridge). Microsoft will contact you to start the onboarding process. Once your account has been approved to submit Desktop Bridge apps, follow the instructions in this document to prepare your appxupload package for upload.
+The latest version of Visual Studio provides a new version of the packaging project that eliminates all of the manual steps that used to be necessary to package your app. Just add a packaging project, reference your desktop project, and then press F5 to debug your app. No manual tweaks necessary. This new streamlined experience is a vast improvement over the experience that was available in the previous version of Visual Studio.
 
-> Have feedback our encounter issues as you journey along the Desktop Bridge? The best place to make feature suggestions is on the [Windows Developer UserVoice](https://wpdev.uservoice.com/forums/110705-universal-windows-platform/category/161895-desktop-bridge-centennial). For questions and bug reports, please head over to the [Developing Universal Windows apps forums](https://social.msdn.microsoft.com/Forums/home?forum=wpdevelop).
+>[!IMPORTANT]
+>The Desktop Bridge was introduced in Windows 10, version 1607, and it can only be used in projects that target Windows 10 Anniversary Edition (10.0; Build 14393) or a later release in Visual Studio.
 
-## Default Universal Windows Platform packages
+## First, consider how you'll distribute your app
 
-Visual Studio allows you to generate the debug and release packages that can be distributed using the Windows Store or app sideloading. To facilitate the package creation, Visual Studio helps you creating an. appxupload file ready to be submitted to the store. For more info, see [Packaging UWP Apps](..\packaging\packaging-uwp-apps.md).
+If you plan to publish your app to the [Microsoft Store](https://www.microsoft.com/store/apps), start by filling out [this form](https://developer.microsoft.com/windows/projects/campaigns/desktop-bridge). Microsoft will contact you to start the onboarding process. As part of this process, you'll reserve a name in the store, and obtain information that you'll need to package your app.
 
-## Desktop Bridge Packages
+<a id="new-packaging-project"/>
+## Create a package
 
-The [Desktop Bridge](desktop-to-uwp-root.md) allows different configurations to integrate Win32 binaries within the Windows app package (appx). We can think of the progression across the Desktop Bridge as a journey with four key steps.
+1. In Visual Studio, open the solution that contains your desktop application project.
 
-- **Step 1 - Package**: Package existing Win32 binaries with zero or minimal code changes.
-- **Step 2 - Enhance**: Include some basic UWP features (such as a live tile) in the existing app by referencing Windows.winmd from the existing Win32 code.
-- **Step 3 - Extend**: Include advanced UWP capabilities (like background tasks) with the existing app. If your UWP and Win32 components are built using managed languages (like C# or VB.Net) the resulting package will have mixed binaries that need to be processed carefully to guarantee the correct .NET Native processing.
-- **Step 4 - Migrate**: You have migrated your UI to modern XAML and C#/VB.NET, but still have legacy Win32 code. The entry point is now a UWP .NET executable, but you still have binaries in the package that use some Win32 APIs.
+2. Add a **Windows Application Packaging Project** project to your solution.
 
-The next table summarizes some of the differences for your app at each of the four steps.
+   You won't have to add any code to it. It's just there to generate a package for you. We'll refer to this project as the "packaging project".
 
-| Step | Binaries | EntryPoint | .NET Native | F5 Debug |
-|---|---|---|---|---|
-| 1 (Package) | Win32 | Win32 | N/A | VS Extension |
-| 2 (Enhance) | Refs WinMD | Win32 | N/A | VS Extension |
-| 3 (Extend) | Win32 + CoreCLR (*) | Win32 | By User (**) | VS Extension |
-| 4 (Migrate)	| CoreCLR (*) + Win32 | UWP | By User (**) | VS |
-| 5 (UWP) | CoreCLR | UWP |By Store | VS |
+   ![Packaging project](images/desktop-to-uwp/packaging-project.png)
 
-(*) [CoreCLR](https://github.com/dotnet/coreclr) refers to the .NET Core runtime that UWP components written in a managed language (C#/VB.NET) rely on. These components will also require .NET Native processing.
+3. Set the **Target Version** of this project to any version that you want, but make sure to set the **Minimum Version** to **Windows 10 Anniversary Update**.
 
-(**) In Steps 3 and 4, the user should process the CoreCLR assemblies to produce the .NET native binaries and corresponding symbols before publishing to the store.
+   ![Packaging version selector dialog box](images/desktop-to-uwp/packaging-version.png)
 
-## Configure your Visual Studio Solution
+4. In the packaging project, right-click the **Applications** folder, and then choose **Add Reference**.
 
-Visual Studio includes the tools you need to configure your application package, such as the manifest editor and the Package Creation Wizard. To use these tools, you need a UWP project that will act as the Windows app package container for your app. While you can use any UWP project (including C#, VB.NET, C++, or JavaScript), there are some known issues with C#, VB.NET, and C++ projects (see the [Known Issues](#known-issues-anchor) section later in this document), so we will use JavaScript for this example.
+   ![Add Project Reference](images/desktop-to-uwp/add-project-reference.png)
 
-If you want to debug your app in the context of the Windows app package application model, you will need to add another project that will enable the F5 Windows app package debugging. For more information see the section [Run, debug, and test a packaged desktop app (Desktop Bridge)](#debugging-anchor).
+5. Choose your desktop application project, and then choose the **OK** button.
 
-Let's start with Step 1 in the journey.
+   ![Desktop project](images/desktop-to-uwp/reference-project.png)
 
-### Step 1: Package
+   You can include multiple desktop applications in your package, but only one of them can start when users choose your app tile. In the **Applications** node, right-click the application that you want users to start when they choose the app's tile, and then choose **Set as Entry Point**.
 
-This step shows how to create a Desktop Bridge app from an existing Win32 project. In this example, we'll use a basic WinForms Project that performs read and write operations on the registry.
+   ![Set entry point](images/desktop-to-uwp/entry-point-set.png)
 
-![visual studio solution explorer](images/desktop-to-uwp/net-1.png)
+6. Build the packaging project to ensure that no errors appear.
 
-#### Add the UWP project
+7. Use the [Create App Packages](..\packaging\packaging-uwp-apps.md) wizard to generate an appxupload file.
 
-To create the Desktop Bridge package, add a JavaScript UWP project to the same solution.
+   You can upload that file directly to the store.
 
-> Note: even though we are using a JavaScript UWP template, we are not going to write any JavaScript code. We are only using the project as a tool.
+**Video**
 
-![visual studio new project](images/desktop-to-uwp/net-2.png)
-
-#### Add the Win32 binaries to the win32 folder
-
-All the Win32 binaries will be stored in your UWP project in a folder called win32 (though this exact name is not required; you can use any name you like).
-
-If you are using Visual Studio, you can automate the project to copy the files after each successful build, improving your development workflow. Edit your project file (.csproj in this example) to include an PostBuildEvent target that will copy all the Win32 output files to the win32 folder in the UWP project as follows:
-
-```xml
-  <Target Name="PostBuildEvent">
-    <PropertyGroup>
-      <TargetUWP>..\MyDesktopApp.Package\win32\</TargetUWP>
-    </PropertyGroup>
-     <ItemGroup>
-       <Win32Binaries Include="$(TargetDir)\*" />
-     </ItemGroup>
-    <Copy SourceFiles="@(Win32Binaries)" DestinationFolder="$(TargetUWP)" />
-  </Target>
-```
-
-If you are using another tool to produce your Win32 binaries, just copy all the files required at runtime to the win32 folder.
-
-#### Edit the App Manifest to enable the Desktop Bridge Extensions
-
-This template includes a package.appxmanifest that you can use to add the Desktop Bridge extensions. To edit this file, right click and select "View Code," and add or modify these items:
-
-- `<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities" IgnorableNamespaces="uap rescap">`
-
-- `<TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14393.0" MaxVersionTested="10.0.14393.0" />`
-
-- `<rescap:Capability Name="runFullTrust" />`
-
-- `<Application Id="MyDesktopAppStep1" Executable="win32\MyDesktopApp.exe" EntryPoint="Windows.FullTrustApplication">`
-
-Here's a complete example of the manifest file:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
-        xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-
-        xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
-        xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-        IgnorableNamespaces="uap rescap mp">
-  <Identity Name="MyDesktopAppStep1"
-            ProcessorArchitecture="x64"
-            Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
-            Version="1.0.0.5" />
-  <mp:PhoneIdentity PhoneProductId="6f6600a4-6da1-4d91-b493-35808d01f8de" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
-  <Properties>
-    <DisplayName>MyDesktopAppStep1</DisplayName>
-    <PublisherDisplayName>CN=Test</PublisherDisplayName>
-    <Logo>Assets\SampleAppx.150x150.png</Logo>
-  </Properties>
-  <Resources>
-    <Resource Language="en-us" />
-  </Resources>
-  <Dependencies>
-    <TargetDeviceFamily Name="Windows.Desktop"
-                        MinVersion="10.0.14393.0"
-                        MaxVersionTested="10.0.14393.0" />
-  </Dependencies>
-  <Capabilities>
-    <rescap:Capability Name="runFullTrust" />
-  </Capabilities>
-  <Applications>
-    <Application Id="MyDesktopAppStep1"
-                 Executable="win32\MyDesktopApp.exe"
-                 EntryPoint="Windows.FullTrustApplication">
-      <uap:VisualElements DisplayName="MyDesktopAppStep1"
-                          Description="MyDesktopAppStep1"
-                          BackgroundColor="#777777"
-                          Square150x150Logo="Assets\SampleAppx.150x150.png"
-                          Square44x44Logo="Assets\SampleAppx.44x44.png">
-      </uap:VisualElements>
-    </Application>
-  </Applications>
-</Package>
-```
-
-#### Configure the Win32 binaries
-
-To include the binaries needed by your app in the output package, select each file in Visual Studio. Set its properties as "Content", and its build behavior to "Copy if newer".
-
-![visual studio solution explorer](images/desktop-to-uwp/net-3.png)
-
-If you want to avoid committing binary files to your source code repository, you can use the .gitignore file to exclude all the files in the win32 folder.
-
-#### Optional: Use wildcards to specify the files in your win32 folder
-
-If your Win32 app needs several files, you can edit your project file to specify a wildcard to specify which files should be marked as “Content” based on a wildcard expression. You need to open the . jsproj file with a text editor and include the files you need as shown below:
-
-```xml
-<Content Include="win32\*.dll">
-  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-</Content>
-<Content Include="win32\*.exe">
-  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-</Content>
-<Content Include="win32\*.config">
-  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-</Content>
-<Content Include="win32\*.pdb">
-  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-</Content>
-```
-
-### Step 2: Enhance
-
-If you want to call the UWP APIs available from your Win32 code, you need add a reference to `\Program Files (x86)\Windows Kits\10\UnionMetadata\Windows.winmd`. The full list of UWP APIs available to your app is listed in the article [UWP APIs available to a packaged desktop app (Desktop Bridge)](desktop-to-uwp-supported-api.md).  
-
-Because this file is not needed in Windows 10, you don't need to distribute it. In the reference properties, set the property "Copy Local" to false.
-
-![visual studio solution explorer](images/desktop-to-uwp/net-4.png)
-
-To add the Win32 binaries, use the same instructions as in Step 1.
-
-### Step 3: Extend
-
-For this example, we will extend a Win32 app with a background task. This requires registering the background task in the UWP app’s package.appxmanifest and adding a reference to the project implementing the background task, as shown below.
-
-```xml
-<Extensions>
-  <Extension Category="windows.backgroundTasks"
-              EntryPoint="BackgroundTasks.MyBackgroundTask">
-    <BackgroundTasks>
-      <Task Type="timer" />
-    </BackgroundTasks>
-  </Extension>
-</Extensions>
-```
-
-If the background task is implemented with C# or VB.NET, the resulting output will contain CoreCLR binaries that need to be processed by the .NET Native toolchain before being submitted to the store, as described in Step 3 and 4. Create appxupload with mixed binaries.
-
-### Step 4: Migrate
-
-This scenario already has a C# UWP entry point, so there is no need to add an additional UWP project. However, you need to follow the steps described in the Step 1 to include and configure the Win32 binaries.
-
-To execute the Win32 process, use the [**FullTrustProcessLauncher**](https://msdn.microsoft.com/library/windows/apps/Windows.ApplicationModel.FullTrustProcessLauncher) APIs. You'll need to add the desktop extension and *fullTrustProcess* capability to your app's manifest to use the APIs, like this:
-
-```xml
-..
-xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
-..
-<desktop:Extension Category="windows.fullTrustProcess"
-                    Executable="win32\MyDesktopApp.exe" />
-```
-
-## Generate Packages for your Desktop Bridge app
-
-Once you have followed the instructions above, you should be ready to generate your packages using Visual Studio as described in [Packaging UWP Apps](..\packaging\packaging-uwp-apps.md).
-
-### Steps 1 and 2: Create appxupload with Win32 binaries
-
-To submit packages with the *fullTrust* capability, you need to generate an appxupload file that includes the symbols for each platform in an appxsym file, and a bundle containing the Windows app package platform packages.
-
-In steps 1 and 2, your package does not contain any CoreCLR binaries, so you don't need to worry about which platform to choose. Select "Neutral" and "Release (Any CPU)", as shown in the figure below.
-
-![visual studio appxupload](images/desktop-to-uwp/net-5.png)
-
-After you select the "Generate Store packages" option, the wizard will generate the appxupload file ready to submit to the store.
-
-### Step 3 and 4: Create appxupload with mixed binaries
-
-You should also build for Release, and in this case, it's mandatory to specify which platforms we want to target because it is required for .NET Native to produce the native binaries for each platform.
-
-![visual studio appxupload 6](images/desktop-to-uwp/net-6.png)
-
-To create the new appxupload file, we will create a new zip archive to include the generated appxsym and appxbundle from the _Test folder.
-
-Create a new zip file that contains the appxsym and appxbundle files, and then rename the extension to appxupload.
-
-![file explorer](images/desktop-to-uwp/net-7.png)
-
-<span id="debugging-anchor" />
-## Debugging your Desktop Bridge app
-
-Although you can start your projects from Visual Studio without debugging (Ctrl + F5),there is a known issue where Visual Studio is not able to attach automatically to the running process. However, you can attach later using one of the next attach methods:
-
-### Attach to the running App
-
-#### Attach to an existing process
-
-Once you have successfully launched your app using Ctrl + F5, you can attach to your Win32 process; however, you will not be able to debug .NET Native modules.
-
-![visual studio attach to process](images/desktop-to-uwp/net-8.png)
-
-#### Attach to an installed App
-
-You can also attach to any existing Windows app package, using the option Debug -> Other Debug Targets -> Debug Installed App Package.
-
-![visual studio attach to process](images/desktop-to-uwp/net-9.png)
-
-Where you can select your local machine, or connect to a remote one.
-
-![visual studio attach to process](images/desktop-to-uwp/net-10.png)
-
-Using this option, you should be able to debug .NET Native code.
-
-### Use Visual Studio extension to debug your Desktop Bridge app
-
-If you prefer to run debug your app using F5, you need to install the Visual Studio 2017 extension [Desktop Bridge Debugging Project](https://marketplace.visualstudio.com/items?itemName=VisualStudioProductTeam.DesktoptoUWPPackagingProject) from the Visual Studio gallery.
-
-This project allows you to debug any Win32 app that is being migrated to UWP using Visual Studio (as described in this document) or using the Desktop App Converter.
-
-#### Add the debugging project to your solution
-
-To start, add a new Desktop Bridge Debugging Project to your project to your solution.
-
-![visual studio new project](images/desktop-to-uwp/net-11.png)
-
-To configure this project, you need to define the PackageLayout property in the properties window for each configuration/platform you want to use for debugging.
-To configure for Debug/x86 we will set the package layout property to the folder bin\x86\debug folder of the UWP project using a relative path: `..\MyDesktopApp.Package\bin\x86\Debug`.
-
-![visual studio project config](images/desktop-to-uwp/net-12.png)
-
-And edit the AppXFileLayout.xml file to specify your entry point:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0"
-         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <MyProjectOutputPath>$(PackageLayout)</MyProjectOutputPath>
-  </PropertyGroup>
-  <ItemGroup>
-    <LayoutFile Include="$(MyProjectOutputPath)\win32\MyDesktopApp.exe">
-      <PackagePath>$(PackageLayout)\win32\MyDesktopApp.exe</PackagePath>
-    </LayoutFile>
-  </ItemGroup>
-</Project>
-```
-
-Finally, you should configure your solution dependencies to make sure that the projects are built in the proper order.
-
-As an example, let's review the solution created for Step 3.
-
-![visual studio solution explorer](images/desktop-to-uwp/net-13.png)
-
-To configure the build order, you can use the Project Dependencies configuration. Right-click your solution and select the Project Dependencies option. Once you set the right dependencies, you can validate the build order as shown below (for Step 3):
-
-![visual studio build order](images/desktop-to-uwp/net-14.png)
-
-<span id="known-issues-anchor" />
-## Known issues with C#/VB.NET and C++ UWP projects
-
-If you prefer to use a C# project to package your app, you need to be aware of the following known issues.
-
-- **Building the app in Debug results in the error: Microsoft.Net.CoreRuntime.targets(235,5): error : Applications with custom entry point executables are not supported. Check Executable attribute of the Application element in the package manifest.** As a workaround, use Release mode instead.
-
-- **Win32 Binaries stored in the root folder of the UWP project are removed in Release**. If you don't use a folder to store your Win32 binaries, the .NET Native compiler will remove those from the final package, resulting in a manifest validation error since the executable entry point can't be found.
+<iframe src="https://www.youtube.com/embed/fJkbYPyd08w" width="636" height="480" allowFullScreen frameBorder="0"></iframe>
 
 ## Next steps
 
-**Find answers to specific questions**
+**Find answers to your questions**
 
-Our team monitors these [StackOverflow tags](http://stackoverflow.com/questions/tagged/project-centennial+or+desktop-bridge).
+Have questions? Ask us on Stack Overflow. Our team monitors these [tags](http://stackoverflow.com/questions/tagged/project-centennial+or+desktop-bridge). You can also ask us [here](https://social.msdn.microsoft.com/Forums/en-US/home?filter=alltypes&sort=relevancedesc&searchTerm=%5BDesktop%20Converter%5D).
 
-**Give feedback about this article**
+**Give feedback or make feature suggestions**
 
-Use the comments section below.
+See [UserVoice](https://wpdev.uservoice.com/forums/110705-universal-windows-platform/category/161895-desktop-bridge-centennial).
+
+**Run, debug or test your app**
+
+See [Run, debug, and test a packaged desktop app (Desktop Bridge)](desktop-to-uwp-debug.md)
+
+**Enhance your desktop app by adding UWP APIs**
+
+See [Enhance your desktop application for Windows 10](desktop-to-uwp-enhance.md)
+
+**Extend your desktop app by adding UWP projects and Windows Runtime Components**
+
+See [Extend your desktop application with modern UWP components](desktop-to-uwp-extend.md).
+
+**Distribute your app**
+
+See [Distribute a packaged desktop app (Desktop Bridge)](desktop-to-uwp-distribute.md)

@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Handle file activation
 
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 
 **Important APIs**
@@ -71,15 +71,14 @@ The steps above add an [**Extension**](https://msdn.microsoft.com/library/window
 ## Step 2: Add the proper icons
 
 
-Apps that become the default for a file type have their icons displayed in various places throughout the system. For example these icons are shown in:
+Apps that become the default for a file type have their icons displayed in various places throughout the system. For example, these icons are shown in:
 
--   Windows Explorer ItemsView, context menus, and the Ribbon
+-   Windows Explorer Items View, context menus, and the Ribbon
 -   Default programs Control Panel
 -   File picker
 -   Search results on the Start screen
 
-Match the look of the app tile logo and use your app's background color rather than making the icon transparent. Have the logo extend to the edge without padding it. Test your icons on white backgrounds. For example icons, see the [Association launching sample](http://go.microsoft.com/fwlink/p/?LinkID=620490).
-![the solution explorer with a view of the files in the images folder. there are 16, 32, 48, and 256 pixel versions of both ‘icon.targetsize’ and ‘smalltile-sdk’](images/seviewofimages.png)
+Include a 44x44 icon with your project so that your logo can appear in those locations. Match the look of the app tile logo and use your app's background color rather than making the icon transparent. Have the logo extend to the edge without padding it. Test your icons on white backgrounds. See [Guidelines for tile and icon assets](https://docs.microsoft.com/windows/uwp/shell/tiles-and-notifications/app-assets) for more details about icons.
 
 ## Step 3: Handle the activated event
 
@@ -122,7 +121,6 @@ When launched via File activation, apps should consider including UI that allows
 
 The files that you receive could come from an untrusted source. We recommend that you validate the content of a file before taking action on it. For more info on input validation, see [Writing Secure Code](http://go.microsoft.com/fwlink/p/?LinkID=142053)
 
-> **Note**  This article is for Windows 10 developers writing Universal Windows Platform (UWP) apps. If you’re developing for Windows 8.x or Windows Phone 8.x, see the [archived documentation](http://go.microsoft.com/fwlink/p/?linkid=619132).
 
  
 

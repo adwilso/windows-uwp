@@ -4,12 +4,13 @@ description: The Vertex Shader (VS) stage processes vertices, typically performi
 ms.assetid: 5133C4BB-B4E6-4697-9276-F718AD44869C
 keywords:
 - Vertex Shader (VS) stage
-author: PeterTurcan
-ms.author: pettur
+author: michaelfromredmond
+ms.author: mithom
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
+ms.localizationpriority: medium
 ---
 
 # Vertex Shader (VS) stage

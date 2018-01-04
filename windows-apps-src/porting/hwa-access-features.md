@@ -9,6 +9,7 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: Hosted Web Apps, WinRT APIs for JavaScript, Win10 web app, Windows JavaScript app, ApplicationContentUriRules, ACURs, msapplication-cortanavcd, Cortana for web apps
+ms.localizationpriority: medium
 ---
 
 # Accessing UWP features
@@ -35,7 +36,7 @@ Here are a few examples of ACURs.
 ```HTML
 <Application
 Id="App"
-StartPage="http://contoso.com/home">
+StartPage="https://contoso.com/home">
 <uap:ApplicationContentUriRules>
     <uap:Rule Type="include" Match="https://contoso.com/" WindowsRuntimeAccess="all" />
     <uap:Rule Type="include" Match="https://*.contoso.com/" WindowsRuntimeAccess="all" />
@@ -61,7 +62,7 @@ Here is an example rule type:
 </uap:ApplicationContentUriRules>
 ```
 
-This gives script running on http://contoso.com/ access to Windows Runtime namespaces and custom packaged components in the package. See the [Windows.UI.Notifications.js](https://gist.github.com/Gr8Gatsby/3d471150e5b317eb1813#file-windows-ui-notifications-js) example on GitHub for toast notifications.
+This gives script running on https://contoso.com/ access to Windows Runtime namespaces and custom packaged components in the package. See the [Windows.UI.Notifications.js](https://gist.github.com/Gr8Gatsby/3d471150e5b317eb1813#file-windows-ui-notifications-js) example on GitHub for toast notifications.
 
 Here is an example of how to implement a Live Tile and update it from remote JavaScript:
 
@@ -106,14 +107,14 @@ When you add a `<meta>` element tag that lists the location of your VCD file, Wi
 Here is an example of the use of the tag in an html page in a hosted web app:
 
 ```HTML
-<meta name="msapplication-cortanavcd" content="http:// contoso.com/vcd.xml"/>
+<meta name="msapplication-cortanavcd" content="https:// contoso.com/vcd.xml"/>
 ```
 
-For more info on Cortana integration and VCDs, see Cortana interactions and Voice Command Defintion (VCD) elements and attributes v1.2.
+For more info on Cortana integration and VCDs, see [Cortana interactions and Voice Command Definition (VCD) elements and attributes v1.2](https://docs.microsoft.com/en-us/uwp/schemas/voicecommands/voice-command-elements-and-attributes-1-2).
 
 ## Create Hybrid apps – Packaged web apps vs. Hosted web apps
 
-You have options for creating your UWP app. The app might be designed to be downloaded from the Windows Store and fully hosted on the local client; often referred to as a **Packaged Web App**. This lets you run your app offline on any compatible platform. Or the app might be a fully hosted web app that runs on a remote web server; typically known as a **Hosted Web App**. But there is also a third option: the app can be hosted partially on the local client and partially on a remote web server. We call this third option a **Hybrid app** and it typically uses the **WebView** component to make remote content look like local content. Hybrid apps can include your HTML5, CSS, and Javascript code running as a package inside the local app client and retain the ability to interact with remote content.
+You have options for creating your UWP app. The app might be designed to be downloaded from the Microsoft Store and fully hosted on the local client; often referred to as a **Packaged Web App**. This lets you run your app offline on any compatible platform. Or the app might be a fully hosted web app that runs on a remote web server; typically known as a **Hosted Web App**. But there is also a third option: the app can be hosted partially on the local client and partially on a remote web server. We call this third option a **Hybrid app** and it typically uses the **WebView** component to make remote content look like local content. Hybrid apps can include your HTML5, CSS, and Javascript code running as a package inside the local app client and retain the ability to interact with remote content.
 
 ## Web authentication broker
 
@@ -136,7 +137,7 @@ If your app needs programmatic access to user resources like pictures or music, 
 For more info about company accounts, see [Account types, locations, and fees](https://docs.microsoft.com/en-us/windows/uwp/publish/account-types-locations-and-fees).
 
 > [!NOTE]
-> It is important to know that when customers get your app from the Windows Store, they are notified of all the capabilities that the app declares. So do not use capabilities that your app does not need.
+> It is important to know that when customers get your app from the Microsoft Store, they are notified of all the capabilities that the app declares. So do not use capabilities that your app does not need.
 
 You request access by declaring capabilities in your app’s [package manifest](https://docs.microsoft.com/en-us/uwp/schemas/appxpackage/appx-package-manifest). For more information, see these articles on [Packaging for Universal Windows Platform (UWP) apps](https://docs.microsoft.com/en-us/windows/uwp/packaging/index).
 

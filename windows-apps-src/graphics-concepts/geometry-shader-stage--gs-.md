@@ -4,12 +4,13 @@ description: The Geometry Shader (GS) stage processes entire primitives triangle
 ms.assetid: 8A1350DD-B006-488F-9DAF-14CD2483BA4E
 keywords:
 - Geometry Shader (GS) stage
-author: PeterTurcan
-ms.author: pettur
+author: michaelfromredmond
+ms.author: mithom
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
+ms.localizationpriority: medium
 ---
 
 # Geometry Shader (GS) stage

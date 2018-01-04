@@ -1,5 +1,5 @@
 ---
-author: mukin
+author: muhsinking
 ms.assetid: 4A4C2802-E674-4C04-8A6D-D7C1BBF1BD20
 title: Device information properties
 description: Each device has associated DeviceInformation properties that you can use when you need specific information or when you are building a device selector.
@@ -9,10 +9,10 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 # Device information properties
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 
 **Important APIs**
@@ -29,7 +29,10 @@ A [**DeviceInformation**](https://msdn.microsoft.com/library/windows/apps/BR2253
 
 A [**DeviceInformation**](https://msdn.microsoft.com/library/windows/apps/BR225393) object has some basic properties, such as [**Id**](https://msdn.microsoft.com/library/windows/apps/windows.devices.enumeration.deviceinformation.id) and [**Kind**](https://msdn.microsoft.com/library/windows/apps/windows.devices.enumeration.deviceinformation.kind.aspx), but most of the properties are stored in a property bag under [**Properties**](https://msdn.microsoft.com/library/windows/apps/windows.devices.enumeration.deviceinformation.properties.aspx). Because of this, the property bag contains the properties used to source the properties out of the property bag. For example, use [System.ItemNameDisplay](https://msdn.microsoft.com/library/windows/desktop/Bb760770) to source the [**Name**](https://msdn.microsoft.com/library/windows/apps/windows.devices.enumeration.deviceinformation.name) property. This is a case of a common and well-known property that has a user-friendly name. Windows provides several of these user-friendly names to make querying for properties easier.
 
-When you are requesting properties, you are not limited to the common properties with user-friendly names. You can specify the underlying GUID and property ID (PID) to request any property that is available, even custom properties that are supplied by an individual device or driver. The format for specifying a custom property is "`{GUID} PID`". For example: "`{744e3bed-3684-4e16-9f8a-07953a8bf2ab} 7`"
+When you are requesting properties, you are not limited to the common properties with user-friendly names. You can specify the underlying GUID and property ID (PID) to request any property that is available, even custom properties that are supplied by an individual device or driver. The format for specifying a custom property is "`{GUID} PID`". For example: "`{744e3bed-3684-4e16-9f8a-07953a8bf2ab} 7`". 
+
+> [!Note]
+> You can find the list of property GUIDs in the device property key header file of the device driver.
 
 Some properties are common across all [**DeviceInformationKind**](https://msdn.microsoft.com/library/windows/apps/windows.devices.enumeration.deviceinformationkind) objects, but most are unique to a specific kind. The following sections list some common properties sorted by the individual **DeviceInformationKind**. For more information about how the different kinds relate to one another, see **DeviceInformationKind**.
 

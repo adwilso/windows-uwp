@@ -2,13 +2,14 @@
 title: Appendices
 description: These sections provide in-depth technical details.
 ms.assetid: 461CCE6F-BAF0-4965-90A5-FD36B511F72C
-author: PeterTurcan
-ms.author: pettur
+author: michaelfromredmond
+ms.author: mithom
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Appendices

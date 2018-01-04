@@ -1,18 +1,18 @@
 ---
-author: mcleblanc
+author: PatrickFarley
 ms.assetid: 1C77C50C-5DA4-4414-9316-6EEDD78629E2
 title: Beta testing
 description: Beta testing gives you the chance to improve your app based on feedback from individuals outside of your app-development team who try your unreleased app on their own devices.
-ms.author: markl
+ms.author: pafarley
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 # Beta testing
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 
 *Beta testing* gives you the chance to improve your app based on feedback from individuals outside of your app-development team who try your unreleased app on their own devices.
@@ -30,7 +30,7 @@ With beta testing, you can:
 -   Test your app on a variety of devices.
 -   Identify performance issues and other bugs that you might not have found otherwise.
 -   Get real-world usage info that can be used improve the user experience.
--   Receive feedback without affecting public ratings in the Windows Store.
+-   Receive feedback without affecting public ratings in the Microsoft Store.
 
 ## When to beta test
 

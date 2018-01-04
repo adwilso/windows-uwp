@@ -1,18 +1,18 @@
 ---
-author: TylerMSFT
+author: normesta
 ms.assetid: AAE467F9-B3C7-4366-99A2-8A880E5692BE
 title: Use a timer to submit a work item
 description: Learn how to create a work item that runs after a timer elapses.
-ms.author: twhitney
+ms.author: normesta
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp, timer, threads
+ms.localizationpriority: medium
 ---
 # Use a timer to submit a work item
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 ** Important APIs **
 

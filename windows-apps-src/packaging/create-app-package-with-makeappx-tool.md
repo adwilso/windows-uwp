@@ -9,11 +9,11 @@ ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp, packaging
 ms.assetid: 7c1c3355-8bf7-4c9f-b13b-2b9874b7c63c
+ms.localizationpriority: medium
 ---
 
 # Create an app package with the MakeAppx.exe tool
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 **MakeAppx.exe** creates both app packages and app package bundles. **MakeAppx.exe** also extracts files from an app package or bundle and encrypts or decrypts app packages and bundles. This tool is included in the Windows 10 SDK and can be used from a command prompt or a script file.
 

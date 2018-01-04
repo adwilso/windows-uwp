@@ -1,18 +1,18 @@
 ---
-author: mukin
+author: PatrickFarley
 ms.assetid: 9A0F1852-A76B-4F43-ACFC-2CC56AAD1C03
 title: Print from your app
 description: Learn how to print documents from a Universal Windows app. This topic also shows how to print specific pages.
-ms.author: mukin
+ms.author: pafarley
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 # Print from your app
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 
 **Important APIs**

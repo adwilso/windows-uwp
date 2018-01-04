@@ -9,11 +9,11 @@ ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
 ms.assetid: 7bc2006f-fc5a-4ff6-b573-60933882caf8
+ms.localizationpriority: medium
 ---
 
 # Create a certificate for package signing
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 This article explains how to create and export a certificate for app package signing using PowerShell tools. It's recommended that you use Visual Studio for [Packaging UWP apps](https://msdn.microsoft.com/windows/uwp/packaging/packaging-uwp-apps), but you can still package a Store ready app manually if you did not use Visual Studio to develop your app.
 
@@ -26,7 +26,7 @@ This article explains how to create and export a certificate for app package sig
 An app containing an AppxManifest.xml file. You will need to reference the manifest file while creating the certificate that will be used to sign the final app package. For details on how to manually package an app, see [Create an app package with the MakeAppx.exe tool](https://msdn.microsoft.com/windows/uwp/packaging/create-app-package-with-makeappx-tool).
 
 - **Public Key Infrastructure (PKI) Cmdlets**  
-You need PKI cmdlets to create and export your signing certificate. For more information, see [Public Key Infrastructure Cmdlets](https://technet.microsoft.com/library/hh848636.aspx).
+You need PKI cmdlets to create and export your signing certificate. For more information, see [Public Key Infrastructure Cmdlets](https://docs.microsoft.com/powershell/module/pkiclient/).
 
 ## Create a self signed certificate
 
@@ -46,7 +46,7 @@ For example, the "Identity" section in your app's AppxManifest.xml file should l
 The "Publisher", in this case, is "CN=Contoso Software, O=Contoso Corporation, C=US" which needs to be used for creating your certificate. 
 
 ### Use **New-SelfSignedCertificate** to create a certificate
-Use the **New-SelfSignedCertificate** PowerShell cmdlet to create a self signed certificate. **New-SelfSignedCertificate** has several parameters for customization, but for the purpose of this article, we'll focus on creating a simple certificate that will work with **SignTool**. For more examples and uses of this cmdlet, see [New-SelfSignedCertificate](https://technet.microsoft.com/library/hh848633.aspx).
+Use the **New-SelfSignedCertificate** PowerShell cmdlet to create a self signed certificate. **New-SelfSignedCertificate** has several parameters for customization, but for the purpose of this article, we'll focus on creating a simple certificate that will work with **SignTool**. For more examples and uses of this cmdlet, see [New-SelfSignedCertificate](https://docs.microsoft.com/powershell/module/pkiclient/New-SelfSignedCertificate).
 
 Based on the AppxManifest.xml file from the previous example, you should use the following syntax to create a certificate. In an elevated PowerShell prompt:
 ```

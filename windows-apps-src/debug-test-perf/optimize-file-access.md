@@ -1,18 +1,18 @@
 ---
-author: mcleblanc
+author: jwmsft
 ms.assetid: 40122343-1FE3-4160-BABE-6A2DD9AF1E8E
 title: Optimize file access
 description: Create Universal Windows Platform (UWP) apps that access the file system efficiently, avoiding performance issues due to disk latency and memory/CPU cycles.
-ms.author: markl
+ms.author: jimwalk
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 # Optimize file access
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 Create Universal Windows Platform (UWP) apps that access the file system efficiently, avoiding performance issues due to disk latency and memory/CPU cycles.
 
@@ -131,7 +131,7 @@ If you're performing multiple operations on Windows.Storage objects such as `Win
 
 ### Buffering between UWP and .NET streams
 
-There are many scenarios when you might want to convert a UWP stream (such as a [**Windows.Storage.Streams.IInputStream**](https://msdn.microsoft.com/library/windows/apps/BR241718) or [**IOutputStream**](https://msdn.microsoft.com/library/windows/apps/BR241728)) to a .NET stream ([**System.IO.Stream**](https://msdn.microsoft.com/library/windows/apps/xaml/system.io.stream.aspx)). For example, this is useful when you are writing a UWP app and want to use existing .NET code that works on streams with the UWP file system. In order to enable this, .NET APIs for Windows Store apps provides extension methods that allow you to convert between .NET and UWP stream types. For more info, see [**WindowsRuntimeStreamExtensions**](https://msdn.microsoft.com/library/windows/apps/xaml/system.io.windowsruntimestreamextensions.aspx).
+There are many scenarios when you might want to convert a UWP stream (such as a [**Windows.Storage.Streams.IInputStream**](https://msdn.microsoft.com/library/windows/apps/BR241718) or [**IOutputStream**](https://msdn.microsoft.com/library/windows/apps/BR241728)) to a .NET stream ([**System.IO.Stream**](https://msdn.microsoft.com/library/windows/apps/xaml/system.io.stream.aspx)). For example, this is useful when you are writing a UWP app and want to use existing .NET code that works on streams with the UWP file system. In order to enable this, .NET APIs for UWP apps provides extension methods that allow you to convert between .NET and UWP stream types. For more info, see [**WindowsRuntimeStreamExtensions**](https://msdn.microsoft.com/library/windows/apps/xaml/system.io.windowsruntimestreamextensions.aspx).
 
 When you convert a UWP stream to a .NET stream, you effectively create an adapter for the underlying UWP stream. Under some circumstances, there is a runtime cost associated with invoking methods on UWP streams. This may affect the speed of your app, especially in scenarios where you perform many small, frequent read or write operations.
 

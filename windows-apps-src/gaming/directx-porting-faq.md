@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp, games, directx 11
+ms.localizationpriority: medium
 ---
 
 # DirectX 11 porting FAQ
 
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 
 Answers to frequently-asked questions about porting games to Universal Windows Platform (UWP).
@@ -43,10 +43,10 @@ Games that still use the RDTSC instruction need to upgrade. See [Game Timing and
 
 The [DirectX Tool Kit (DirectXTK)](http://go.microsoft.com/fwlink/p/?LinkID=248929) community project offers helper classes for use with Direct3D 11.
 
-##  How do I maintain code paths for the desktop and the Windows Store?
+##  How do I maintain code paths for the desktop and the Microsoft Store?
 
 
-Chuck Walbourn's article series titled [Dual-use Coding Techniques for Games](http://go.microsoft.com/fwlink/p/?LinkID=286210) offers guidance on sharing code between the desktop and the Windows Store code paths.
+Chuck Walbourn's article series titled [Dual-use Coding Techniques for Games](http://go.microsoft.com/fwlink/p/?LinkID=286210) offers guidance on sharing code between the desktop and the Microsoft Store code paths.
 
 ##  How do I load image resources in my DirectX UWP app?
 

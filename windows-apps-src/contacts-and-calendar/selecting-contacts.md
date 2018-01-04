@@ -1,19 +1,19 @@
 ---
-author: Xansky
+author: normesta
 description: Through the Windows.ApplicationModel.Contacts namespace, you have several options for selecting contacts.
 title: Select contacts
 ms.assetid: 35FEDEE6-2B0E-4391-84BA-5E9191D4E442
 keywords: contacts, selecting select single contact select multiple contacts contacts, select multiple select specific contact data contact, selecting specific data contact, selecting specific fields
-ms.author: mhopkins
+ms.author: normesta
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
+ms.localizationpriority: medium
 ---
 
 # Select contacts
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 
 Through the [**Windows.ApplicationModel.Contacts**](https://msdn.microsoft.com/library/windows/apps/BR225002) namespace, you have several options for selecting contacts. Here, we'll show you how to select a single contact or multiple contacts, and we'll show you how to configure the contact picker to retrieve only the contact information that your app needs.

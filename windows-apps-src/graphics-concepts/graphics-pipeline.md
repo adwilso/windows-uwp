@@ -5,12 +5,13 @@ ms.assetid: C9519AD0-5425-48BD-9FF4-AED8959CA4AD
 keywords:
 - Graphics pipeline
 - Pipeline stages
-author: PeterTurcan
-ms.author: pettur
+author: michaelfromredmond
+ms.author: mithom
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
+ms.localizationpriority: medium
 ---
 
 # Graphics pipeline

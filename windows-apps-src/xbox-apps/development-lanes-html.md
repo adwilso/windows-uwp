@@ -9,6 +9,7 @@ ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
 ms.assetid: edd40cc4-2604-4bc6-bd81-f671389a70fa
+ms.localizationpriority: medium
 ---
 
 # Bringing HTML games to UWP on Xbox
@@ -19,6 +20,13 @@ Popular game engines such as [Construct 2](https://www.scirra.com/blog/176/annou
 HTML games are on a level playing field with any other type of game. Developers can get full access to native APIs such as controller input, Kinect, and more.
 
 Xbox One runs on the Universal Windows Platform and that means that, like other Microsoft devices, it supports Hosted Web Apps, which are applications that come completely from a server. To learn more, see [Hosted Web Apps](http://microsoftedge.github.io/WebAppsDocs/en-US/win10/HWA.htm).
+
+
+This video goes into more detail about Packaged Web apps and Hosted Web Apps on Xbox, including how to build them.
+</br>
+</br>
+<iframe src="https://channel9.msdn.com/Events/Xbox/App-Dev-on-Xbox/Web-Apps-on-Xbox/player#time=04m21s:paused" width="600" height="338" height="658.1199951171875" allowFullScreen frameBorder="0"></iframe>
+
 
 To get started, download your engine of choice and look for instructions for Windows 10 apps. Also be sure to read the [getting started guide](getting-started.md) for information about turning your console into a development kit and how to deploy from Visual Studio.
 

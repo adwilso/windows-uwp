@@ -1,20 +1,22 @@
 ---
-author: mcleblanc
+author: PatrickFarley
 ms.assetid: 5c34c78e-9ff7-477b-87f6-a31367cd3f8b
 title: Device Portal for Desktop
 description: Learn how the Windows Device Portal opens up diagnostics and automation on your Windows desktop.
-ms.author: markl
-ms.date: 02/08/2017
+ms.author: pafarley
+ms.date: 11/10/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 # Device Portal for Desktop
 
-Starting in Windows 10, Version 1607, additional developer features are available for desktop. These features are available only when Developer Mode is enabled.
+Starting in Windows 10, Version 1607, additional developer features are available for desktop. These features are available only when Developer Mode is enabled. For information about how to enable Developer Mode, see [Enable your device for development](../get-started/enable-your-device-for-development.md).
 
-For information about how to enable Developer Mode, see [Enable your device for development](../get-started/enable-your-device-for-development.md).
+> [!IMPORTANT]
+> Sometimes, due to network or compatibility issues, Developer Mode won't install correctly on your device. See the [relevant section of Enable your device for development](https://docs.microsoft.com/windows/uwp/get-started/enable-your-device-for-development#failure-to-install-developer-mode-package) for help troubleshooting these issues.
 
 Device Portal lets you view diagnostic information and interact with your desktop over HTTP from your browser. You can use Device Portal to do the following:
 - See and manipulate a list of running processes
@@ -57,53 +59,48 @@ If you are using Device Portal in a protected environment, like a test lab, wher
 
 Device Portal on desktop provides the standard set of pages. For detailed descriptions, see [Windows Device Portal overview](device-portal.md).
 
-- Apps
-- Processes
+- Apps manager
+- File explorer
+- Running Processes
 - Performance
-- Debugging
+- Debug
 - Event Tracing for Windows (ETW)
 - Performance tracing
-- Devices
+- Device manager
 - Networking
-- App File Explorer 
+- Crash data
+- Features
+- Mixed Reality
+- Streaming Install Debugger
+- Location
+- Scratch
 
-## Setting port numbers
+## Registry-based configuration for Device Portal
 
 If you would like to select port numbers for Device Portal (such as 80 and 443), you can set the following regkeys:
 
-- Under HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WebManagement\Service
-	- UseDynamicPorts: A required DWORD. Set this to 0 in order to retain the port numbers you've chosen.
-	- HttpPort: A required DWORD. Contains the port number that Device Portal will listen for HTTP connections on.	
-	- HttpsPort: A required DWORD. Contains the port number that Device Portal will listen for HTTPS connections on.
+- Under `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WebManagement\Service`
+	- `UseDynamicPorts`: A required DWORD. Set this to 0 in order to retain the port numbers you've chosen.
+	- `HttpPort`: A required DWORD. Contains the port number that Device Portal will listen for HTTP connections on.	
+	- `HttpsPort`: A required DWORD. Contains the port number that Device Portal will listen for HTTPS connections on.
+	
+Under the same regkey path, you can also turn off the authentication requirement:
+- `UseDefaultAuthorizer` - `0` for disabled, `1` for enabled.  
+	- This controls both the basic auth requirement for each connection and the redirect from HTTP to HTTPS.  
+	
+## Command line options for Device Portal
+From an administrative prompt, you can enable and configure parts of Device Portal. To see the latest set of commands supported on your build, you can run `webmanagement /?`
 
-## Failure to install Developer Mode package or launch Device Portal
-Sometimes, due to network or compatibility issues, Developer Mode won't install correctly. The Developer Mode package is required for **remote** deployment -- Device Portal and SSH -- but not for local development.  Even if you encounter these issues, you can still deploy your app locally using Visual Studio. 
+- `sc start webmanagement` or `sc stop webmanagement` 
+	- Turn the service on or off. This still requires Developer Mode to be enabled. 
+- `-Credentials <username> <password>` 
+	- Set a username and password for Device Portal. The username must conform to Basic Auth standards, so cannot contain a colon (:) and should be built out of standard ASCII characters e.g. [a-zA-Z0-9] as browsers do not parse the full character set in a standard way.  
+- `-DeleteSSL` 
+	- This resets the SSL certificate cache used for HTTPS connections. If you encounter TLS connection errors that cannot be bypassed (as opposed to the expected certificate warning), this option may fix the problem for you. 
+- `-SetCert <pfxPath> <pfxPassword>`
+	- See [Provisioning Device Portal with a custom SSL certificate](https://docs.microsoft.com/windows/uwp/debug-test-perf/device-portal-ssl) for details.  
+	- This allows you to install your own SSL certificate to fix the SSL warning page that is typically seen in Device Portal. 
+- `-Debug <various options for authentication, port selection, and tracing level>`
+	- Run a standalone version of Device Portal with a specific configuration and visible debug messages. This is most useful for building a [packaged plugin](https://docs.microsoft.com/windows/uwp/debug-test-perf/device-portal-plugin). 
+	- See the [MSDN Magazine article](https://msdn.microsoft.com/en-us/magazine/mt826332.aspx) for details on how to run this as System to fully test your packaged plugin. 
 
-See the [Known Issues](https://social.msdn.microsoft.com/Forums/en-US/home?forum=Win10SDKToolsIssues&sort=relevancedesc&brandIgnore=True&searchTerm=%22device+portal%22) forum to find workarounds to these issues and more. 
-
-### Failed to locate the package
-
-"Developer Mode package couldn’t be located in Windows Update. Error Code 0x001234 Learn more"   
-
-This error may occur due to a network connectivity problem, Enterprise settings, or the package may be missing. 
-
-To fix this issue:
-
-1. Ensure your computer is connected to the Internet. 
-2. If you are on a domain-joined computer, speak to your network administrator. They are likley blocking the Developer Mode package by default in their WSUS setup. 
-3. Check for Windows updates in the Settings > Updates and Security > Windows Updates.
-4. Verify that the Windows Developer Mode package is present in Settings > System > Apps & Features > Manage optional features > Add a feature. If it is missing, Windows cannot find the correct package for your computer. 
-
-After doing any of the above steps, disable and then re-enable Developer Mode to verify the fix. 
-
-
-### Failed to install the package
-
-"Developer Mode package failed to install. Error code 0x001234  Learn more"
-
-This error may occur due to incompatibilities between your build of Windows and the Developer Mode package. 
-
-To fix this issue:
-
-1. Check for Windows updates in the Settings > Updates and Security > Windows Updates.
-2. Reboot your computer to ensure all updates are applied.

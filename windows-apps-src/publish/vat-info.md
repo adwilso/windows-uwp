@@ -4,11 +4,12 @@ Description: If you’re required to provide a VAT ID number during the Dev Cent
 title: VAT info
 ms.assetid: 93834A6B-86D6-4647-AC01-CBCA3CB7A578
 ms.author: wdg-dev-content
-ms.date: 02/08/2017
+ms.date: 06/19/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: high
 ---
 
 # VAT info

@@ -2,13 +2,14 @@
 author: GrantMeStrength
 ms.assetid: DC235C16-8DAF-4078-9365-6612A10F3EC3
 title: Create a Hello World app in C++ (Windows 10)
-description: With Microsoft Visual Studio 2015, you can use C++ to develop an app that runs on Windows 10, including on phones running Windows 10. These apps have a UI that's defined in Extensible Application Markup Language (XAML).
+description: With Microsoft Visual Studio 2017, you can use C++ to develop an app that runs on Windows 10, including on phones running Windows 10. These apps have a UI that is defined in Extensible Application Markup Language (XAML).
 ms.author: jken
 ms.date: 03/26/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Create a "Hello world" app in C++
@@ -40,11 +41,11 @@ If you're coming from a background in Windows desktop programming in C++, you'll
 
 -   You're still using the Visual Studio debugger, profiler, and other development tools.
 
--   You're still creating apps that are compiled to native machine code by the Visual C++ compiler. Windows Store apps in C++ don't execute in a managed runtime environment.
+-   You're still creating apps that are compiled to native machine code by the Visual C++ compiler. UWP apps in C++ don't execute in a managed runtime environment.
 
 ### What's new?
 
--   The design principles for Windows Store apps and Universal Windows apps are very different from those for desktop apps. Window borders, labels, dialog boxes, and so on, are de-emphasized. Content is foremost. Great Universal Windows apps incorporate these principles from the very beginning of the planning stage.
+-   The design principles for UWP apps and Universal Windows apps are very different from those for desktop apps. Window borders, labels, dialog boxes, and so on, are de-emphasized. Content is foremost. Great Universal Windows apps incorporate these principles from the very beginning of the planning stage.
 
 -   You're using XAML to define the entire UI. The separation between UI and core program logic is much clearer in a Windows Universal app than in an MFC or Win32 app. Other people can work on the appearance of the UI in the XAML file while you're working on the behavior in the code file.
 
@@ -54,7 +55,7 @@ If you're coming from a background in Windows desktop programming in C++, you'll
 
 -   Your app is compiled into a package that also contains metadata about the types that your app contains, the resources that it uses, and the capabilities that it requires (file access, internet access, camera access, and so forth).
 
--   In the Windows Store and Windows Phone Store your app is verified as safe by a certification process and made discoverable to millions of potential customers.
+-   In the Microsoft Store and Windows Phone Store your app is verified as safe by a certification process and made discoverable to millions of potential customers.
 
 ## Hello World Store app in C++
 
@@ -229,7 +230,7 @@ The default splash screen appears first. It has an image—Assets\\SplashScreen.
 
 When the splash screen disappears, your app appears. It displays the main page of the App.
 
-![Windows Store app screen, with controls](images/xaml-hw-app2.png)
+![UWP app screen, with controls](images/xaml-hw-app2.png)
 
 It doesn't do much—yet—but congratulations, you've built your first Universal Windows Platform app!
 
@@ -242,7 +243,7 @@ In the app, you can type in the [**TextBox**](https://msdn.microsoft.com/library
 ## Step 2: Create an event handler
 
 1.  In MainPage.xaml, in either XAML or design view, select the "Say Hello" [**Button**](https://msdn.microsoft.com/library/windows/apps/BR209265) in the [**StackPanel**](https://msdn.microsoft.com/library/windows/apps/BR209635) you added earlier.
-2.  Open the **Properties Window** by pressing Alt+Enter, and then choose the Events button (![Events button](images/eventsbutton.png)).
+2.  Open the **Properties Window** by pressing F4, and then choose the Events button (![Events button](images/eventsbutton.png)).
 3.  Find the [**Click**](https://msdn.microsoft.com/library/windows/apps/BR227737) event. In its text box, type the name of the function that handles the **Click** event. For this example, type "Button\_Click".
 
     ![Properties window, Events view](images/xaml-hw-event.png)
@@ -326,7 +327,7 @@ Right now, in the Windows app the text is very small and difficult to read. Let'
      On the XAML design surface, the appearance of the text changes. In the XAML editor, the XAML for the [**TextBlock**](https://msdn.microsoft.com/library/windows/apps/BR209652) is updated:
 
     ```xaml
-    <TextBlock Text="What's your name?" Style="{StaticResource BasicTextStyle}"/><
+    <TextBlock Text="What's your name?" Style="{StaticResource BaseTextStyle}"/>
     ```
 
 7.  Repeat the process to set the font size and assign the **BaseTextBlockStyle** to the `greetingOutput`[**TextBlock**](https://msdn.microsoft.com/library/windows/apps/BR209652) element.

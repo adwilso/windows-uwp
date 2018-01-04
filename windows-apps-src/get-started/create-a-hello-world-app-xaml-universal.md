@@ -1,14 +1,15 @@
 ---
 author: GrantMeStrength
 ms.assetid: 03A74239-D4B6-4E41-B2FA-6C04F225B844
-title: Create a Hello, world app (XAML)
-description: This tutorial teaches you how to use Extensible Application Markup Language (XAML) with C# to create a simple Hello, world app that targets the Universal Windows Platform (UWP) on Windows 10.
+title: Learn how to create a "Hello, world" app (XAML)
+description: Use Extensible Application Markup Language (XAML) with C# to create a simple Hello, world app that targets the Universal Windows Platform (UWP) on Windows 10.
 ms.author: jken
 ms.date: 03/06/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
-keywords: windows 10, uwp
+keywords: windows 10, uwp, get started, xaml
+ms.localizationpriority: high
 ---
 
 # Create a "Hello, world" app (XAML)
@@ -95,7 +96,7 @@ To view and edit a file in your project, double-click the file in the **Solution
 
 *A set of logo images*
 -   Assets/Square150x150Logo.scale-200.png represents your app in the start menu.
--   Assets/StoreLogo.png represents your app in the Windows Store.
+-   Assets/StoreLogo.png represents your app in the Microsoft Store.
 -   Assets/SplashScreen.scale-200.png is the splash screen that appears when your app starts.
 
 ## Step 2: Adding a button
@@ -186,7 +187,7 @@ It doesn't do much—yet—but congratulations, you've built your first UWP app!
 
    Close the app window.
 
-## Step 3: Event handlers
+## Step 4: Event handlers
 
 An "event handler" sounds complicated, but it's just another name for the code that is called when an event happens (such as the user clicking on your button).
 
@@ -232,13 +233,13 @@ When you run the app and click on the button, your computer (or phone) will lite
 
 Congratulations, you've created your first app for Windows 10 and the UWP!
 
-To learn how to use XAML for laying out the controls your app will use, try the [grid tutorial](../layout/grid-tutorial.md), or jump straight to [next steps](learn-more.md)?
+To learn how to use XAML for laying out the controls your app will use, try the [grid tutorial](../design/layout/grid-tutorial.md), or jump straight to [next steps](learn-more.md)?
 
 
 ## See Also
 
 * [Your first app](your-first-app.md)
-* [Publishing your Windows Store app](https://developer.microsoft.com/store/publish-apps).
+* [Publishing your UWP app](https://developer.microsoft.com/store/publish-apps).
 * [How-to articles on developing UWP apps](https://developer.microsoft.com/windows/apps/develop)
 * [Code Samples for UWP developers](https://developer.microsoft.com/windows/samples)
 * [What's a Universal Windows app?](whats-a-uwp.md)

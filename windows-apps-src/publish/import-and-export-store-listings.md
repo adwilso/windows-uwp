@@ -1,24 +1,25 @@
 ﻿---
 author: jnHs
-Description: You can create Store listings for your apps without using the Dev Center dashboard by exporting your listings in a .csv file, entering your info and assets, and then importing the updated file. 
+Description: You can create Store listings for your apps without using the Dev Center dashboard by exporting your listings in a .csv file, entering your info and assets, and then importing the updated file.
 title: Import and export Store listings
 ms.author: wdg-dev-content
-ms.date: 05/23/2017
+ms.date: 12/22/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: high
 ---
 
 # Import and export Store listings
+Instead of [entering info for your Store listings directly in the dashboard](create-app-store-listings.md), you have the option to add or update info by exporting your listings in a .csv file, entering your info and assets, and then importing the updated file. You can use this method to create listings from scratch, or to update listings you’ve already created.
 
-> [!IMPORTANT]
-> We are in the process of rolling out this feature to all developer accounts. Until we complete this rollout, you may not see these options in your account.
+This option is especially useful if you want to create or update Store listings for your product in multiple languages, since you can copy/paste the same info into multiple fields and easily make any changes that should apply to specific languages. However, note that you can’t use this method to create or update [platform-specific Store listings](create-platform-specific-store-listings.md) for your app. 
 
-You can create [Store listings](create-app-store-listings.md) for your apps without using the Dev Center dashboard by exporting your listings in a .csv file, entering your info and assets, and then importing the updated file. You can use this method to create listings from scratch or to update listings you’ve already created. 
+> [!TIP]
+> You can also use this feature to import and export Store listing details for an add-on. For add-ons, the process works the same except that [only the fields relevant to add-ons](#add-ons) are included.
 
-> [!NOTE]
-> You can’t use this method to create or update [platform-specific Store listings](create-platform-specific-store-listings.md).
+Below, we describe the process for importing and exporting your Store listings. Keep in mind that you can always create or update listings directly in the Dev Center dashboard (even if you have previously used the import/export method). Updating directly in the dashboard can be easier when you are just making a simple change, but you can use either method at any time.
 
 ## Export listings
 
@@ -96,5 +97,10 @@ None of the info from your .csv file will be saved in Dev Center until all of th
 
 You can continue to make updates to your listings either by  importing another updated .csv file, or by making changes directly in Dev Center.
 
+## Add-ons
+
+For add-ons, importing and exporting Store listings uses the same process described above, except that you'll only see the three fields relevant to [add-on Store listings](create-add-on-store-listings.md): **Description**, **Title**, and **StoreLogo300x300** (referred to as **Icon** in the Store listing page in Dev Center). The **Title** field is required, and the other two fields are optional.
+
+Note that you must import and export Store listings separately for each add-on in your app by navigating to the submission overview page for the add-on.
 
 

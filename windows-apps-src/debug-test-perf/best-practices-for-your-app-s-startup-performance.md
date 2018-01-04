@@ -1,18 +1,18 @@
 ---
-author: mcleblanc
+author: jwmsft
 ms.assetid: 00ECF6C7-0970-4D5F-8055-47EA49F92C12
 title: Best practices for your app's startup performance
 description: Create Universal Windows Platform (UWP) apps with optimal startup times by improving the way you handle launch and activation.
-ms.author: markl
+ms.author: jimwalk
 ms.date: 02/08/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 # Best practices for your app's startup performance
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 Create Universal Windows Platform (UWP) apps with optimal startup times by improving the way you handle launch and activation.
 
@@ -52,7 +52,7 @@ When you recompile your app, the native image is no longer used. Instead, the ap
 
 ### Defer work as long as possible
 
-To increase your app's startup time, do only the work that absolutely needs to be done to let the user start interacting with the app. This can be especially beneficial if you can delay loading additional assemblies. The common language runtime loads an assembly the first time it is used. If you can minimize the number of assemblies that are loaded, you might be able to improve your app's startup time and its memory consumption.
+To improve your app's startup time, do only the work that absolutely needs to be done to let the user start interacting with the app. This can be especially beneficial if you can delay loading additional assemblies. The common language runtime loads an assembly the first time it is used. If you can minimize the number of assemblies that are loaded, you might be able to improve your app's startup time and its memory consumption.
 
 ### Do long-running work independently
 

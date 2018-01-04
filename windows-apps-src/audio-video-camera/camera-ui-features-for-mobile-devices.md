@@ -9,6 +9,7 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 #Camera UI features for mobile devices
@@ -52,9 +53,6 @@ In the handler for the **CameraPressed** event, you can initiate a photo capture
 When your app is shutting down or the user moves away from the media capture page of your app, unregister the hardware button handler.
 
 [!code-cs[UnregisterCameraButtonHandler](./code/BasicMediaCaptureWin10/cs/MainPage.xaml.cs#SnippetUnregisterCameraButtonHandler)]
-
-> [!NOTE]
-> This article is for Windows 10 developers writing Universal Windows Platform (UWP) apps. If you're developing for Windows 8.x or Windows Phone 8.x, see the [archived documentation](http://go.microsoft.com/fwlink/p/?linkid=619132).                                                                                   |
 
 ## Related topics
 

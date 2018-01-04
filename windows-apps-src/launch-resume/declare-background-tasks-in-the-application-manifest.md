@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp
+ms.localizationpriority: medium
 ---
 
 # Declare background tasks in the application manifest
 
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 
 **Important APIs**
@@ -208,7 +208,7 @@ Here is example XML that declares a background task that runs in a BackgroundTas
 
 ### Run in a new process each time a trigger fires with the SupportsMultipleInstances attribute
 
-This example declares a background task that runs in a new process that gets its own resource limits (memory and CPU) every time a new trigger is fired. Note the use of `SupportsMultipleInstances` which enables this behavior.
+This example declares a background task that runs in a new process that gets its own resource limits (memory and CPU) every time a new trigger is fired. Note the use of `SupportsMultipleInstances` which enables this behavior. In order to use this attribute you must target SDK version '10.0.15063' (Windows 10 Creators Update) or higher.
 
 ```xml
 <Package

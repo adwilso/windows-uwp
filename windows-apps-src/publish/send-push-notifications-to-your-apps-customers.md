@@ -1,24 +1,25 @@
 ﻿---
 author: JnHs
-Description: Learn how to send targeted push notifications from Windows Dev Center to your app to encourage customers to take an action, such as rating an app or buying an add-on.
+Description: Learn how to send notifications from Windows Dev Center to your app to encourage groups of customers to take an action, such as rating an app or buying an add-on.
 title: Send targeted push notifications to your app's customers
 ms.author: wdg-dev-content
-ms.date: 05/19/2017
+ms.date: 12/14/2017
 ms.topic: article
 ms.prod: windows
 ms.technology: uwp
-keywords: windows 10, uwp
+keywords: windows 10, uwp, targeted notifications, push notifications, toast, tile
 ms.assetid: 16386c81-702d-47cd-9f91-67659f5dca73
+ms.localizationpriority: high
 ---
 
-# Send targeted push notifications to your app's customers
+# Send notifications to your app's customers
 
-Engaging with your customers at the right time and with the right message is key to your success as an app developer. Windows Dev Center provides a data-driven customer engagement platform you can use to send push notifications to all of your customers or only to a subset of your Windows 10 customers who meet the criteria you’ve defined in a [customer segment](create-customer-segments.md).
+Engaging with your customers at the right time and with the right message is key to your success as an app developer. Windows Dev Center provides a data-driven customer engagement platform you can use to send notifications to all of your customers, or only targeted to a subset of your Windows 10 customers who meet the criteria you’ve defined in a [customer segment](create-customer-segments.md).
 
-You can use targeted push notifications to encourage your customers to take an action, such as rating an app, buying an add-on, trying a new feature, or downloading another app (perhaps for free with a [promotional code](generate-promotional-codes.md) that you provide).
+You can use notifications to encourage your customers to take an action, such as rating an app, buying an add-on, trying a new feature, or downloading another app (perhaps for free with a [promotional code](generate-promotional-codes.md) that you provide).
 
 > [!IMPORTANT]
-> Targeted push notifications can only be used with UWP apps.
+> These notifications can only be used with UWP apps.
 
 When considering the content of your notifications, keep in mind:
 - The content in your notifications must comply with the Store [Content Policies](https://msdn.microsoft.com/library/windows/apps/dn764944.aspx#content_policies).
@@ -27,30 +28,28 @@ When considering the content of your notifications, keep in mind:
 - Be sure not to send notifications too often. More than once every 30 minutes can seem intrusive (and for many scenarios, less frequently than that is preferable).
 - Be aware that if a customer who uses your app (and is signed in with their Microsoft account at the time the segment membership is determined) later gives their device to someone to use, the other person may see the notification that was targeted at the original customer. For more info, see [Configure your app for targeted push notifications](../monetize/configure-your-app-to-receive-dev-center-notifications.md#notification-customers).
 
-## Getting started with push notifications
+## Getting started with notifications
 
-At a high-level, you need to do three things to use push notifications to engage with your customers.
-1. **Register your app to receive push notifications.** You do this by adding a reference to the Microsoft Store Services SDK in your app and then adding a few lines of code that registers a notification channel between the Dev Center and your app. We’ll use that channel to deliver your push notifications to your customers. For details, see [Configure your app for targeted push notifications](../monetize/configure-your-app-to-receive-dev-center-notifications.md).
-2. **Create one or more customer segments that you want to target.** You can group your customers into segments based on demographic or revenue criteria. For more info, see [Create customer segments](create-customer-segments.md).
+At a high-level, you need to do three things to use notifications to engage with your customers.
+1. **Register your app to receive push notifications.** You do this by adding a reference to the Microsoft Store Services SDK in your app and then adding a few lines of code that registers a notification channel between the Dev Center and your app. We’ll use that channel to deliver your notifications to your customers. For details, see [Configure your app for targeted push notifications](../monetize/configure-your-app-to-receive-dev-center-notifications.md).
+2. **Create one or more customer segments that you want to target.** You can group your customers into segments based on demographic or revenue criteria. For more info, see [Create customer segments](create-customer-segments.md). You can also send a notification to all of your app's customers, if you prefer.
 3. **Create a push notification and send it to a particular customer segment.** For example, send a notification to encourage new customers to rate your app or send a notification with a special deal to purchase an add-on.
 
-## To create and send a targeted push notification
+## To create and send a notification
 
-Follow these steps to create a push notification in the dashboard and send it to a particular customer segment.
+Follow these steps to create a notification in the dashboard and send it to a particular customer segment.
 
 > [!NOTE]
-> Before your app can receive targeted push notifications from Dev Center, you must first call the [RegisterNotificationChannelAsync](https://msdn.microsoft.com/library/windows/apps/mt771190.aspx) method in your app to register your app to receive notifications. This method is available in the [Microsoft Store Services SDK](http://aka.ms/store-em-sdk). For more information about how to call this method, including a code example, see [Configure your app to receive Dev Center notifications](../monetize/configure-your-app-to-receive-dev-center-notifications.md).
+> Before your app can receive notifications from Dev Center, you must first call the [RegisterNotificationChannelAsync](https://msdn.microsoft.com/library/windows/apps/mt771190.aspx) method in your app to register your app to receive notifications. This method is available in the [Microsoft Store Services SDK](http://aka.ms/store-em-sdk). For more information about how to call this method, including a code example, see [Configure your app for targeted push notifications](../monetize/configure-your-app-to-receive-dev-center-notifications.md).
 
-1.	In the [Windows Dev Center dashboard](https://developer.microsoft.com/dashboard/overview), select your app.
-2.	In the left navigation menu, expand **Services**, and select **Push notifications**.
-3.	On the **Targeted push notifications** page, select **New notification**.
-4.	In the **Select a template** section, choose the type of notification you want to send. For details, see [Notification template types](#notification-template-types).
-  ![Notification templates](images/push-notifications-template.png)
-5.	In the **Notification settings** section, choose a **Name** for your notification and choose the **Customer group** you want to send the notification to.
-If you haven’t created a segment yet, select **Create new customer group**. Note that it takes 24 hours for a new segment to be available to use for notifications. For more info, see [Create customer segments](create-customer-segments.md).
-6.	If you want to specify when to send the notification, clear the **Send notification immediately** checkbox and choose a specific date and time.
-7.	If you want the notification to expire at some point, clear the **Notification never expires** checkbox and choose a specific expiration date and time.
-8.	If you want to filter the recipients so that your notification is only delivered to people who use certain languages, or who are in specific time zones, check the **Filters** checkbox. You can then select the languages and/or time zones by which you want to filter your recipients.
+1.	In the [Windows Dev Center dashboard](https://developer.microsoft.com/dashboard/overview), expand the **Engage** section, and then select **Notifications**.
+2.	On the **Notifications** page, select **New notification**.
+3.	In the **Select a template** section, choose the type of notification you want to send. For details, see [Notification template types](#notification-template-types). <!-- ![Notification templates](images/push-notifications-template.png) -->
+4.      On the next page, use the drop-down menu to select the app for which you want to generate a notification.
+5.	In the **Notification settings** section, choose a **Name** for your notification and choose the **Customer group** to which you want to send the notification. If you haven’t already created the segment you want to use, select **Create new customer group**. Note that it takes 24 hours before you can use a new segment for notifications. For more info, see [Create customer segments](create-customer-segments.md).
+6.	If you want to specify when to send the notification, clear the **Send notification immediately** checkbox and choose a specific date and time (in UTC for all customers, unless you specify to use each customer's local time zone).
+7.	If you want the notification to expire at some point, clear the **Notification never expires** checkbox and choose a specific expiration date and time (in UTC).
+8.	If you want to filter the recipients so that your notification is only delivered to people who use certain languages, or who are in specific time zones, check the **Use filters** checkbox. You can then select the languages and/or time zones by which you want to filter your recipients.
 9.	In the **Notification content** section, in the **Language** menu, choose the languages in which you want your notification to be displayed. For more info, see [Translate your notifications](#translate-your-notifications).
 10.	In the **Options** section, enter text and configure any other options you’d like. If you started with a template, some of this is provided by default, but you can make any changes you'd like.
    The available options vary, depending on which notification type you are using. Some of the options are:
@@ -62,7 +61,7 @@ If you haven’t created a segment yet, select **Create new customer group**. No
    - **Base URI** (interactive toast type). For more details, see [BaseUri](https://msdn.microsoft.com/library/windows/apps/br208712).
    - **Add image query** (interactive toast type). For more details, see [addImageQuery](https://msdn.microsoft.com/library/windows/apps/br230847).
    - **Visual**. An image, video, or sound. For more details, see [visual](https://msdn.microsoft.com/library/windows/apps/br230847).
-   - **Input**/**Action**/**Selection** (interactive toast type). Allows you to let users interact with the notification. For more info, see [Adaptive and interactive toast notifications](../controls-and-patterns/tiles-and-notifications-adaptive-interactive-toasts.md).
+   - **Input**/**Action**/**Selection** (interactive toast type). Allows you to let users interact with the notification. For more info, see [Adaptive and interactive toast notifications](../design/shell/tiles-and-notifications/adaptive-interactive-toasts.md).
    - **Binding** (interactive tile type). The toast template. For more details, see [binding](https://msdn.microsoft.com/library/windows/apps/br230843).
 
    > [!TIP]
@@ -130,8 +129,8 @@ Things to keep in mind about translation:
  - If you change the English text after the notification has been translated, we’ll automatically update the translated notifications to match the change. However, this won’t happen if you previously chose to override the initial translation.
 
 ## Related topics
-- [Tiles, badges, and notifications for UWP apps](../controls-and-patterns/tiles-badges-notifications.md)
-- [Windows Push Notification Services (WNS) overview](../controls-and-patterns/tiles-and-notifications-windows-push-notification-services--wns--overview.md)
+- [Tiles, badges, and notifications for UWP apps](../design/shell/tiles-and-notifications/index.md)
+- [Windows Push Notification Services (WNS) overview](../design/shell/tiles-and-notifications/windows-push-notification-services--wns--overview.md)
 - [Notifications Visualizer app](https://www.microsoft.com/store/apps/9nblggh5xsl1)
 - [StoreServicesEngagementManager.RegisterNotificationChannelAsync() | registerNotificationChannelAsync() method](https://msdn.microsoft.com/library/windows/apps/mt771190.aspx)
 - [Customer segmentation and push notifications: a new Windows Dev Center Insider Program feature (blog post)](https://blogs.windows.com/buildingapps/2016/08/17/customer-segmentation-and-push-notifications-a-new-windows-dev-center-insider-program-feature/#XTuCqrG8G5IMgWew.97)

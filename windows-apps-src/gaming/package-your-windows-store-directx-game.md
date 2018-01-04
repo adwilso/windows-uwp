@@ -9,12 +9,10 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp, games, directx, package
+ms.localizationpriority: medium
 ---
 
 #  Package your Universal Windows Platform (UWP) DirectX game
-
-
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 Larger Universal Windows Platform (UWP) games, especially those that support multiple languages with region-specific assets or feature optional high-definition assets, can easily balloon to large sizes. In this topic, learn how to use app packages and app bundles to customize your app so that your customers only receive the resources they actually need.
 
@@ -52,7 +50,7 @@ Resources for resource packaging are specified in one of two basic ways:
 
 -   Asset files have the same filename, and the resource pack specific versions are placed in specific named directories. These directory names are reserved by the system. For example, \\en-us, \\scale-140, \\dxfl-dx11.
 -   Asset files are stored in folders with arbitrary names, but the files are named with a common label that is appended with strings reserved by the system to denote language or other qualifiers. Specifically, the qualifier strings are affixed to the generalized filename after an underscore (“\_”). For example, \\assets\\menu\_option1\_lang-en-us.png, \\assets\\menu\_option1\_scale-140.png, \\assets\\coolsign\_dxfl-dx11.dds. You may also combine these strings. For example, \\assets\\menu\_option1\_scale-140\_lang-en-us.png.
-    > **Note**   When used in a filename rather than alone in a directory name, a language qualifier must take the form "lang-<tag>", e.g."lang-en-us" as described in [How to name resources using qualifiers](https://msdn.microsoft.com/library/windows/apps/xaml/hh965324).
+    > **Note**   When used in a filename rather than alone in a directory name, a language qualifier must take the form "lang-<tag>", e.g."lang-en-us" as described in [Tailor your resources for language, scale, and other qualifiers](../app-resources/tailor-resources-lang-scale-contrast.md).
 
      
 

@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: windows
 ms.technology: uwp
 keywords: windows 10, uwp, games, porting, direct3d 11
+ms.localizationpriority: medium
 ---
 
 # Game porting guides
 
 
-\[ Updated for UWP apps on Windows 10. For Windows 8.x articles, see the [archive](http://go.microsoft.com/fwlink/p/?linkid=619132) \]
 
 Provides guides for porting your existing games to Direct3D 11, Universal Windows Platform (UWP), and Windows 10.
 
@@ -43,7 +43,6 @@ Provides guides for porting your existing games to Direct3D 11, Universal Window
 
  
 
-> **Note**  This article is for Windows 10 developers writing Universal Windows Platform (UWP) apps. If you’re developing for Windows 8.x or Windows Phone 8.x, see the [archived documentation](http://go.microsoft.com/fwlink/p/?linkid=619132).
 
  
 
